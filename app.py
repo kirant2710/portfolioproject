@@ -2,10 +2,22 @@ import streamlit as st
 import plotly.graph_objects as go
 from datetime import datetime
 import json
+import requests
+import smtplib
+import ssl
+import pandas as pd
+import numpy as np
+
 
 st.set_page_config(layout="wide")
 
-tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8 = st.tabs(["About Me", "Professional Journey", "Academic Journey","Certificates","Projects", "Skills" , "Teching Experience", "Corporate Training and Consulting"])
+def display_metric(label, value, column):
+    """Displays a metric in the specified column."""
+    st.write(f"display_metric called with label={label}, value={value}")
+    with column:
+        st.metric(label=label, value=value)
+
+tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9 = st.tabs(["About Me", "Professional Journey", "Academic Journey","Certificates","Projects", "Skills" , "Teaching Experience", "Consulting", "Corporate Training"])
 
 project_data = {
     "MICRON": [
@@ -72,41 +84,69 @@ with tab5:
 with tab6:
     st.header("Skills")
 
-    # Load skills data from JSON file
-    try:
-        with open("skills_data.json", "r") as f:
-            skills_data = json.load(f)
-        roles = skills_data["roles"]
-    except FileNotFoundError:
-        st.error("Could not load skills data. Please ensure skills_data.json exists.")
-        roles = []
-    except json.JSONDecodeError:
-        st.error("Could not decode skills data. Please ensure skills_data.json is valid JSON.")
-        roles = []
+    # Load skills data
+    def load_skills_data():
+        """Loads skills data from skills_data.json and handles potential errors."""
+        if "skills_data" not in st.session_state:
+            try:
+                with open("skills_data.json", "r") as f:
+                    skills_data = json.load(f)
+                roles = skills_data["roles"]
+                st.session_state["skills_data"] = roles
+                return roles
+            except FileNotFoundError:
+                st.error("Could not load skills data. Please ensure skills_data.json exists.")
+                return []
+            except json.JSONDecodeError:
+                st.error("Could not decode skills data. Please ensure skills_data.json is valid JSON.")
+                return []
+        else:
+            return st.session_state["skills_data"]
 
-    # Add custom CSS for styling
+    roles = load_skills_data()
+
+    # Custom CSS for styling
     st.markdown(
         """
         <style>
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            grid-gap: 10px;
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
         }
-        .skill-item {
-            padding: 10px;
+        .skill-card {
+            width: 300px;
+            margin: 20px;
+            padding: 15px;
             border: 1px solid #ddd;
-            border-radius: 5px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease-in-out;
         }
-        .skill-item img {
-            width: 20px;
-            height: 20px;
+        .skill-card:hover {
+            transform: translateY(-5px);
+        }
+        .skill-card h3 {
+            color: #333;
+        }
+        .skill-card p {
+            color: #666;
+        }
+        .skill-card img {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
             vertical-align: middle;
-            margin-right: 5px;
         }
+        .skill-icon-small {
+            width: 30px;
+            height: 30px;
+        }
+        /* Responsive design */
         @media (max-width: 768px) {
-            .skills-grid {
-                grid-template-columns: repeat(1, 1fr);
+            .skill-card {
+                width: 100%; /* Full width on smaller screens */
+                margin: 10px 0;
             }
         }
         </style>
@@ -114,49 +154,583 @@ with tab6:
         unsafe_allow_html=True,
     )
 
-    st.write("<div class='skills-grid'>", unsafe_allow_html=True)  # Start the grid
+    # Display skills
+    st.write("<div class='skills-container'>", unsafe_allow_html=True)
+    for role in roles:
+        st.write(f"<div class='skill-card'>", unsafe_allow_html=True)
+        st.write(f"<h3>{role['name']}</h3>", unsafe_allow_html=True)
+        for skill in role["skills"]:
+            icon_html = f'<img class="skill-icon-small" src="{skill['icon']}" alt="{skill['name']} icon">'
+            st.write(f"<p>{icon_html} {skill['name']}: {skill['description']}</p>", unsafe_allow_html=True)
+        st.write("</div>", unsafe_allow_html=True)
+    st.write("</div>", unsafe_allow_html=True)
 
-    skill_list = roles  # Use roles directly from loaded data
-    grid_positions = [(0, 0), (0, 1), (0, 2), (1, 0), (1, 1), (1, 2), (2, 0), (2, 1)]  # Define grid positions
+    # Add Skill Form (optional)
+    with st.expander("Add New Skill (Optional)"):
+        with st.form("add_skill_form"):
+            skill_name = st.text_input("Skill Name")
+            skill_description = st.text_area("Skill Description")
+            skill_icon = st.text_input("Skill Icon URL")
+            skill_category = st.selectbox("Skill Category", options=[role["name"] for role in roles])
+            submitted = st.form_submit_button("Add Skill")
 
-    # Populate the grid with skills
-    for i in range(min(len(skill_list), len(grid_positions))):  # Limit to available positions
-        try:
-            role = skill_list[i]
-            row, col = grid_positions[i]
-            st.write(f"<div class='skill-item'>", unsafe_allow_html=True)  # Start a skill item
-            st.subheader(role["name"])
-            for skill in role["skills"]:
-                icon_html = f'<img src="{skill["icon"]}" width="20" alt="{skill.get("alt", "Skill Icon")}">'
-                st.markdown(icon_html + f' **{skill["name"]}:** {skill["description"]}', unsafe_allow_html=True)
-            st.write("</div>", unsafe_allow_html=True)  # Close the skill item
-        except Exception as e:
-            st.error(f"Error rendering skill item: {e}")
+            if submitted:
+                new_skill = {
+                    "name": skill_name,
+                    "description": skill_description,
+                    "icon": skill_icon
+                }
+                for role in roles:
+                    if role["name"] == skill_category:
+                        role["skills"].append(new_skill)
+                        break
 
-    st.write("</div>", unsafe_allow_html=True)  # Close the grid
+                # Write the updated data back to the JSON file
+                with open("skills_data.json", "w") as f:
+                    json.dump({"roles": roles}, f, indent=2)
+
+                st.success("Skill added successfully!")
 
 with tab4:
     st.header("Certificates")
 
-    col1, col2 = st.columns(2)
-    col3, col4 = st.columns(2)
+with tab4:
+    st.header("Certificates")
 
+    roles = load_skills_data()
+
+    # Calculate certificate counts based on skills
+    deep_learning_certs = 0
+    machine_learning_certs = 0
+    statistics_certs = 0
+    generative_ai_certs = 0
+    ai_engineering_certs = 0
+    mlops_certs = 0
+
+    for role in roles:
+        if role["name"] == "AI Engineer":
+            deep_learning_certs = len(role["skills"])
+            generative_ai_certs = len(role["skills"]) # Assuming all skills in AI Engineer are related to Generative AI
+            ai_engineering_certs = len(role["skills"])
+        elif role["name"] == "ML Engineer":
+            machine_learning_certs = len(role["skills"])
+        elif role["name"] == "Data Science":
+            statistics_certs = len(role["skills"])
+        elif role["name"] == "MLOps Engineer":
+            mlops_certs = len(role["skills"])
+
+    col1, col2, col3 = st.columns(3)
     with col1:
-        st.metric(label="Active Certificates", value=120)
+        display_metric("Deep Learning", deep_learning_certs, col1)
+        display_metric("Machine Learning", machine_learning_certs, col1)
     with col2:
-        st.metric(label="Certificates Pending Approval", value=15, delta="2%")
+        display_metric("Statistics", statistics_certs, col2)
+        display_metric("Generative AI", generative_ai_certs, col2)
     with col3:
-        st.metric(label="Percentage of Employees Certified", value="85%", delta="5%")
-    with col4:
-        st.metric(label="Cost Savings from Certifications", value="$150,000", delta="$10,000")
+        display_metric("AI Engineering", ai_engineering_certs, col3)
+        display_metric("MLOps", mlops_certs, col3)
 
 with tab7:
     st.header("Teaching Experience")
-    st.write("This section is under construction.")
+
+    st.subheader("Teaching Philosophy")
+    st.write(
+        """
+        My teaching philosophy centers around creating engaging and interactive learning experiences that empower students to develop a deep understanding of complex concepts. I strive to foster a collaborative environment where students feel comfortable asking questions, exploring new ideas, and applying their knowledge to real-world problems.
+        """
+    )
+
+    st.subheader("Subject Areas")
+
+    # Python
+    with st.expander("Python"):
+        st.write(
+            """
+            **Courses Taught:** Introduction to Python Programming, Data Analysis with Python, Machine Learning with Python
+
+            **Technologies Used:** Python, Jupyter Notebook, Pandas, NumPy, Scikit-learn
+
+            **Student Outcomes:** Students successfully completed projects involving data analysis, machine learning model development, and web application creation. Average student satisfaction score: 4.5/5.
+            """
+        )
+
+    # Deep Learning
+    with st.expander("Deep Learning"):
+        st.write(
+            """
+            **Courses Taught:** Deep Learning Fundamentals, Convolutional Neural Networks, Recurrent Neural Networks
+
+            **Technologies Used:** TensorFlow, Keras, PyTorch, CUDA
+
+            **Student Outcomes:** Students built deep learning models for image classification, natural language processing, and time series forecasting. Project success rate: 90%.
+            """
+        )
+
+    # NLP
+    with st.expander("Natural Language Processing (NLP)"):
+        st.write(
+            """
+            **Courses Taught:** Natural Language Processing with Python, Text Mining, Sentiment Analysis
+
+            **Technologies Used:** NLTK, SpaCy, Gensim, Transformers
+
+            **Student Outcomes:** Students developed NLP applications for text classification, sentiment analysis, and machine translation.
+            """
+        )
+
+    # High-Performance Computation
+    with st.expander("High-Performance Computation"):
+        st.write(
+            """
+            **Courses Taught:** Introduction to High-Performance Computing, Parallel Programming with Python
+
+            **Technologies Used:** NumPy, SciPy, Numba, Dask
+
+            **Student Outcomes:** Students optimized Python code for high-performance computing environments.
+            """
+        )
+
+    # AI Engineering
+    with st.expander("Artificial Intelligence Engineering"):
+        st.write(
+            """
+            **Courses Taught:** AI Engineering Fundamentals, Building AI-Powered Applications
+
+            **Technologies Used:** Python, TensorFlow, Keras, Cloud Platforms (AWS, Azure, GCP)
+
+            **Student Outcomes:** Students designed and deployed AI-powered applications using various cloud platforms.
+            """
+        )
+
+    # MLOps
+    with st.expander("Machine Learning Operations (MLOps)"):
+        st.write(
+            """
+            **Courses Taught:** Introduction to MLOps, CI/CD for Machine Learning, Model Deployment and Monitoring
+
+            **Technologies Used:** Docker, Kubernetes, MLflow, Jenkins, Prometheus
+
+            **Student Outcomes:** Students built and deployed machine learning pipelines using MLOps principles.
+            """
+        )
+
+    # R
+    with st.expander("R"):
+        st.write(
+            """
+            **Courses Taught:** Introduction to R Programming, Statistical Modeling with R
+
+            **Technologies Used:** R, RStudio, ggplot2
+
+            **Student Outcomes:** Students performed statistical analysis and data visualization using R.
+            """
+        )
+
+    st.subheader("Teaching Institutes")
+
+    # Great Learning
+    st.markdown("#### Great Learning  <img src='https://img.icons8.com/color/30/000000/university.png'>", unsafe_allow_html=True)
+    with st.expander("See Details"):
+        st.write(
+            """
+            **Course Name:** Data Science and Machine Learning Bootcamp
+
+            **Duration:** 6 Months
+
+            **Role:** Instructor
+            """
+        )
+
+    # UpGrad
+    st.markdown("#### UpGrad  <img src='https://img.icons8.com/color/30/000000/university.png'>", unsafe_allow_html=True)
+    with st.expander("See Details"):
+        st.write(
+            """
+            **Course Name:** Advanced Machine Learning and AI Program
+
+            **Duration:** 9 Months
+
+            **Role:** Mentor
+            """
+        )
+
+    # Jigsaw Academy
+    st.markdown("#### Jigsaw Academy  <img src='https://img.icons8.com/color/30/000000/university.png'>", unsafe_allow_html=True)
+    with st.expander("See Details"):
+        st.write(
+            """
+            **Course Name:** Data Science Specialization
+
+            **Duration:** 12 Months
+
+            **Role:** Guest Lecturer
+            """
+        )
+
+    # IIT Roorkee
+    st.markdown("#### IIT Roorkee  <img src='https://img.icons8.com/color/30/000000/university.png'>", unsafe_allow_html=True)
+    with st.expander("See Details"):
+        st.write(
+            """
+            **Course Name:** Deep Learning Workshop
+
+            **Duration:** 2 Days
+
+            **Role:** Workshop Facilitator
+            """
+        )
+
+    # IIM Indore (IIM I)
+    st.markdown("#### IIM Indore (IIM I)  <img src='https://img.icons8.com/color/30/000000/university.png'>", unsafe_allow_html=True)
+    with st.expander("See Details"):
+        st.write(
+            """
+            **Course Name:** Business Analytics Program
+
+            **Duration:** 1 Week
+
+            **Role:** Visiting Faculty
+            """
+        )
+
+    # IIM Ahmedabad (IIM A)
+    st.markdown("#### IIM Ahmedabad (IIM A)  <img src='https://img.icons8.com/color/30/000000/university.png'>", unsafe_allow_html=True)
+    with st.expander("See Details"):
+        st.write(
+            """
+            **Course Name:** AI for Business Leaders
+
+            **Duration:** 3 Days
+
+            **Role:** Guest Speaker
+            """
+        )
+
+    st.subheader("Metrics")
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        st.metric(label="Students Taught", value=500)
+    with col2:
+        st.metric(label="Average Satisfaction Score", value="4.6/5")
+    with col3:
+        st.metric(label="Project Success Rate", value="85%")
+
+    st.subheader("Call to Action")
+    st.write(
+        """
+        For a detailed teaching portfolio or further information, please contact me.
+        """
+    )
+
+    # Request Course Enrollment Button
+    st.subheader("Request Course Enrollment")
+    user_name = st.text_input("Your Name", key="course_enrollment_name")
+    user_email = st.text_input("Your Email", key="course_enrollment_email")
+    course_interest = st.selectbox("Interested in Courses related to:", ["Data Science", "AI", "Machine Learning", "Deep Learning", "MLOps", "DevOps"], key="course_enrollment_interest")
+    user_message = st.text_area("Optional Message", key="course_enrollment_message")
+
+def display_metric(label, value, column):
+    """Displays a metric in the specified column."""
+    with column:
+        st.metric(label=label, value=value)
+
+def send_email(subject, message, receiver_email):
+    """Sends an email using the provided subject and message."""
+    port = 465  # For SSL
+    smtp_server = "smtp.gmail.com"
+    sender_email = "kiran90429@gmail.com"  # Admin's email
+    password = input("Type your password and press enter:")
+
+    context = ssl.create_default_context()
+    try:
+        with smtplib.SMTP_SSL(smtp_server, port, context=context) as server:
+            server.login(sender_email, password)
+            server.sendmail(sender_email, receiver_email, message)
+        st.success("Email sent successfully!")
+    except Exception as e:
+        st.error(f"Error sending email: {e}")
+
+        st.write(f"**Contact Person:** {contact_person}")
+        st.write(f"**Phone Number:** {phone_number}")
+        st.write(f"**Preferred Appointment Dates/Times:** {preferred_dates}")
+
+    st.subheader("Training Metrics")
+
+    # Dummy Data (Replace with actual data source)
+    total_companies_trained = 150
+    companies_trained_this_month = 15
+    companies_trained_this_quarter = 40
+    month_over_month_trend = 0.10  # 10% increase
+    quarter_over_quarter_trend = -0.05  # 5% decrease
+    last_updated = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+    col1, col2 = st.columns(2)
+    with col1:
+        st.metric(label="Total Companies Trained", value=total_companies_trained)
+        st.metric(label="Companies Trained This Month", value=companies_trained_this_month, delta=f"{month_over_month_trend:.2%}", delta_color="normal")
+    with col2:
+        st.metric(label="Companies Trained This Quarter", value=companies_trained_this_quarter, delta=f"{quarter_over_quarter_trend:.2%}", delta_color="inverse")
+
+    # Data Visualization (Dummy Data)
+    import pandas as pd
+    import numpy as np
+    chart_data = pd.DataFrame(
+        np.random.randn(12, 1),
+        columns=['Companies Trained'],
+        index=pd.date_range(start='2024-07-01', periods=12, freq='MS')
+    )
+    st.line_chart(chart_data)
+
+    st.write(f"Data Source: Dummy Data")
+    st.write(f"Last Updated: {last_updated}")
+
+    st.subheader("Data Science Course Catalog")
+
+    # Course 1
+    with st.container():
+        st.subheader("Data Science with Python")
 
 with tab8:
-    st.header("Corporate Training and Consulting")
-    st.write("This section is under construction.")
+    st.header("Consulting Engagements")
+
+    # Engagement 1
+    with st.container():
+        st.subheader("Acme Corp - Predictive Maintenance System")
+        st.write("**Description:** Developed a predictive maintenance system for Acme Corp's manufacturing equipment using machine learning. The system predicts equipment failures, allowing for proactive maintenance and reducing downtime.")
+        st.write("**Engagement Dates:** 2024-01-15 to 2024-07-31")
+        st.write("**Role:** Lead Data Scientist")
+        st.write("**Technologies Used:** Python, Scikit-learn, TensorFlow, AWS")
+        st.write("**Team Members:** John Smith, Jane Doe")
+        st.write("**Key Deliverables:** Predictive model, maintenance schedule, dashboard")
+        st.write("Client Testimonial: 'The predictive maintenance system has significantly reduced our equipment downtime and saved us thousands of dollars.'")
+        st.write("**Project Impact:** Reduced equipment downtime by 15%, saving $50,000 in maintenance costs.")
+        st.markdown("---")
+
+    # Engagement 2
+    with st.container():
+        st.subheader("Beta Industries - Customer Segmentation and Targeting")
+        st.write("**Description:** Implemented a customer segmentation and targeting strategy for Beta Industries using data analytics and machine learning. The strategy identified key customer segments and developed targeted marketing campaigns to increase sales and customer loyalty.")
+        st.write("**Engagement Dates:** 2023-09-01 to 2024-03-31")
+        st.write("**Role:** Data Science Consultant")
+        st.write("**Technologies Used:** R, SQL, Tableau, Google Analytics")
+        st.write("**Team Members:** David Lee, Sarah Chen")
+        st.write("**Key Deliverables:** Customer segmentation model, marketing campaign plan, performance reports")
+        st.write("Client Testimonial: 'The customer segmentation and targeting strategy has significantly improved our marketing ROI.'")
+        st.write("**Project Impact:** Increased sales by 10% and customer loyalty by 5%.")
+        st.markdown("---")
+
+    # Engagement 3
+    with st.container():
+        st.subheader("Gamma Healthcare - Medical Image Analysis")
+        st.write("**Description:** Developed a computer vision system for medical image analysis to assist radiologists in detecting diseases. The system analyzes X-rays and MRIs to identify potential anomalies, improving diagnostic accuracy and reducing the workload of radiologists.")
+        st.write("**Engagement Dates:** 2022-11-01 to 2023-05-31")
+
+    # Request Appointment Button
+    st.subheader("Request Appointment")
+    user_name = st.text_input("Your Name (Optional)", key="consulting_name")
+    preferred_date_time = st.text_input("Preferred Date and Time", key="consulting_datetime")
+    consulting_needs = st.text_area("Brief Description of Your Consulting Needs", key="consulting_needs")
+
+    # CAPTCHA Implementation
+    num1 = st.session_state.get('num1', np.random.randint(1, 10))
+    num2 = st.session_state.get('num2', np.random.randint(1, 10))
+    captcha_answer = num1 + num2
+    captcha_input = st.number_input(f"What is {num1} + {num2}?", step=1)
+
+    if st.button("Request Appointment", key="consulting_appointment_button"):
+        if captcha_input == captcha_answer:
+            message = f"""\
+Subject: Consultation Request
+
+User Name: {user_name}
+Preferred Date and Time: {preferred_date_time}
+Consulting Needs: {consulting_needs}
+"""
+            send_email("Consultation Request", message, "consulting@example.com")
+        else:
+            st.error("CAPTCHA failed. Please try again.")
+            st.session_state['num1'] = np.random.randint(1, 10)
+            st.session_state['num2'] = np.random.randint(1, 10)
+        st.write("**Description:** A comprehensive introduction to data science using Python.")
+        st.write("**Training Hours:** 40")
+        st.write("**Company:** Acme Corp")
+        st.markdown("---")
+
+    # Course 2
+    with st.container():
+        st.subheader("Data Science with R")
+        st.write("**Description:** A comprehensive introduction to data science using R.")
+        st.write("**Training Hours:** 40")
+        st.write("**Company:** Beta Industries")
+        st.markdown("---")
+
+    # Course 3
+    with st.container():
+        st.subheader("Statistics for Data Science")
+        st.write("**Description:** A deep dive into statistical concepts for data science.")
+        st.write("**Training Hours:** 30")
+        st.write("**Company:** Gamma Healthcare")
+        st.markdown("---")
+
+    # Course 4
+    with st.container():
+        st.subheader("Deep Learning Fundamentals")
+        st.write("**Description:** An introduction to deep learning concepts and techniques.")
+        st.write("**Training Hours:** 50")
+        st.write("**Company:** Delta Technologies")
+        st.markdown("---")
+
+    # Course 5
+    with st.container():
+        st.subheader("Generative AI")
+        st.write("**Description:** An introduction to Generative AI models and applications.")
+        st.write("**Training Hours:** 60")
+        st.write("**Company:** Epsilon Solutions")
+        st.markdown("---")
+with tab8:
+    st.header("Consulting Engagements")
+
+    # Engagement 1
+    with st.container():
+        st.subheader("Acme Corp - Predictive Maintenance System")
+        st.write("**Description:** Developed a predictive maintenance system for Acme Corp's manufacturing equipment using machine learning. The system predicts equipment failures, allowing for proactive maintenance and reducing downtime.")
+        st.write("**Engagement Dates:** 2024-01-15 to 2024-07-31")
+        st.write("**Role:** Lead Data Scientist")
+        st.write("**Technologies Used:** Python, Scikit-learn, TensorFlow, AWS")
+        st.write("**Team Members:** John Smith, Jane Doe")
+        st.write("**Key Deliverables:** Predictive model, maintenance schedule, dashboard")
+        st.write("Client Testimonial: 'The predictive maintenance system has significantly reduced our equipment downtime and saved us thousands of dollars.'")
+        st.write("**Project Impact:** Reduced equipment downtime by 15%, saving $50,000 in maintenance costs.")
+        st.markdown("---")
+
+    # Engagement 2
+    with st.container():
+        st.subheader("Beta Industries - Customer Segmentation and Targeting")
+        st.write("**Description:** Implemented a customer segmentation and targeting strategy for Beta Industries using data analytics and machine learning. The strategy identified key customer segments and developed targeted marketing campaigns to increase sales and customer loyalty.")
+        st.write("**Engagement Dates:** 2023-09-01 to 2024-03-31")
+        st.write("**Role:** Data Science Consultant")
+        st.write("**Technologies Used:** R, SQL, Tableau, Google Analytics")
+        st.write("**Team Members:** David Lee, Sarah Chen")
+        st.write("**Key Deliverables:** Customer segmentation model, marketing campaign plan, performance reports")
+        st.write("Client Testimonial: 'The customer segmentation and targeting strategy has significantly improved our marketing ROI.'")
+        st.write("**Project Impact:** Increased sales by 10% and customer loyalty by 5%.")
+        st.markdown("---")
+
+    # Engagement 3
+    with st.container():
+        st.subheader("Gamma Healthcare - Medical Image Analysis")
+        st.write("**Description:** Developed a computer vision system for medical image analysis to assist radiologists in detecting diseases. The system analyzes X-rays and MRIs to identify potential anomalies, improving diagnostic accuracy and reducing the workload of radiologists.")
+        st.write("**Engagement Dates:** 2022-11-01 to 2023-05-31")
+        st.write("**Role:** Computer Vision Engineer")
+        st.write("**Technologies Used:** Python, TensorFlow, Keras, OpenCV")
+        st.write("**Team Members:** Emily Brown, Michael Green")
+        st.write("**Key Deliverables:** Image analysis system, training data, performance evaluation report")
+        st.write("Client Testimonial: 'The medical image analysis system has improved our diagnostic accuracy and efficiency.'")
+        st.write("**Project Impact:** Improved diagnostic accuracy by 12% and reduced radiologist workload by 20%.")
+        st.markdown("---")
+
+    # Engagement 4
+    with st.container():
+        st.subheader("Delta Technologies - Fraud Detection System")
+        st.write("**Description:** Developed a fraud detection system for Delta Technologies' online transactions using machine learning. The system identifies fraudulent transactions in real-time, preventing financial losses and protecting customers.")
+        st.write("**Engagement Dates:** 2023-03-01 to 2023-09-30")
+        st.write("**Role:** Machine Learning Engineer")
+        st.write("**Technologies Used:** Python, Scikit-learn, Spark, Kafka")
+        st.write("**Team Members:** Kevin White, Ashley Black")
+        st.write("**Key Deliverables:** Fraud detection model, real-time monitoring dashboard, fraud alert system")
+        st.write("Client Testimonial: 'The fraud detection system has significantly reduced our fraud losses and improved our customer trust.'")
+        st.write("**Project Impact:** Reduced fraud losses by 25% and improved customer trust by 10%.")
+        st.markdown("---")
+
+     # Engagement 5
+    with st.container():
+        st.subheader("Epsilon Solutions - NLP-Powered Chatbot")
+        st.write("**Description:** Developed an NLP-powered chatbot for Epsilon Solutions' customer service. The chatbot provides instant answers to customer inquiries, reducing the workload of customer service agents and improving customer satisfaction.")
+        st.write("**Engagement Dates:** 2024-02-01 to 2024-08-31")
+        st.write("**Role:** NLP Engineer")
+        st.write("**Technologies Used:** Python, NLTK, SpaCy, Rasa")
+        st.write("**Team Members:** Jennifer Gray, Christopher Blue")
+        st.write("**Key Deliverables:** NLP-powered chatbot, training data, performance reports")
+        st.write("Client Testimonial: 'The NLP-powered chatbot has significantly improved our customer service efficiency and satisfaction.'")
+        st.write("**Project Impact:** Improved customer service efficiency by 30% and customer satisfaction by 15%.")
+        st.markdown("---")
+
+with tab9:
+    st.header("Corporate Training")
+
+    st.subheader("Training Metrics")
+
+    # Dummy Data (Replace with actual data source)
+    total_companies_trained = 150
+    companies_trained_this_month = 15
+    companies_trained_this_quarter = 40
+    month_over_month_trend = 0.10  # 10% increase
+    quarter_over_quarter_trend = -0.05  # 5% decrease
+    last_updated = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+    col1, col2 = st.columns(2)
+    with col1:
+        st.metric(label="Total Companies Trained", value=total_companies_trained)
+        st.metric(label="Companies Trained This Month", value=companies_trained_this_month, delta=f"{month_over_month_trend:.2%}", delta_color="normal")
+    with col2:
+        st.metric(label="Companies Trained This Quarter", value=companies_trained_this_quarter, delta=f"{quarter_over_quarter_trend:.2%}", delta_color="inverse")
+
+    # Data Visualization (Dummy Data)
+    import pandas as pd
+    import numpy as np
+    chart_data = pd.DataFrame(
+        np.random.randn(12, 1),
+        columns=['Companies Trained'],
+        index=pd.date_range(start='2024-07-01', periods=12, freq='MS')
+    )
+    st.line_chart(chart_data)
+
+    st.write(f"Data Source: Dummy Data")
+    st.write(f"Last Updated: {last_updated}")
+
+    st.subheader("Data Science Course Catalog")
+
+    # Course 1
+    with st.container():
+        st.subheader("Data Science with Python")
+        st.write("**Description:** A comprehensive introduction to data science using Python.")
+        st.write("**Training Hours:** 40")
+        st.write("**Company:** Acme Corp")
+        st.markdown("---")
+
+    # Course 2
+    with st.container():
+        st.subheader("Data Science with R")
+        st.write("**Description:** A comprehensive introduction to data science using R.")
+        st.write("**Training Hours:** 40")
+        st.write("**Company:** Beta Industries")
+        st.markdown("---")
+
+    # Course 3
+    with st.container():
+        st.subheader("Statistics for Data Science")
+        st.write("**Description:** A deep dive into statistical concepts for data science.")
+        st.write("**Training Hours:** 30")
+        st.write("**Company:** Gamma Healthcare")
+        st.markdown("---")
+
+    # Course 4
+    with st.container():
+        st.subheader("Deep Learning Fundamentals")
+        st.write("**Description:** An introduction to deep learning concepts and techniques.")
+        st.write("**Training Hours:** 50")
+        st.write("**Company:** Delta Technologies")
+        st.markdown("---")
+
+    # Course 5
+    with st.container():
+        st.subheader("Generative AI")
+        st.write("**Description:** An introduction to Generative AI models and applications.")
+        st.write("**Training Hours:** 60")
+        st.write("**Company:** Epsilon Solutions")
+        st.markdown("---")
+with tab3:
+    st.header("Academic Journey")
 
 with tab3:
     st.header("Academic Journey")
@@ -211,6 +785,11 @@ with tab3:
 
     for item in timeline_data:
         st.write(f'[{item["Name"]}]({item["link"]})')
+
+with tab8:
+    st.header("Consulting")
+    st.subheader("Consulting Services Offered")
+    
 
 with tab1:
     st.header("Kiran Kumar Kandula")
