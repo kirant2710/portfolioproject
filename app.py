@@ -1,6 +1,7 @@
 import streamlit as st
 import plotly.graph_objects as go
 from datetime import datetime
+import json
 
 st.set_page_config(layout="wide")
 
@@ -71,53 +72,17 @@ with tab5:
 with tab6:
     st.header("Skills")
 
-    roles = {
-        "Data Science": {
-            "skills": [
-                {"name": "Python", "description": "Expert in Python for data analysis & ML.", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg", "alt": "Python Icon"},
-                {"name": "R", "description": "Proficient in R for statistical modeling.", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/r/r-original.svg", "alt": "R Icon"},
-                {"name": "Regression", "description": "Mastery of regression techniques.", "icon": "https://img.icons8.com/ios/50/000000/regression-analysis.png", "alt": "Regression Icon"},
-                {"name": "Classification", "description": "Deep understanding of classification algorithms.", "icon": "https://img.icons8.com/ios/50/000000/classification.png", "alt": "Classification Icon"},
-                {"name": "Time Series Analysis", "description": "Advanced time series forecasting skills.", "icon": "https://img.icons8.com/ios/50/000000/time-series.png", "alt": "Time Series Icon"}
-            ]
-        },
-        "MLOps Engineer": {
-            "skills": [
-                {"name": "CI/CD", "description": "Automated CI/CD pipeline deployment.", "icon": "https://img.icons8.com/ios/50/000000/continuous-delivery.png", "alt": "CI/CD Icon"},
-                {"name": "Docker", "description": "Containerization using Docker.", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original-wordmark.svg", "alt": "Docker Icon"},
-                {"name": "Kubernetes", "description": "Orchestration with Kubernetes.", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain-wordmark.svg", "alt": "Kubernetes Icon"},
-                {"name": "AWS", "description": "Cloud deployment on AWS.", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg", "alt": "AWS Icon"},
-                {"name": "Monitoring", "description": "Real-time monitoring & alerting.", "icon": "https://img.icons8.com/ios/50/000000/monitoring.png", "alt": "Monitoring Icon"}
-            ]
-        },
-        "AI Engineer": {
-            "skills": [
-                {"name": "Deep Learning", "description": "Building deep learning models.", "icon": "https://img.icons8.com/ios/50/000000/artificial-intelligence.png", "alt": "Deep Learning Icon"},
-                {"name": "NLP", "description": "Natural language processing expertise.", "icon": "https://img.icons8.com/ios/50/000000/natural-language.png", "alt": "NLP Icon"},
-                {"name": "Computer Vision", "description": "Computer vision applications development.", "icon": "https://img.icons8.com/ios/50/000000/computer-vision.png", "alt": "Computer Vision Icon"},
-                {"name": "Python", "description": "Python programming for AI.", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg", "alt": "Python Icon"},
-                {"name": "TensorFlow", "description": "TensorFlow framework proficiency.", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg", "alt": "TensorFlow Icon"}
-            ]
-        },
-        "ML Engineer": {
-            "skills": [
-                {"name": "ML Algorithms", "description": "Applying ML algorithms.", "icon": "https://img.icons8.com/ios/50/000000/machine-learning.png", "alt": "ML Algorithms Icon"},
-                {"name": "Data Modeling", "description": "Data modeling and feature engineering.", "icon": "https://img.icons8.com/ios/50/000000/data-model.png", "alt": "Data Modeling Icon"},
-                {"name": "Python", "description": "Python for ML development.", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg", "alt": "Python Icon"},
-                {"name": "Scikit-learn", "description": "Scikit-learn library expertise.", "icon": "https://upload.wikimedia.org/wikipedia/commons/0/05/Scikit_learn_logo_small.svg", "alt": "Scikit-learn Icon"},
-                {"name": "Model Evaluation", "description": "Evaluating ML model performance.", "icon": "https://img.icons8.com/ios/50/000000/evaluate-performance.png", "alt": "Model Evaluation Icon"}
-            ]
-        },
-        "DevOps Engineer": {
-            "skills": [
-                {"name": "Cloud Platforms", "description": "Managing cloud infrastructure.", "icon": "https://img.icons8.com/ios/50/000000/cloud-service.png", "alt": "Cloud Platforms Icon"},
-                {"name": "Automation", "description": "Automating infrastructure with tools.", "icon": "https://img.icons8.com/ios/50/000000/automation.png", "alt": "Automation Icon"},
-                {"name": "Linux", "description": "Linux system administration.", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg", "alt": "Linux Icon"},
-                {"name": "Scripting", "description": "Scripting for automation.", "icon": "https://img.icons8.com/ios/50/000000/code.png", "alt": "Scripting Icon"},
-                {"name": "Networking", "description": "Networking and security.", "icon": "https://img.icons8.com/ios/50/000000/networking.png", "alt": "Networking Icon"}
-            ]
-        }
-    }
+    # Load skills data from JSON file
+    try:
+        with open("skills_data.json", "r") as f:
+            skills_data = json.load(f)
+        roles = skills_data["roles"]
+    except FileNotFoundError:
+        st.error("Could not load skills data. Please ensure skills_data.json exists.")
+        roles = []
+    except json.JSONDecodeError:
+        st.error("Could not decode skills data. Please ensure skills_data.json is valid JSON.")
+        roles = []
 
     # Add custom CSS for styling
     st.markdown(
@@ -139,6 +104,11 @@ with tab6:
             vertical-align: middle;
             margin-right: 5px;
         }
+        @media (max-width: 768px) {
+            .skills-grid {
+                grid-template-columns: repeat(1, 1fr);
+            }
+        }
         </style>
         """,
         unsafe_allow_html=True,
@@ -146,21 +116,47 @@ with tab6:
 
     st.write("<div class='skills-grid'>", unsafe_allow_html=True)  # Start the grid
 
-    skill_list = list(roles.items())  # Convert roles to a list
-    grid_positions = [(0, 0), (0, 1), (0, 2), (1, 0), (1, 1), (1, 2), (2, 0), (2, 1)]  # Removed last position
+    skill_list = roles  # Use roles directly from loaded data
+    grid_positions = [(0, 0), (0, 1), (0, 2), (1, 0), (1, 1), (1, 2), (2, 0), (2, 1)]  # Define grid positions
 
     # Populate the grid with skills
     for i in range(min(len(skill_list), len(grid_positions))):  # Limit to available positions
-        role, data = skill_list[i]
-        row, col = grid_positions[i]
-        st.write(f"<div class='skill-item'>", unsafe_allow_html=True)  # Start a skill item
-        st.subheader(role)
-        for skill in data["skills"]:
-            icon_html = f'<img src="{skill["icon"]}" width="20" alt="{skill["alt"]}">'
-            st.markdown(icon_html + f' **{skill["name"]}:** {skill["description"]}', unsafe_allow_html=True)
-        st.write("</div>", unsafe_allow_html=True)  # Close the skill item
+        try:
+            role = skill_list[i]
+            row, col = grid_positions[i]
+            st.write(f"<div class='skill-item'>", unsafe_allow_html=True)  # Start a skill item
+            st.subheader(role["name"])
+            for skill in role["skills"]:
+                icon_html = f'<img src="{skill["icon"]}" width="20" alt="{skill.get("alt", "Skill Icon")}">'
+                st.markdown(icon_html + f' **{skill["name"]}:** {skill["description"]}', unsafe_allow_html=True)
+            st.write("</div>", unsafe_allow_html=True)  # Close the skill item
+        except Exception as e:
+            st.error(f"Error rendering skill item: {e}")
 
     st.write("</div>", unsafe_allow_html=True)  # Close the grid
+
+with tab4:
+    st.header("Certificates")
+
+    col1, col2 = st.columns(2)
+    col3, col4 = st.columns(2)
+
+    with col1:
+        st.metric(label="Active Certificates", value=120)
+    with col2:
+        st.metric(label="Certificates Pending Approval", value=15, delta="2%")
+    with col3:
+        st.metric(label="Percentage of Employees Certified", value="85%", delta="5%")
+    with col4:
+        st.metric(label="Cost Savings from Certifications", value="$150,000", delta="$10,000")
+
+with tab7:
+    st.header("Teaching Experience")
+    st.write("This section is under construction.")
+
+with tab8:
+    st.header("Corporate Training and Consulting")
+    st.write("This section is under construction.")
 
 with tab3:
     st.header("Academic Journey")
@@ -197,20 +193,24 @@ with tab3:
     """)
 
     st.header("Patents and Research Papers")
-    st.write("""
-    * Demand Sensing and Forecasting US 17/110,992
-        * [https://drive.google.com/file/d/1nvOsIO00G8Dwt5cNJjWemTGwtgbVVF9J/view?usp=sharing](https://drive.google.com/file/d/1nvOsIO00G8Dwt5cNJjWemTGwtgbVVF9J/view?usp=sharing)
-    * Psuedo Random Forest
-        * [https://drive.google.com/file/d/1w7kwxIumpsqam3IcCTGeLmVAEUJI1m9Z/view?usp=sharing](https://drive.google.com/file/d/1w7kwxIumpsqam3IcCTGeLmVAEUJI1m9Z/view?usp=sharing)
-    * Noise Detection and Removal
-        * [https://drive.google.com/file/d/1h2EtSHWM1qaScPZ9eBScVoW39nEFi3j8/view?usp=sharing](https://drive.google.com/file/d/1h2EtSHWM1qaScPZ9eBScVoW39nEFi3j8/view?usp=sharing)
-    * Generative Sampling Technique:
-        * [https://drive.google.com/file/d/199Vm0aMKafgu_tzBE5hnt0OhcpehH4Ym/view?usp=sharing](https://drive.google.com/file/d/199Vm0aMKafgu_tzBE5hnt0OhcpehH4Ym/view?usp=sharing)
-    * Automated Extraction of Entities from claim documents:
-        * [https://drive.google.com/file/d/1w7kwxIumpsqam3IcCTGeLmVAEUJI1m9Z/view?usp=sharing](https://drive.google.com/file/d/1w7kwxIumpsqam3IcCTGeLmVAEUJI1m9Z/view?usp=sharing)
-    * Semi Supervised Gyan
-        * [https://drive.google.com/file/d/1h2EtSHWM1qaScPZ9eBScVoW39nEFi3j8/view?usp=sharing](https://drive.google.com/file/d/1h2EtSHWM1qaScPZ9eBScVoW39nEFi3j8/view?usp=sharing)
-    """)
+    # Timeline Data
+    timeline_data = [
+        {"Name": "Demand Sensing and Forecasting US 17/110,992",
+            "link": "https://drive.google.com/file/d/1nvOsIO00G8Dwt5cNJjWemTGwtgbVVF9J/view?usp=sharing"},
+        {"Name": "Psuedo Random Forest",
+            "link": "https://drive.google.com/file/d/1w7kwxIumpsqam3IcCTGeLmVAEUJI1m9Z/view?usp=sharing"},
+        {"Name": "Noise Detection and Removal",
+            "link": "https://drive.google.com/file/d/1h2EtSHWM1qaScPZ9eBScVoW39nEFi3j8/view?usp=sharing"},
+        {"Name": "Generative Sampling Technique",
+            "link": "https://drive.google.com/file/d/199Vm0aMKafgu_tzBE5hnt0OhcpehH4Ym/view?usp=sharing"},
+        {"Name": "Automated Extraction of Entities from claim documents",
+            "link": "https://drive.google.com/file/d/1w7kwxIumpsqam3IcCTGeLmVAEUJI1m9Z/view?usp=sharing"},
+        {"Name": "Semi Supervised Gyan",
+            "link": "https://drive.google.com/file/d/1h2EtSHWM1qaScPZ9eBScVoW39nEFi3j8/view?usp=sharing"}
+    ]
+
+    for item in timeline_data:
+        st.write(f'[{item["Name"]}]({item["link"]})')
 
 with tab1:
     st.header("Kiran Kumar Kandula")
@@ -234,48 +234,36 @@ with tab2:
 
     # Timeline Data
     timeline_data = [
-        dict(
-            Name="Micron Technology, Inc.",
-            Position="Principal Data Scientist",
-            start=datetime(2021, 10, 1),
-            end=datetime(2025, 5, 30),
-            description="Quantum Machine Learning suite for variation identification. Code Assistant Tool. Reinforcement learning based Engine for Tool Trouble shooting. Built advanced statistics/data-science models."
-        ),
-        dict(
-            Name="GEP SOLUTIONS",
-            Position="Data Scientist",
-            start=datetime(2019, 8, 1),
-            end=datetime(2021, 10, 1),
-            description="Built NLP based supplier intent identifier. Built a text summary extractor. Built promotional modelling for demand planners. Built a large-scale Demand Planning and Demand Sensing pipeline."
-        ),
-        dict(
-            Name="HIGH RADIUS PVT LIMITED",
-            Position="Data Scientist",
-            start=datetime(2017, 7, 1),
-            end=datetime(2019, 8, 1),
-            description="Proactively built and automated the claim extraction process. Implemented GANs, Semi Supervised GANs. Customer Segmentation model. Implemented “HiFreeda” Wake word detection model."
-        ),
-        dict(
-            Name="BITMIN INFO SYSTEMS",
-            Position="Data Scientist and Full Stack Developer",
-            start=datetime(2016, 4, 1),
-            end=datetime(2017, 7, 1),
-            description="Developed apps, worked on the back-end and front-end. Created Machine Learning-based tools. Built a webservice in .net which extracts the payments from quick books."
-        ),
-        dict(
-            Name="PIXENTIA SOLUTIONS",
-            Position="Software Engineer-I",
-            start=datetime(2015, 2, 1),
-            end=datetime(2016, 3, 1),
-            description="Collaborated with team members to create applications system analysis based upon client requirements. Created tools like resume parser, Developed digital badge online representation of a skill."
-        ),
-        dict(
-            Name="GYAN DATA Pvt. LTD",
-            Position="Software Engineer Trainee",
-            start=datetime(2012, 11, 1),
-            end=datetime(2014, 2, 1),
-            description="Developed and hosted apps like remote scilab for computations in chemical engineering labs remotely, worked on enterprise level applications like sandman with machine learning as core."
-        )
+        {"Name": "Micron Technology, Inc.",
+            "Position": "Principal Data Scientist",
+            "start": datetime(2021, 10, 1),
+            "end": datetime(2025, 5, 30),
+            "description": "Quantum Machine Learning suite for variation identification. Code Assistant Tool. Reinforcement learning based Engine for Tool Trouble shooting. Built advanced statistics/data-science models."},
+        {"Name": "GEP SOLUTIONS",
+            "Position": "Data Scientist",
+            "start": datetime(2019, 8, 1),
+            "end": datetime(2025, 5, 30),
+            "description": "Built NLP based supplier intent identifier. Built a text summary extractor. Built promotional modelling for demand planners. Built a large-scale Demand Planning and Demand Sensing pipeline."},
+        {"Name": "HIGH RADIUS PVT LIMITED",
+            "Position": "Data Scientist",
+            "start": datetime(2017, 7, 1),
+            "end": datetime(2025, 5, 30),
+            "description": "Proactively built and automated the claim extraction process. Implemented GANs, Semi Supervised GANs. Customer Segmentation model. Implemented “HiFreeda” Wake word detection model."},
+        {"Name": "BITMIN INFO SYSTEMS",
+            "Position": "Data Scientist and Full Stack Developer",
+            "start": datetime(2016, 4, 1),
+            "end": datetime(2025, 5, 30),
+            "description": "Developed apps, worked on the back-end and front-end. Created Machine Learning-based tools. Built a webservice in .net which extracts the payments from quick books."},
+        {"Name": "PIXENTIA SOLUTIONS",
+            "Position": "Software Engineer-I",
+            "start": datetime(2015, 2, 1),
+            "end": datetime(2025, 5, 30),
+            "description": "Collaborated with team members to create applications system analysis based upon client requirements. Created tools like resume parser, Developed digital badge online representation of a skill."},
+        {"Name": "GYAN DATA Pvt. LTD",
+            "Position": "Software Engineer Trainee",
+            "start": datetime(2012, 11, 1),
+            "end": datetime(2025, 5, 30),
+            "description": "Developed and hosted apps like remote scilab for computations in chemical engineering labs remotely, worked on enterprise level applications like sandman with machine learning as core."},
     ]
 
     timeline_data.reverse()

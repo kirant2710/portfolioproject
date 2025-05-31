@@ -1,0 +1,54 @@
+{
+  "roles": [
+    {
+      "name": "Data Science",
+      "skills": [
+        {"name": "Python", "description": "Expert in Python for data analysis & ML.", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"},
+        {"name": "R", "description": "Proficient in R for statistical modeling.", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/r/r-original.svg"},
+        {"name": "Regression", "description": "Mastery of regression techniques.", "icon": "https://img.icons8.com/ios/50/000000/regression-analysis.png"},
+        {"name": "Classification", "description": "Deep understanding of classification algorithms.", "icon": "https://img.icons8.com/ios/50/000000/classification.png"},
+        {"name": "Time Series Analysis", "description": "Advanced time series forecasting skills.", "icon": "https://img.icons8.com/ios/50/000000/time-series.png"}
+      ]
+    },
+    {
+      "name": "MLOps Engineer",
+      "skills": [
+        {"name": "CI/CD", "description": "Automated CI/CD pipeline deployment.", "icon": "https://img.icons8.com/ios/50/000000/continuous-delivery.png"},
+        {"name": "Docker", "description": "Containerization using Docker.", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original-wordmark.svg"},
+        {"name": "Kubernetes", "description": "Orchestration with Kubernetes.", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain-wordmark.svg"},
+        {"name": "AWS", "description": "Cloud deployment on AWS.", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg"},
+        {"name": "Monitoring", "description": "Real-time monitoring & alerting.", "icon": "https://img.icons8.com/ios/50/000000/monitoring.png"}
+      ]
+    },
+    {
+      "name": "AI Engineer",
+      "skills": [
+        {"name": "Deep Learning", "description": "Building deep learning models.", "icon": "https://img.icons8.com/ios/50/000000/artificial-intelligence.png"},
+        {"name": "NLP", "description": "Natural language processing expertise.", "icon": "https://img.icons8.com/ios/50/000000/natural-language.png"},
+        {"name": "Computer Vision", "description": "Computer vision applications development.", "icon": "https://img.icons8.com/ios/50/000000/computer-vision.png"},
+        {"name": "Python", "description": "Python programming for AI.", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"},
+        {"name": "TensorFlow", "description": "TensorFlow framework proficiency.", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg"}
+      ]
+    },
+    {
+      "name": "ML Engineer",
+      "skills": [
+        {"name": "ML Algorithms", "description": "Applying ML algorithms.", "icon": "https://img.icons8.com/ios/50/000000/machine-learning.png"},
+        {"name": "Data Modeling", "description": "Data modeling and feature engineering.", "icon": "https://img.icons8.com/ios/50/000000/data-model.png"},
+        {"name": "Python", "description": "Python for ML development.", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"},
+        {"name": "Scikit-learn", "description": "Scikit-learn library expertise.", "icon": "https://upload.wikimedia.org/wikipedia/commons/0/05/Scikit_learn_logo_small.svg"},
+        {"name": "Model Evaluation", "description": "Evaluating ML model performance.", "icon": "https://img.icons8.com/ios/50/000000/evaluate-performance.png"}
+      ]
+    },
+    {
+      "name": "DevOps Engineer",
+      "skills": [
+        {"name": "Cloud Platforms", "description": "Managing cloud infrastructure.", "icon": "https://img.icons8.com/ios/50/000000/cloud-service.png"},
+        {"name": "Automation", "description": "Automating infrastructure with tools.", "icon": "https://img.icons8.com/ios/50/000000/automation.png"},
+        {"name": "Linux", "description": "Linux system administration.", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg"},
+        {"name": "Scripting", "description": "Scripting for automation.", "icon": "https://img.icons8.com/ios/50/000000/code.png"},
+        {"name": "Networking", "description": "Networking and security.", "icon": "https://img.icons8.com/ios/50/000000/networking.png"}
+      ]
+    }
+  ]
+}
