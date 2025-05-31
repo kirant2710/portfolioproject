@@ -160,7 +160,7 @@ with tab6:
         st.write(f"<div class='skill-card'>", unsafe_allow_html=True)
         st.write(f"<h3>{role['name']}</h3>", unsafe_allow_html=True)
         for skill in role["skills"]:
-            icon_html = f'<img class="skill-icon-small" src="{skill['icon']}" alt="{skill['name']} icon">'
+            icon_html = f"<img class=\"skill-icon-small\" src=\"{skill['icon']}\" alt=\"{skill['name']} icon\">"
             st.write(f"<p>{icon_html} {skill['name']}: {skill['description']}</p>", unsafe_allow_html=True)
         st.write("</div>", unsafe_allow_html=True)
     st.write("</div>", unsafe_allow_html=True)
