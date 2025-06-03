@@ -8,6 +8,8 @@ import ssl
 import pandas as pd
 import numpy as np
 
+import streamlit_shadcn_ui as ui
+
 
 st.set_page_config(layout="wide")
 
@@ -18,6 +20,21 @@ def display_metric(label, value, column):
         st.metric(label=label, value=value)
 
 tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9 = st.tabs(["About Me", "Professional Journey", "Academic Journey","Certificates","Projects", "Skills" , "Teaching Experience", "Consulting", "Corporate Training"])
+
+with tab1:
+    st.write("""
+About Me
+
+I am a full-stack data scientist with a passion for translating complex data insights into actionable solutions. My expertise spans the entire machine learning lifecycle, from data acquisition and cleaning to model deployment and ongoing maintenance.
+
+On the data engineering side, I have experience building robust data pipelines using technologies like Spark and Kafka, and working with both SQL and NoSQL databases (PostgreSQL, MongoDB). I am proficient in cloud platforms such as AWS and Azure, and have experience with ETL processes.
+
+My machine learning skillset includes developing and deploying models using scikit-learn, TensorFlow, and PyTorch. I am familiar with a variety of algorithms, including regression, classification, and clustering, and utilize model serving tools for scalable deployment.
+
+I also possess strong front-end development skills, with experience in creating interactive visualizations and user interfaces using Streamlit and Dash, alongside core web technologies like JavaScript, HTML, and CSS.
+
+I have contributed to projects involving [mention project areas like fraud detection, customer churn prediction, or image recognition], demonstrating my ability to apply data science principles to real-world problems. I am a dedicated problem-solver with a commitment to delivering impactful results.
+""")
 
 project_data = {
     "MICRON": [
@@ -729,15 +746,19 @@ with tab9:
         st.write("**Training Hours:** 60")
         st.write("**Company:** Epsilon Solutions")
         st.markdown("---")
-with tab3:
-    st.header("Academic Journey")
 
 with tab3:
     st.header("Academic Journey")
-
+    from streamlit_extras.metric_cards import style_metric_cards
+    col1, col2, col3, col4 = st.columns(4)
+    col1.metric(label="All Competitive Examinations in 2010", value="Top 10%")
+    col2.metric(label="Number of Master Degrees", value="3+")
+    col3.metric(label="Total Patents Filed", value="7+")
+    col4.metric(label="Total Research Papers Published", value="20+")
+    style_metric_cards()
     st.subheader("IIT Madras, Chennai, IN")
     st.write("Degree: B. Tech")
-    st.write("Major: Chemical Engineering")
+    st.write("Major: Engineering Disciplines")
     st.write("Minor: Data Analytics")
     st.write("Graduation Date: Jun 2014")
     st.write("GPA: 7.1/10")
@@ -793,6 +814,16 @@ with tab8:
 
 with tab1:
     st.header("Kiran Kumar Kandula")
+    cols = st.columns(3)
+
+    with cols[0]:
+        ui.metric_card(title="Total Projects Deployed", content="40+", description="",key="card1")
+    with cols[1]:
+        ui.metric_card(title="Patents Published", content="7+", description="", key="card2")
+    with cols[2]:
+        ui.metric_card(title="Total Working Experience", content="10+", description="", key="card3")
+
+    # st.write(ui.metric_card)
     col1, col2, col3 = st.columns(3)
     with col1:
         st.subheader("Principal Data Scientist")
@@ -810,6 +841,17 @@ with tab1:
 
 with tab2:
     st.header("Professional Journey")
+    cols = st.columns(4)
+
+    with cols[0]:
+        ui.metric_card(title="Total Projects Deployed", content="40+", description="",key="card4")
+    with cols[1]:
+        ui.metric_card(title="Patents Published", content="7+", description="", key="card5")
+    with cols[2]:
+        ui.metric_card(title="Total Working Experience", content="10+", description="", key="card6")
+
+    with cols[3]:
+        ui.metric_card(title="Client Engagements", content="30+", description="", key="card7")
 
     # Timeline Data
     timeline_data = [

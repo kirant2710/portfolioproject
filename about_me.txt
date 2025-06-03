@@ -1,0 +1,11 @@
+About Me
+
+I am a full-stack data scientist with a passion for translating complex data insights into actionable solutions. My expertise spans the entire machine learning lifecycle, from data acquisition and cleaning to model deployment and ongoing maintenance.
+
+On the data engineering side, I have experience building robust data pipelines using technologies like Spark and Kafka, and working with both SQL and NoSQL databases (PostgreSQL, MongoDB). I am proficient in cloud platforms such as AWS and Azure, and have experience with ETL processes.
+
+My machine learning skillset includes developing and deploying models using scikit-learn, TensorFlow, and PyTorch. I am familiar with a variety of algorithms, including regression, classification, and clustering, and utilize model serving tools for scalable deployment.
+
+I also possess strong front-end development skills, with experience in creating interactive visualizations and user interfaces using Streamlit and Dash, alongside core web technologies like JavaScript, HTML, and CSS.
+
+I have contributed to projects involving [mention project areas like fraud detection, customer churn prediction, or image recognition], demonstrating my ability to apply data science principles to real-world problems. I am a dedicated problem-solver with a commitment to delivering impactful results.
