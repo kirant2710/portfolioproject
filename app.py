@@ -157,7 +157,7 @@ with tab6:
     # Display skills
     st.write("<div class='skills-container'>", unsafe_allow_html=True)
     for role in roles:
-        st.write(f"<div class='skill-card'>", unsafe_allow_html=True)
+        # st.write(f"<div class='skill-card'>", unsafe_allow_html=True)
         st.write(f"<h3>{role['name']}</h3>", unsafe_allow_html=True)
         for skill in role["skills"]:
             icon_html = f"<img class=\"skill-icon-small\" src=\"{skill['icon']}\" alt=\"{skill['name']} icon\">"
