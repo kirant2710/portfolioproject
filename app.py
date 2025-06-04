@@ -21,20 +21,6 @@ def display_metric(label, value, column):
 
 tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9 = st.tabs(["About Me", "Professional Journey", "Academic Journey","Certificates","Projects", "Skills" , "Teaching Experience", "Consulting", "Corporate Training"])
 
-with tab1:
-    st.write("""
-About Me
-
-I am a full-stack data scientist with a passion for translating complex data insights into actionable solutions. My expertise spans the entire machine learning lifecycle, from data acquisition and cleaning to model deployment and ongoing maintenance.
-
-On the data engineering side, I have experience building robust data pipelines using technologies like Spark and Kafka, and working with both SQL and NoSQL databases (PostgreSQL, MongoDB). I am proficient in cloud platforms such as AWS and Azure, and have experience with ETL processes.
-
-My machine learning skillset includes developing and deploying models using scikit-learn, TensorFlow, and PyTorch. I am familiar with a variety of algorithms, including regression, classification, and clustering, and utilize model serving tools for scalable deployment.
-
-I also possess strong front-end development skills, with experience in creating interactive visualizations and user interfaces using Streamlit and Dash, alongside core web technologies like JavaScript, HTML, and CSS.
-
-I have contributed to projects involving [mention project areas like fraud detection, customer churn prediction, or image recognition], demonstrating my ability to apply data science principles to real-world problems. I am a dedicated problem-solver with a commitment to delivering impactful results.
-""")
 
 project_data = {
     "MICRON": [
@@ -756,28 +742,98 @@ with tab3:
     col3.metric(label="Total Patents Filed", value="7+")
     col4.metric(label="Total Research Papers Published", value="20+")
     style_metric_cards()
-    st.subheader("IIT Madras, Chennai, IN")
-    st.write("Degree: B. Tech")
-    st.write("Major: Engineering Disciplines")
-    st.write("Minor: Data Analytics")
-    st.write("Graduation Date: Jun 2014")
-    st.write("GPA: 7.1/10")
+    with st.container(border=True):
+        col1,col2,col3, col4 = st.columns(4)
+        with col1:
+            st.subheader("IIT Madras, Chennai, IN")
+            st.write("Degree: B. Tech")
+            st.write("Major: Engineering Disciplines")
+            st.write("Minor: Data Analytics")
+            st.write("Graduation Date: Jun 2014")
+            st.write("GPA: 7.1/10")
+        try:
+            col4.image("iit_madras_logo.png", width=250)
+        except FileNotFoundError:
+            col4.write("Logo not found")
 
-    st.subheader("University of Chicago Graham School, Chicago, US")
-    st.write("Degree: Post Graduate Program")
-    st.write("Major: Data Science and Machine Learning")
-    st.write("Graduation Date: May 2019")
-    st.write("GPA: 3.5/4.0")
+        st.markdown(
+            """
+            <style>
+            @media (max-width: 768px) {
+                .container3 {
+                    width: 100%; /* Full width on smaller screens */
+                }
+            }
+            </style>
+            """,
+            unsafe_allow_html=True,
+        )
 
-    st.subheader("Birla Institute of Technology and Science, Pilani")
-    st.write("Degree: M. Tech")
-    st.write("Major: Software Systems")
-    st.write("Specialization: Data Sciences and Cloud Computing")
-    st.write("Graduation Date: Jun 2021")
-    st.write("GPA: 7.5/10")
+        
+    with st.container(border=True):
+        st.subheader("University of Chicago Graham School, Chicago, US")
+        col1, col2, col3, col4 = st.columns(4)
+        
+        with col1:
+            
+            st.write("Degree: Post Graduate Program")
+            st.write("Major: Data Science and Machine Learning")
+            st.write("Graduation Date: May 2019")
+            st.write("GPA: 3.5/4.0")
+        try:
+            col4.image("university_of_chicago.png", width=250)
+        except FileNotFoundError:
+            col4.write("Logo not found")
+
+        st.markdown(
+            """
+            <style>
+            @media (max-width: 768px) {
+                .container3 {
+                    width: 100%; /* Full width on smaller screens */
+                }
+            }
+            </style>
+            """,
+            unsafe_allow_html=True,
+        )
+
+    with st.container(border=True):
+        st.subheader("Birla Institute of Technology and Science, Pilani, IN")
+        col1, col2, col3, col4 = st.columns(4)
+        
+        with col1:
+            
+            st.write("Degree: M. Tech")
+            st.write("Major: Software Systems")
+            st.write("Specialization: Data Sciences and Cloud Computing")
+            st.write("Graduation Date: Jun 2021")
+            st.write("GPA: 7.5/10")
+
+        try:
+            col4.image("BITS_Pilani-Logo.png", width=250)
+        except FileNotFoundError:
+            col4.write("Logo not found")
+
+        st.markdown(
+            """
+            <style>
+            @media (max-width: 768px) {
+                .container3 {
+                    width: 100%; /* Full width on smaller screens */
+                }
+            }
+            </style>
+            """,
+            unsafe_allow_html=True,
+        )
+
+
+
 
     st.header("Academic Projects")
-    st.write("""
+    container4 = st.container(border=True)
+    container4.write("""
     * Developed a machine learning project for Predicting prepayments and defaults for privatized banks.
     * Wake word detection model for the custom word HIFREEDA
     * Built a CNN based image classifier, which will be able to distinguish between different handwritten Devanagari characters.
@@ -803,9 +859,9 @@ with tab3:
         {"Name": "Semi Supervised Gyan",
             "link": "https://drive.google.com/file/d/1h2EtSHWM1qaScPZ9eBScVoW39nEFi3j8/view?usp=sharing"}
     ]
-
+    container5 = st.container(border=True)
     for item in timeline_data:
-        st.write(f'[{item["Name"]}]({item["link"]})')
+        container5.write(f'[{item["Name"]}]({item["link"]})')
 
 with tab8:
     st.header("Consulting")
