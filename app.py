@@ -743,16 +743,17 @@ with tab3:
     col4.metric(label="Total Research Papers Published", value="20+")
     style_metric_cards()
     with st.container(border=True):
+        st.subheader("IIT Madras, Chennai, IN")
         col1,col2,col3, col4 = st.columns(4)
         with col1:
-            st.subheader("IIT Madras, Chennai, IN")
+            
             st.write("Degree: B. Tech")
             st.write("Major: Engineering Disciplines")
             st.write("Minor: Data Analytics")
             st.write("Graduation Date: Jun 2014")
             st.write("GPA: 7.1/10")
         try:
-            col4.image("iit_madras_logo.png", width=250)
+            col4.image("iit_madras_logo.png", width=200)
         except FileNotFoundError:
             col4.write("Logo not found")
 
@@ -781,7 +782,7 @@ with tab3:
             st.write("Graduation Date: May 2019")
             st.write("GPA: 3.5/4.0")
         try:
-            col4.image("university_of_chicago.png", width=250)
+            col4.image("university_of_chicago.png", width=200)
         except FileNotFoundError:
             col4.write("Logo not found")
 
@@ -811,7 +812,7 @@ with tab3:
             st.write("GPA: 7.5/10")
 
         try:
-            col4.image("BITS_Pilani-Logo.png", width=250)
+            col4.image("BITS_Pilani-Logo.png", width=200)
         except FileNotFoundError:
             col4.write("Logo not found")
 
