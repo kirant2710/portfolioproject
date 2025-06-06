@@ -9,6 +9,7 @@ import pandas as pd
 import numpy as np
 
 import streamlit_shadcn_ui as ui
+from streamlit_extras.metric_cards import style_metric_cards
 
 
 st.set_page_config(layout="wide")
@@ -19,7 +20,7 @@ def display_metric(label, value, column):
     with column:
         st.metric(label=label, value=value)
 
-tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9 = st.tabs(["About Me", "Professional Journey", "Academic Journey","Certificates","Projects", "Skills" , "Teaching Experience", "Consulting", "Corporate Training"])
+tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9, tab10 = st.tabs(["About Me", "Professional Journey", "Academic Journey","Certifications","Projects", "Skills" , "Teaching Experience", "Consulting", "Corporate Training", "Acedemic Engagements"])
 
 
 project_data = {
@@ -202,6 +203,93 @@ with tab6:
 
                 st.success("Skill added successfully!")
 
+with tab10:
+    st.header("Acedemic Engagements")
+
+    col1, col2 = st.columns(2)
+
+    with col1:
+        st.metric(label="Total Hours of Thought", value=2500, delta=50)
+        # st.progress(value=75)
+        # st.write("Hours of thought are calculated based on time spent in research modules.")
+    with col2:
+        st.metric(label="Number of Colleges Engaged", value=15, delta=5)
+        
+    style_metric_cards(background_color="#fff", border_size_px=1, border_color="#ccc", border_radius_px=5)
+
+    # st.markdown("""
+    # <style>
+    # .container {
+    #     border: 2px solid #ccc;
+    #     border-radius: 10px;
+    #     padding: 10px;
+    #     margin-top: 20px;
+    # }
+    # </style>
+    # """, unsafe_allow_html=True)
+
+    with st.container(border=True):
+        col1, col2, col3, col4, col5 = st.columns(5)
+        with col1:
+            st.markdown("<div class='container'>", unsafe_allow_html=True)
+            st.write("#### IIT Roorkee")
+            st.image("iit-roorkee.png", width=150)
+            # st.write("Description of IIT Madras data.")
+            st.write("#### IIM Indore")
+            st.image("iim indore.png", width=150)
+
+            st.write("#### BITS Pilani Hyderabad")
+            st.image("bits_pilani.png", width=150)
+            # st.write("Description of University of Chicago data.")
+            st.markdown("</div>", unsafe_allow_html=True)
+        with col2:
+            st.markdown("<div class='container'>", unsafe_allow_html=True)
+            st.write("#### IIM Ahmedabad")
+            st.image("iim_a.png", width=200)
+            # st.write("Description of Stanford University data.")
+            st.write("#### IIIT Hyderabad")
+            st.image("IIIT_Hyderabad_Logo.jpg", width=250)
+            # st.write("Description of MIT data.")
+            st.write("#### Sant Gadge Baba Amravati University")
+            st.image("Sant_Gadge_Baba_Amravati_University_logo.png", width=200)
+            # st.write("Description of MIT data.")
+            st.markdown("</div>", unsafe_allow_html=True)
+        with col3:
+            st.markdown("<div class='container'>", unsafe_allow_html=True)
+            st.write("#### IIT Hyderabad")
+            st.image("iit_hyderabad.png", width=150)
+            # st.write("Description of Harvard University data.")
+            st.write("#### IIIT Delhi")
+            st.image("indraprastha-institute-of-information-technology-iiit-delhi-logo.png", width=150)
+            st.write("#### Guru Nanak Educational Society")
+            st.image("gurunanak.jpg", width=200)
+            # st.write("Description of Yale University data.")
+            st.markdown("</div>", unsafe_allow_html=True)
+        
+        with col4:
+            st.markdown("<div class='container'>", unsafe_allow_html=True)
+            st.write("#### Austin Texas University")
+            st.image("University_of_Texas_at_Austin_seal.svg.png", width=150)
+            # st.write("Description of Princeton University data.")
+            st.write("#### Vignan Institute of Technology")
+            st.image("vignan.jpg", width=150)
+            # st.write("Description of University of Oxford data.")
+            st.write("#### Manipal University Bangalore")
+            st.image("manipal.jpg", width=170)
+            
+            st.markdown("</div>", unsafe_allow_html=True)
+
+        with col5:
+            st.markdown("<div class='container'>", unsafe_allow_html=True)
+            st.write("#### CMR College of Engineering")
+            st.image("cmr.jpg", width=150)
+            # st.write("Description of University of Cambridge data.")
+            st.write("#### Geetanjali University")
+            st.image("geetanjali.jpg", width=150)
+            st.write("#### KIIT University")
+            st.image("KIIT-Logo.png", width=200)
+            # st.write("Description of University of California, Berkeley data.")
+            st.markdown("</div>", unsafe_allow_html=True)
 
 with tab4:
     st.header("Certificates")
@@ -320,7 +408,31 @@ with tab4:
         st.subheader("7. MITx: Probability - The Science of Uncertainty and Data")
         st.write("Key Topics: Probability Theory, Random Variables, Distributions")
 
+    with st.expander("List of AI and ML Engineer Certifications"):
+        st.subheader("1. AI Engineer Professional Certificate - IBM")
+        st.write("Key Topics: AI Concepts, Machine Learning, Deep Learning, Model Deployment")
+        st.subheader("2. AI and Machine Learning for Coders - Google")
+        st.write("Key Topics: AI Concepts, Machine Learning, Deep Learning, Model Deployment")
+        st.subheader("3. AI Engineering with TensorFlow - Google Cloud")
+        st.write("Key Topics: TensorFlow, Keras, Model Deployment, Transfer Learning")
+        st.subheader("4. AI and Machine Learning for Business - Coursera")
+        st.write("Key Topics: AI Concepts, Machine Learning, Business Applications")
+        st.subheader("5. AI and Machine Learning for Coders - Fast.ai")
+        st.write("Key Topics: Practical AI, Transfer Learning, Fine-Tuning Models") 
+    
+    with st.expander("List of MLOps Certifications"):
+        st.subheader("1. MLOps Specialization - Coursera")
+        st.write("Key Topics: MLOps Principles, Model Deployment, CI/CD for ML")
+        st.subheader("2. MLOps with TensorFlow - Google Cloud")
+        st.write("Key Topics: TensorFlow, Keras, Model Deployment, Transfer Learning")
+        st.subheader("3. MLOps Engineer Professional Certificate - IBM")
+        st.write("Key Topics: MLOps Principles, Model Deployment, CI/CD for ML")
+        st.subheader("4. MLOps Fundamentals - Microsoft Azure")
+        st.write("Key Topics: Azure ML, Model Deployment, Data Preparation")
+        st.subheader("5. MLOps with AWS - Amazon Web Services")
+        st.write("Key Topics: AWS ML Services, Model Deployment, Data Engineering")
 
+    
 
             
     
@@ -981,24 +1093,29 @@ with tab1:
         ui.metric_card(title="Total Working Experience", content="10+", description="", key="card3")
 
     # st.write(ui.metric_card)
-    col1, col2, col3 = st.columns(3)
-    with col1:
-        st.subheader("Principal Data Scientist")
-    with col3:
-        st.subheader("Micron Technology, Inc.")
-    st.write("""
-    Data Scientist and Full Stack Developer with 10+ years of experience. Expert in Data Science, Machine Learning, Big Data, Computer Vision, Deep Learning, Python, R, Java, .Net, SQL, Cloud Solutions, LLM, and more.
+    with st.container(border=True):
+        col1, col2, col3 = st.columns(3)
+        with col1:
+            st.subheader("Principal Data Scientist")
+        with col3:
+            st.subheader("Micron Technology, Inc.")
+        
+ 
 
-    **Skills:** Data Analysis, Feature Engineering, Big Data, Machine Learning, Deep Learning, Python, R, Java, .Net, SQL, Cloud Solutions, LLM, and more.
+        st.write("""
+        Data Scientist and Full Stack Developer with 10+ years of experience. Expert in Data Science, Machine Learning, Big Data, Computer Vision, Deep Learning, Python, R, Java, .Net, SQL, Cloud Solutions, LLM, and more.
 
-    **Experience:** Principal Data Scientist at Micron Technology, Microsoft Technology Consultant at PwC India, Data Scientist at GEP Solutions, and more.
+        **Skills:** Data Analysis, Feature Engineering, Big Data, Machine Learning, Deep Learning, Python, R, Java, .Net, SQL, Cloud Solutions, LLM, and more.
 
-    **Education:** B.Tech from IIT Madras, Post Graduate Program from University of Chicago Graham School, M.Tech from Birla Institute of Technology and Science, Pilani.
-    """)
+        **Experience:** Principal Data Scientist at Micron Technology, Microsoft Technology Consultant at PwC India, Data Scientist at GEP Solutions, and more.
+
+        **Education:** B.Tech from IIT Madras, Post Graduate Program from University of Chicago Graham School, M.Tech from Birla Institute of Technology and Science, Pilani.
+        """)
     try:
         with open("about_me.txt", "r") as f:
             about_me_content = f.read()
-        st.write(about_me_content)
+        with st.container(border=True):
+            st.write(about_me_content)
     except FileNotFoundError:
         st.error("Could not load about_me.txt. Please ensure the file exists.")
     except Exception as e:
