@@ -15,7 +15,7 @@ st.set_page_config(layout="wide")
 
 def display_metric(label, value, column):
     """Displays a metric in the specified column."""
-    st.write(f"display_metric called with label={label}, value={value}")
+    # st.write(f"display_metric called with label={label}, value={value}")
     with column:
         st.metric(label=label, value=value)
 
@@ -112,13 +112,21 @@ with tab6:
     st.markdown(
         """
         <style>
+        /* Style the dataframe */
+        .ag-theme-streamlit {
+            --ag-foreground-color: #000000;
+            --ag-background-color: #ffffff;
+            --ag-header-foreground-color: #ffffff;
+            --ag-header-background-color: #262730;
+        }
+
         .skills-container {
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-around;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease-in-out;
         }
-        .skill-card {
-            width: 300px;
+        .skill-card:hover {
             margin: 20px;
             padding: 15px;
             border: 1px solid #ddd;
@@ -194,8 +202,6 @@ with tab6:
 
                 st.success("Skill added successfully!")
 
-with tab4:
-    st.header("Certificates")
 
 with tab4:
     st.header("Certificates")
@@ -212,13 +218,13 @@ with tab4:
 
     for role in roles:
         if role["name"] == "AI Engineer":
-            deep_learning_certs = len(role["skills"])
-            generative_ai_certs = len(role["skills"]) # Assuming all skills in AI Engineer are related to Generative AI
+            deep_learning_certs = 7
+            generative_ai_certs = 13 # Assuming all skills in AI Engineer are related to Generative AI
             ai_engineering_certs = len(role["skills"])
         elif role["name"] == "ML Engineer":
-            machine_learning_certs = len(role["skills"])
+            machine_learning_certs = 9
         elif role["name"] == "Data Science":
-            statistics_certs = len(role["skills"])
+            statistics_certs = 7
         elif role["name"] == "MLOps Engineer":
             mlops_certs = len(role["skills"])
 
@@ -228,10 +234,104 @@ with tab4:
         display_metric("Machine Learning", machine_learning_certs, col1)
     with col2:
         display_metric("Statistics", statistics_certs, col2)
-        display_metric("Generative AI", generative_ai_certs, col2)
+        display_metric("AI and ML Engineer", ai_engineering_certs, col2)
     with col3:
-        display_metric("AI Engineering", ai_engineering_certs, col3)
+        display_metric("Generative AI", generative_ai_certs, col3)
         display_metric("MLOps", mlops_certs, col3)
+    
+    with st.expander("List of Generative AI Certifications", expanded=True):
+        st.subheader("1. Google’s Agentic AI Primer")
+        st.write("Key Topics: Agentic AI, Prompt Engineering, Model Fine-Tuning, Deployment Strategies")
+        st.subheader("2. Generative AI with PyTorch")
+        st.write("Key Topics: GANs, VAEs, Diffusion Models, Text-to-Image Generation")
+        st.subheader("3. Generative AI with Hugging Face")
+        st.write("Key Topics: Transformers, Text Generation, Image Generation, Fine-Tuning Models")
+        st.subheader("4. IBM AI Engineering Professional Certificate")
+        st.write("Key Topics: Generative AI, Machine Learning, Deep Learning, Model Deployment")
+        st.subheader("5. Deep Learning for Generative AI")
+        st.write("Key Topics: GANs, VAEs, Diffusion Models, Text-to-Image Generation")
+        st.subheader("6. Generative AI with TensorFlow")
+        st.write("Key Topics: GANs, VAEs, Diffusion Models, Text-to-Image Generation")
+        st.subheader("8. MIT AGI: Autonomous Agents Research")
+        st.write("Key Topics: Autonomous Agents, Reinforcement Learning, Multi-Agent Systems, AI Ethics")
+        st.subheader("9. IBM Generative AI Professional Certificate")
+        st.write("Key Topics: Generative AI, Machine Learning, Deep Learning, Model Deployment")
+        st.subheader("10. Generative AI with Large Language Models")
+        st.write("Key Topics: Large Language Models, Text Generation, Fine-Tuning, Deployment Strategies")
+        st.subheader("11. DeepLearning.AI AI Agentic Design Patterns")
+        st.write("Key Topics: Agentic AI, Prompt Engineering, Model Fine-Tuning, Deployment Strategies")
+        st.subheader("12. Reinforcement Learning")
+        st.write("Key Topics: Reinforcement Learning, Multi-Agent Systems, AI Ethics, Model Deployment")
+        st.subheader("13.LangChain Certification")
+        st.write("Key Topics: LangChain, Prompt Engineering, Model Fine-Tuning, Deployment Strategies")
+
+
+
+    with st.expander("List of Deep Learning Certifications"):
+        st.subheader("1. Deep Learning Specialization - DeepLearning.AI")
+        st.write("Key Topics: CNNs, RNNs, Transformers, NLP, Computer Vision")
+        st.subheader("2. TensorFlow Developer Certificate - Google")
+        st.write("Key Topics: TensorFlow, Keras, Model Deployment, Transfer Learning")
+        st.subheader("3. Advanced Computer Vision with TensorFlow")
+        st.write("Key Topics: Object Detection, Image Segmentation, GANs")
+        st.subheader("4. Natural Language Processing with Deep Learning - Stanford University")
+        st.write("Key Topics: RNNs, LSTMs, Attention Mechanisms, Transformers")
+        st.subheader("5. Stanford CS330: Deep Multi-Task and Meta Learning")
+        st.write("Key Topics: Multi-Task Learning, Meta Learning, Optimization Techniques")
+        st.subheader("6. Deep Learning for Computer Vision with Python - PyImageSearch")
+        st.write("Key Topics: Image Classification, Object Detection, Image Segmentation")
+        st.subheader("7. Fast.ai Practical Deep Learning for Coders")
+        st.write("Key Topics: Practical Deep Learning, Transfer Learning, Fine-Tuning Models")
+
+
+
+    with st.expander("List of Machine Learning Certifications"):
+        st.subheader("1. edX MITx: Machine Learning with Python")
+        st.write("Key Topics: Supervised Learning, Unsupervised Learning, Model Evaluation")
+        st.subheader("2. Stanford CS229: Machine Learning")
+        st.write("Key Topics: Supervised Learning, Unsupervised Learning, Neural Networks")
+        st.subheader("3. Cloud Based Machine Learning - Google Cloud")
+        st.write("Key Topics: Cloud ML, BigQuery ML, AutoML, Model Deployment")
+        st.subheader("4. AWS Certified Machine Learning - Specialty")
+        st.write("Key Topics: AWS ML Services, Model Deployment, Data Engineering")
+        st.subheader("5. Azure Data Scientist Associate")
+        st.write("Key Topics: Azure ML, Model Deployment, Data Preparation")
+        st.subheader("7. IBM Machine Learning Professional Certificate")
+        st.write("Key Topics: Supervised Learning, Unsupervised Learning, Model Evaluation")
+        st.subheader("8. Google Machine Learning Crash Course")
+        st.write("Key Topics: Supervised Learning, Unsupervised Learning, TensorFlow Basics")
+        st.subheader("9. Microsoft Azure AI Fundamentals (AI-900)")
+        st.write("Key Topics: Azure AI Services, Machine Learning Basics, AI Concepts")
+
+
+    with st.expander("List of Statistics Certifications"):
+        st.subheader("1. Coursera: Statistics with Python Specialization - University of Michigan")
+        st.write("Key Topics: Descriptive Statistics, Inferential Statistics, Regression Analysis")
+        st.subheader("2. edX: Data Science: Probability - Harvard University")
+        st.write("Key Topics: Probability Theory, Random Variables, Distributions")
+        st.subheader("3. Basian Statistics")
+        st.write("Key Topics: Bayesian Inference, Prior and Posterior Distributions, Markov Chain Monte Carlo")
+        st.subheader("4. IBM Advanced Data Science with Time Series")
+        st.write("Key Topics: Time Series Analysis, Forecasting, ARIMA Models")
+        st.subheader("5. Stanford's Introduction to Statistical Learning")
+        st.write("Key Topics: Linear Regression, Classification, Resampling Methods")
+        st.subheader("6. Statistics with R Specialization - Duke University")
+        st.write("Key Topics: Descriptive Statistics, Inferential Statistics, Regression Analysis")
+        st.subheader("7. MITx: Probability - The Science of Uncertainty and Data")
+        st.write("Key Topics: Probability Theory, Random Variables, Distributions")
+
+
+
+            
+    
+    # with st.expander("List of Deep Learning Certifications", expanded=True):
+    #     st.header("This content will be visible by default")
+    #     st.button("Example button")
+    
+    # with st.expander("List of Deep Learning Certifications", expanded=True):
+    #     st.header("This content will be visible by default")
+    #     st.button("Example button")
+
 
 with tab7:
     st.header("Teaching Experience")
@@ -895,6 +995,14 @@ with tab1:
 
     **Education:** B.Tech from IIT Madras, Post Graduate Program from University of Chicago Graham School, M.Tech from Birla Institute of Technology and Science, Pilani.
     """)
+    try:
+        with open("about_me.txt", "r") as f:
+            about_me_content = f.read()
+        st.write(about_me_content)
+    except FileNotFoundError:
+        st.error("Could not load about_me.txt. Please ensure the file exists.")
+    except Exception as e:
+        st.error(f"An error occurred: {e}")
 
 with tab2:
     st.header("Professional Journey")
@@ -916,60 +1024,112 @@ with tab2:
             "Position": "Principal Data Scientist",
             "start": datetime(2021, 10, 1),
             "end": datetime(2025, 5, 30),
-            "description": "Quantum Machine Learning suite for variation identification. Code Assistant Tool. Reinforcement learning based Engine for Tool Trouble shooting. Built advanced statistics/data-science models."},
+            "description": "Quantum Machine Learning suite for variation identification. Code Assistant Tool. Reinforcement learning based Engine for Tool Trouble shooting. Built advanced statistics/data-science models.",
+            "logo": "BITS_Pilani-Logo.png"},
         {"Name": "GEP SOLUTIONS",
             "Position": "Data Scientist",
             "start": datetime(2019, 8, 1),
             "end": datetime(2025, 5, 30),
-            "description": "Built NLP based supplier intent identifier. Built a text summary extractor. Built promotional modelling for demand planners. Built a large-scale Demand Planning and Demand Sensing pipeline."},
+            "description": "Built NLP based supplier intent identifier. Built a text summary extractor. Built promotional modelling for demand planners. Built a large-scale Demand Planning and Demand Sensing pipeline.",
+            "logo": "university_of_chicago.png"},
         {"Name": "HIGH RADIUS PVT LIMITED",
             "Position": "Data Scientist",
             "start": datetime(2017, 7, 1),
             "end": datetime(2025, 5, 30),
-            "description": "Proactively built and automated the claim extraction process. Implemented GANs, Semi Supervised GANs. Customer Segmentation model. Implemented “HiFreeda” Wake word detection model."},
+            "description": "Proactively built and automated the claim extraction process. Implemented GANs, Semi Supervised GANs. Customer Segmentation model. Implemented “HiFreeda” Wake word detection model.",
+            "logo": "University-of-Chicago-Seal.png"},
         {"Name": "BITMIN INFO SYSTEMS",
             "Position": "Data Scientist and Full Stack Developer",
             "start": datetime(2016, 4, 1),
             "end": datetime(2025, 5, 30),
-            "description": "Developed apps, worked on the back-end and front-end. Created Machine Learning-based tools. Built a webservice in .net which extracts the payments from quick books."},
+            "description": "Developed apps, worked on the back-end and front-end. Created Machine Learning-based tools. Built a webservice in .net which extracts the payments from quick books.",
+            "logo": "iit_madras_logo.png"},
         {"Name": "PIXENTIA SOLUTIONS",
             "Position": "Software Engineer-I",
             "start": datetime(2015, 2, 1),
             "end": datetime(2025, 5, 30),
-            "description": "Collaborated with team members to create applications system analysis based upon client requirements. Created tools like resume parser, Developed digital badge online representation of a skill."},
+            "description": "Collaborated with team members to create applications system analysis based upon client requirements. Created tools like resume parser, Developed digital badge online representation of a skill.",
+            "logo": "bitspilani_logo.png"},
         {"Name": "GYAN DATA Pvt. LTD",
             "Position": "Software Engineer Trainee",
             "start": datetime(2012, 11, 1),
             "end": datetime(2025, 5, 30),
-            "description": "Developed and hosted apps like remote scilab for computations in chemical engineering labs remotely, worked on enterprise level applications like sandman with machine learning as core."},
+            "description": "Developed and hosted apps like remote scilab for computations in chemical engineering labs remotely, worked on enterprise level applications like sandman with machine learning as core.",
+            "logo": "BITS_Pilani-Logo.png"},
     ]
 
-    timeline_data.reverse()
+    with st.container(border=True):
+        timeline_data.reverse()
+        # Create Figure
+        fig = go.Figure()
+        for i, item in enumerate(timeline_data):
+            fig.add_trace(go.Scatter(
+                x=[item["start"], item["end"]],
+                y=[item["Name"], item["Name"]],
+                mode="lines+markers",
+                marker=dict(size=12),
+                line=dict(width=4),
+                name=item["Name"],
+                text=item["Position"],
+                hovertemplate=f"<b>{item['Name']}<br><img src='{item['logo']}' width='50' alt='{item['Name']} logo'><br>{item['Position']}<br>{item['start'].strftime('%Y-%m-%d')} - {item['end'].strftime('%Y-%m-%d')}<br>{item['description']}<extra></extra>"
+            ))
+        fig.update_layout(
+            title="Professional Journey Timeline",
+            xaxis_title="Time",
+            yaxis=dict(
+                showgrid=False,
+                showline=False,
+                zeroline=False,
+            ),
+            hovermode="closest"
+        )
+        st.plotly_chart(fig, use_container_width=True)
 
-    # Create Figure
-    fig = go.Figure()
+    # Data Table
+    import pandas as pd
+    import pandas as pd
 
-    for i, item in enumerate(timeline_data):
-        fig.add_trace(go.Scatter(
-            x=[item["start"], item["end"]],
-            y=[item["Name"], item["Name"]],
-            mode="lines+markers",
-            marker=dict(size=12),
-            line=dict(width=4),
-            name=item["Name"],
-            text=item["Position"],
-            hovertemplate=f"<b>{item['Name']}</b><br>{item['Position']}<br>{item['start'].strftime('%Y-%m-%d')} - {item['end'].strftime('%Y-%m-%d')}<br>{item['description']}<extra></extra>"
-        ))
+    data = {
+        "Company Name": ["Micron Technology, Inc.", "GEP SOLUTIONS", "HIGH RADIUS PVT LIMITED", "BITMIN INFO SYSTEMS", "PIXENTIA SOLUTIONS", "GYAN DATA Pvt. LTD"],
+        "Responsibilities": [
+            """
+            Quantum Machine Learning\n
+            Code Assistant Tool Development\n
+            Reinforcement Learning Applications
+            """,
+            """
+            Natural Language Processing (NLP)\n
+            Text Summary Extractor Development\n
+            Promotional Modeling<br>
+            Demand Planning
+            """,
+            """
+            Claim Extraction\n
+            Generative Adversarial Networks (GANs)\n
+            Customer Segmentation<br>
+            Wake word detection
+            """,
+            """
+            App Development\n
+            Machine Learning Tools Development\n
+            Webservice Development
+            """,
+            """
+            Application System Analysis\n
+            Resume Parser Development\n
+            Digital Badge Development
+            """,
+            """
+            Enterprise-Level Application Development
+            """
+        ],
+        "Clients": ["N/A", "NEXXE (GEP product)", "P&G", "N/A", "N/A", "N/A"]
+    }
 
-    fig.update_layout(
-        title="Professional Journey Timeline",
-        xaxis_title="Time",
-        yaxis=dict(
-            showgrid=False,
-            showline=False,
-            zeroline=False,
-        ),
-        hovermode="closest"
+    df = pd.DataFrame(data)
+    st.data_editor(df, height=400, column_config={
+        "Company Name": st.column_config.Column(width="large"),
+        "Responsibilities": st.column_config.Column(width="large"),
+        "Clients": st.column_config.Column(width="medium"),
+    },
     )
-
-    st.plotly_chart(fig, use_container_width=True)
