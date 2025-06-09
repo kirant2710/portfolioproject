@@ -20,7 +20,7 @@ def display_metric(label, value, column):
     with column:
         st.metric(label=label, value=value)
 
-tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9, tab10 = st.tabs(["About Me", "Professional Journey", "Academic Journey","Certifications","Projects", "Skills" , "Teaching Experience", "Consulting", "Corporate Training", "Acedemic Engagements"])
+tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9, tab10 = st.tabs(["About Me", "Professional Journey", "Academic Journey","Certifications","Projects", "Expertise In" , "Teaching Experience", "Consulting", "Corporate Training", "Acedemic Engagements"])
 
 
 project_data = {
@@ -86,7 +86,7 @@ with tab5:
             st.write(f"* {project}")
 
 with tab6:
-    st.header("Skills")
+    st.header("Expertise In")
 
     # Load skills data
     def load_skills_data():
@@ -110,98 +110,446 @@ with tab6:
     roles = load_skills_data()
 
     # Custom CSS for styling
-    st.markdown(
-        """
-        <style>
-        /* Style the dataframe */
-        .ag-theme-streamlit {
-            --ag-foreground-color: #000000;
-            --ag-background-color: #ffffff;
-            --ag-header-foreground-color: #ffffff;
-            --ag-header-background-color: #262730;
-        }
+    # st.markdown(
+    #     """
+    #     <style>
+    #     /* Style the dataframe */
+    #     .ag-theme-streamlit {
+    #         --ag-foreground-color: #000000;
+    #         --ag-background-color: #ffffff;
+    #         --ag-header-foreground-color: #ffffff;
+    #         --ag-header-background-color: #262730;
+    #     }
 
-        .skills-container {
-            display: flex;
-            flex-wrap: wrap;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease-in-out;
-        }
-        .skill-card:hover {
-            margin: 20px;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease-in-out;
-        }
-        .skill-card:hover {
-            transform: translateY(-5px);
-        }
-        .skill-card h3 {
-            color: #333;
-        }
-        .skill-card p {
-            color: #666;
-        }
-        .skill-card img {
-            width: 50px;
-            height: 50px;
-            margin-right: 10px;
-            vertical-align: middle;
-        }
-        .skill-icon-small {
-            width: 30px;
-            height: 30px;
-        }
-        /* Responsive design */
-        @media (max-width: 768px) {
-            .skill-card {
-                width: 100%; /* Full width on smaller screens */
-                margin: 10px 0;
-            }
-        }
-        </style>
-        """,
-        unsafe_allow_html=True,
-    )
+    #     .skills-container {
+    #         display: flex;
+    #         flex-wrap: wrap;
+    #         box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    #         transition: transform 0.3s ease-in-out;
+    #     }
+    #     .skill-card:hover {
+    #         margin: 20px;
+    #         padding: 15px;
+    #         border: 1px solid #ddd;
+    #         border-radius: 10px;
+    #         box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    #         transition: transform 0.3s ease-in-out;
+    #     }
+    #     .skill-card:hover {
+    #         transform: translateY(-5px);
+    #     }
+    #     .skill-card h3 {
+    #         color: #333;
+    #     }
+    #     .skill-card p {
+    #         color: #666;
+    #     }
+    #     .skill-card img {
+    #         width: 50px;
+    #         height: 50px;
+    #         margin-right: 10px;
+    #         vertical-align: middle;
+    #     }
+    #     .skill-icon-small {
+    #         width: 30px;
+    #         height: 30px;
+    #     }
+    #     /* Responsive design */
+    #     @media (max-width: 768px) {
+    #         .skill-card {
+    #             width: 100%; /* Full width on smaller screens */
+    #             margin: 10px 0;
+    #         }
+    #     }
+    #     </style>
+    #     """,
+    #     unsafe_allow_html=True,
+    # )
 
-    # Display skills
-    st.write("<div class='skills-container'>", unsafe_allow_html=True)
-    for role in roles:
-        # st.write(f"<div class='skill-card'>", unsafe_allow_html=True)
-        st.write(f"<h3>{role['name']}</h3>", unsafe_allow_html=True)
-        for skill in role["skills"]:
-            icon_html = f"<img class=\"skill-icon-small\" src=\"{skill['icon']}\" alt=\"{skill['name']} icon\">"
-            st.write(f"<p>{icon_html} {skill['name']}: {skill['description']}</p>", unsafe_allow_html=True)
-        st.write("</div>", unsafe_allow_html=True)
-    st.write("</div>", unsafe_allow_html=True)
+    # # Display skills
+    # st.write("<div class='skills-container'>", unsafe_allow_html=True)
+    # for role in roles:
+    #     # st.write(f"<div class='skill-card'>", unsafe_allow_html=True)
+    #     st.write(f"<h3>{role['name']}</h3>", unsafe_allow_html=True)
+    #     for skill in role["skills"]:
+    #         icon_html = f"<img class=\"skill-icon-small\" src=\"{skill['icon']}\" alt=\"{skill['name']} icon\">"
+    #         st.write(f"<p>{icon_html} {skill['name']}: {skill['description']}</p>", unsafe_allow_html=True)
+    #     st.write("</div>", unsafe_allow_html=True)
+    # st.write("</div>", unsafe_allow_html=True)
 
-    # Add Skill Form (optional)
-    with st.expander("Add New Skill (Optional)"):
-        with st.form("add_skill_form"):
-            skill_name = st.text_input("Skill Name")
-            skill_description = st.text_area("Skill Description")
-            skill_icon = st.text_input("Skill Icon URL")
-            skill_category = st.selectbox("Skill Category", options=[role["name"] for role in roles])
-            submitted = st.form_submit_button("Add Skill")
+    # # Add Skill Form (optional)
+    # with st.expander("Add New Skill (Optional)"):
+    #     with st.form("add_skill_form"):
+    #         skill_name = st.text_input("Skill Name")
+    #         skill_description = st.text_area("Skill Description")
+    #         skill_icon = st.text_input("Skill Icon URL")
+    #         skill_category = st.selectbox("Skill Category", options=[role["name"] for role in roles])
+    #         submitted = st.form_submit_button("Add Skill")
 
-            if submitted:
-                new_skill = {
-                    "name": skill_name,
-                    "description": skill_description,
-                    "icon": skill_icon
-                }
-                for role in roles:
-                    if role["name"] == skill_category:
-                        role["skills"].append(new_skill)
-                        break
+    #         if submitted:
+    #             new_skill = {
+    #                 "name": skill_name,
+    #                 "description": skill_description,
+    #                 "icon": skill_icon
+    #             }
+    #             for role in roles:
+    #                 if role["name"] == skill_category:
+    #                     role["skills"].append(new_skill)
+    #                     break
 
-                # Write the updated data back to the JSON file
-                with open("skills_data.json", "w") as f:
-                    json.dump({"roles": roles}, f, indent=2)
+    #             # Write the updated data back to the JSON file
+    #             with open("skills_data.json", "w") as f:
+    #                 json.dump({"roles": roles}, f, indent=2)
 
-                st.success("Skill added successfully!")
+    #             st.success("Skill added successfully!")
+
+    with st.container(border=True):
+        st.header("Programming Data Science")
+        with st.container(border=True, key='DataScience with python'):
+            st.subheader("Data Science with Python")
+            col1, col2, col3, col4, col5, col6, col7, col8, col9 = st.columns(9)
+            with col1:
+                import os
+                import requests
+
+                # Troubleshooting guide for "MediaFileStorageError: Error opening 'python.png'"
+                # 1. Check if the file path is correct: Ensure that 'python.png' is in the same directory as the script or specify the correct relative/absolute path.
+                # 2. Verify file existence: Make sure that 'python.png' actually exists at the specified location.
+                # 3. Check file permissions: Ensure that the Streamlit application has the necessary permissions to read the file.
+                # 4. Validate file integrity: The file might be corrupted. Try replacing it with a fresh copy.
+                # 5. Streamlit media file storage: In some cases, Streamlit might have issues with its media file storage. Restarting the application or clearing the cache might help.
+                # 6. Alternative image sources: If the issue persists, consider using an alternative online image source or embedding the image as a base64 string.
+
+                # python_image_path = "python.png"
+                # python_image_url = "https://www.python.org/static/community_logos/python-logo-v3-tm-192x64.png"  # Replace with a reliable URL
+
+                # if not os.path.exists(python_image_path):
+                #     try:
+                #         response = requests.get(python_image_url, stream=True)
+                #         response.raise_for_status()  # Raise HTTPError for bad responses (4xx or 5xx)
+                #         with open(python_image_path, "wb") as f:
+                #             for chunk in response.iter_content(chunk_size=8192):
+                #                 f.write(chunk)
+                #         st.success("Python logo downloaded successfully!")
+                #     except requests.exceptions.RequestException as e:
+                #         st.error(f"Error downloading Python logo: {e}")
+                #     except Exception as e:
+                #         st.error(f"Error saving Python logo: {e}")
+                st.image("Python-Logo.png", width=150)
+                # st.write("Python")
+            with col2:
+                import os
+                import requests
+
+                numpy_image_path = "numpy.png"
+                # numpy_image_url = "https://raw.githubusercontent.com/numpy/numpy/master/branding/logo/primary/numpylogo.png"  # Replace with a reliable URL
+
+                # if not os.path.exists(numpy_image_path):
+                #     try:
+                #         response = requests.get(numpy_image_url, stream=True)
+                #         response.raise_for_status()  # Raise HTTPError for bad responses (4xx or 5xx)
+                #         with open(numpy_image_path, "wb") as f:
+                #             for chunk in response.iter_content(chunk_size=8192):
+                #                 f.write(chunk)
+                #         st.success("NumPy logo downloaded successfully!")
+                #     except requests.exceptions.RequestException as e:
+                #         st.error(f"Error downloading NumPy logo: {e}")
+                #     except Exception as e:
+                #         st.error(f"Error saving NumPy logo: {e}")
+                st.image(numpy_image_path, width=150)
+                # st.write("NumPy")
+            with col3:
+                import os
+                import requests
+
+                pandas_image_path = "pandas_png2.jpg"
+                # pandas_image_url = "https://pandas.pydata.org/static/img/pandas_white.png"  # Replace with a reliable URL
+
+                # if not os.path.exists(pandas_image_path):
+                #     try:
+                #         response = requests.get(pandas_image_url, stream=True)
+                #         response.raise_for_status()  # Raise HTTPError for bad responses (4xx or 5xx)
+                #         with open(pandas_image_path, "wb") as f:
+                #             for chunk in response.iter_content(chunk_size=8192):
+                #                 f.write(chunk)
+                #         st.success("Pandas logo downloaded successfully!")
+                #     except requests.exceptions.RequestException as e:
+                #         st.error(f"Error downloading Pandas logo: {e}")
+                #     except Exception as e:
+                #         st.error(f"Error saving Pandas logo: {e}")
+                st.image(pandas_image_path, width=150)
+                # st.write("Pandas")
+            with col4:
+                import os
+                import requests
+
+                # Troubleshooting guide for "MediaFileStorageError: Error opening 'keras.png'"
+                # 1. Check if the file path is correct: Ensure that 'keras.png' is in the same directory as the script or specify the correct relative/absolute path.
+                # 2. Verify file existence: Make sure that 'keras.png' actually exists at the specified location.
+                # 3. Check file permissions: Ensure that the Streamlit application has the necessary permissions to read the file.
+                # 4. Validate file integrity: The file might be corrupted. Try replacing it with a fresh copy.
+                # 5. Streamlit media file storage: In some cases, Streamlit might have issues with its media file storage. Restarting the application or clearing the cache might help.
+                # 6. Alternative image sources: If the issue persists, consider using an alternative online image source or embedding the image as a base64 string.
+
+                keras_image_path = "keras_logo.png"
+                # keras_image_url = "https://keras.io/img/keras-logo-2018-large-1200.png"  # Replace with a reliable URL
+
+                # if not os.path.exists(keras_image_path):
+                #     try:
+                #         response = requests.get(keras_image_url, stream=True)
+                #         response.raise_for_status()  # Raise HTTPError for bad responses (4xx or 5xx)
+                #         with open(keras_image_path, "wb") as f:
+                #             for chunk in response.iter_content(chunk_size=8192):
+                #                 f.write(chunk)
+                #         st.success("Keras logo downloaded successfully!")
+                #     except requests.exceptions.RequestException as e:
+                #         st.error(f"Error downloading Keras logo: {e}")
+                #     except Exception as e:
+                #         st.error(f"Error saving Keras logo: {e}")
+                st.image(keras_image_path, width=150)
+                # st.write("keras")
+            with col5:
+                import os
+                import requests
+
+                tensorflow_image_path = "tf.png"
+                # tensorflow_image_url = "https://www.tensorflow.org/images/tf_logo.png"  # Replace with a reliable URL
+
+                # if not os.path.exists(tensorflow_image_path):
+                #     try:
+                #         response = requests.get(tensorflow_image_url, stream=True)
+                #         response.raise_for_status()  # Raise HTTPError for bad responses (4xx or 5xx)
+                #         with open(tensorflow_image_path, "wb") as f:
+                #             for chunk in response.iter_content(chunk_size=8192):
+                #                 f.write(chunk)
+                #         st.success("TensorFlow logo downloaded successfully!")
+                #     except requests.exceptions.RequestException as e:
+                #         st.error(f"Error downloading TensorFlow logo: {e}")
+                #     except Exception as e:
+                #         st.error(f"Error saving TensorFlow logo: {e}")
+                st.image(tensorflow_image_path, width=150)
+                # st.write("tersorflow")
+            with col6:
+                import os
+                import requests
+
+                scikit_learn_image_path = "scikit-learn.png"
+                # scikit_learn_image_url = "https://scikit-learn.org/stable/_static/scikit-learn-logo-small.png"  # Replace with a reliable URL
+
+                # if not os.path.exists(scikit_learn_image_path):
+                #     try:
+                #         response = requests.get(scikit_learn_image_url, stream=True)
+                #         response.raise_for_status()  # Raise HTTPError for bad responses (4xx or 5xx)
+                #         with open(scikit_learn_image_path, "wb") as f:
+                #             for chunk in response.iter_content(chunk_size=8192):
+                #                 f.write(chunk)
+                #         st.success("Scikit-learn logo downloaded successfully!")
+                #     except requests.exceptions.RequestException as e:
+                #         st.error(f"Error downloading Scikit-learn logo: {e}")
+                #     except Exception as e:
+                #         st.error(f"Error saving Scikit-learn logo: {e}")
+                st.image(scikit_learn_image_path, width=150)
+                # st.write("Scikit-learn")
+            with col7:
+                import os
+                import requests
+
+                statsmodels_image_path = "statsmodels.png"
+                # statsmodels_image_url = "https://www.statsmodels.org/stable/_static/statsmodels_logo_v2_horizontal.svg"  # Replace with a reliable URL
+
+                # if not os.path.exists(statsmodels_image_path):
+                #     try:
+                #         response = requests.get(statsmodels_image_url, stream=True)
+                #         response.raise_for_status()  # Raise HTTPError for bad responses (4xx or 5xx)
+                #         with open(statsmodels_image_path, "wb") as f:
+                #             for chunk in response.iter_content(chunk_size=8192):
+                #                 f.write(chunk)
+                #         st.success("Statsmodels logo downloaded successfully!")
+                #     except requests.exceptions.RequestException as e:
+                #         st.error(f"Error downloading Statsmodels logo: {e}")
+                #     except Exception as e:
+                #         st.error(f"Error saving Statsmodels logo: {e}")
+                st.image(statsmodels_image_path, width=150)
+                # st.write("Statsmodels")
+            with col8:
+                import os
+                import requests
+
+                plotly_image_path = "plotly.png"
+                # plotly_image_url = "https://images.plot.ly/language-logos/python-logo-for-printing.png"  # Replace with a reliable URL
+
+                # if not os.path.exists(plotly_image_path):
+                #     try:
+                #         response = requests.get(plotly_image_url, stream=True)
+                #         response.raise_for_status()  # Raise HTTPError for bad responses (4xx or 5xx)
+                #         with open(plotly_image_path, "wb") as f:
+                #             for chunk in response.iter_content(chunk_size=8192):
+                #                 f.write(chunk)
+                #         st.success("Plotly logo downloaded successfully!")
+                #     except requests.exceptions.RequestException as e:
+                #         st.error(f"Error downloading Plotly logo: {e}")
+                #     except Exception as e:
+                #         st.error(f"Error saving Plotly logo: {e}")
+                st.image(plotly_image_path, width=150)
+                # st.write("Plotly")
+            with col9:
+                import os
+                import requests
+
+                pytorch_image_path = "pytorch.png"
+                # pytorch_image_url = "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/PyTorch_logo.svg/320px-PyTorch_logo.svg.png"  # Replace with a reliable URL
+
+                # if not os.path.exists(pytorch_image_path):
+                #     try:
+                #         response = requests.get(pytorch_image_url, stream=True)
+                #         response.raise_for_status()  # Raise HTTPError for bad responses (4xx or 5xx)
+                #         with open(pytorch_image_path, "wb") as f:
+                #             for chunk in response.iter_content(chunk_size=8192):
+                #                 f.write(chunk)
+                #         st.success("PyTorch logo downloaded successfully!")
+                #     except requests.exceptions.RequestException as e:
+                #         st.error(f"Error downloading PyTorch logo: {e}")
+                #     except Exception as e:
+                #         st.error(f"Error saving PyTorch logo: {e}")
+                st.image(pytorch_image_path, width=150)
+                # st.write("pytorch")
+
+        with st.container(border=True):
+            st.subheader("Deployment of Data Science Models")
+            col1, col2, col3, col4, col5, col6, col7, col8, col9, col10 = st.columns(10)
+            with col1:
+                import os
+                import requests
+
+                # Troubleshooting guide for "MediaFileStorageError: Error opening 'python.png'"
+                # 1. Check if the file path is correct: Ensure that 'python.png' is in the same directory as the script or specify the correct relative/absolute path.
+                # 2. Verify file existence: Make sure that 'python.png' actually exists at the specified location.
+                # 3. Check file permissions: Ensure that the Streamlit application has the necessary permissions to read the file.
+                # 4. Validate file integrity: The file might be corrupted. Try replacing it with a fresh copy.
+                # 5. Streamlit media file storage: In some cases, Streamlit might have issues with its media file storage. Restarting the application or clearing the cache might help.
+                # 6. Alternative image sources: If the issue persists, consider using an alternative online image source or embedding the image as a base64 string.
+
+                # python_image_path = "python.png"
+                # python_image_url = "https://www.python.org/static/community_logos/python-logo-v3-tm-192x64.png"  # Replace with a reliable URL
+
+                # if not os.path.exists(python_image_path):
+                #     try:
+                #         response = requests.get(python_image_url, stream=True)
+                #         response.raise_for_status()  # Raise HTTPError for bad responses (4xx or 5xx)
+                #         with open(python_image_path, "wb") as f:
+                #             for chunk in response.iter_content(chunk_size=8192):
+                #                 f.write(chunk)
+                #         st.success("Python logo downloaded successfully!")
+                #     except requests.exceptions.RequestException as e:
+                #         st.error(f"Error downloading Python logo: {e}")
+                #     except Exception as e:
+                #         st.error(f"Error saving Python logo: {e}")
+                st.image("flask_python.png", width=300)
+                # st.write("Flask")
+            with col2:
+                
+                st.image("fastapi.png", width=300)
+                # st.write("NumPy")
+            with col3:
+                # import os
+                # import requests
+
+                # pandas_image_path = "pandas_png2.jpg"
+                # # pandas_image_url = "https://pandas.pydata.org/static/img/pandas_white.png"  # Replace with a reliable URL
+
+                # # if not os.path.exists(pandas_image_path):
+                # #     try:
+                # #         response = requests.get(pandas_image_url, stream=True)
+                # #         response.raise_for_status()  # Raise HTTPError for bad responses (4xx or 5xx)
+                # #         with open(pandas_image_path, "wb") as f:
+                # #             for chunk in response.iter_content(chunk_size=8192):
+                # #                 f.write(chunk)
+                # #         st.success("Pandas logo downloaded successfully!")
+                # #     except requests.exceptions.RequestException as e:
+                # #         st.error(f"Error downloading Pandas logo: {e}")
+                # #     except Exception as e:
+                # #         st.error(f"Error saving Pandas logo: {e}")
+                st.image('asyncio.png', width=300)
+                # st.write("Pandas")
+            with col4:
+                st.image("rio.jpg", width=300)
+                # st.write("keras")
+            with col5:
+                import os
+                import requests
+
+                # tensorflow_image_path = "tf.png"
+                # tensorflow_image_url = "https://www.tensorflow.org/images/tf_logo.png"  # Replace with a reliable URL
+
+                # if not os.path.exists(tensorflow_image_path):
+                #     try:
+                #         response = requests.get(tensorflow_image_url, stream=True)
+                #         response.raise_for_status()  # Raise HTTPError for bad responses (4xx or 5xx)
+                #         with open(tensorflow_image_path, "wb") as f:
+                #             for chunk in response.iter_content(chunk_size=8192):
+                #                 f.write(chunk)
+                #         st.success("TensorFlow logo downloaded successfully!")
+                #     except requests.exceptions.RequestException as e:
+                #         st.error(f"Error downloading TensorFlow logo: {e}")
+                #     except Exception as e:
+                #         st.error(f"Error saving TensorFlow logo: {e}")
+                st.image("streamlit.png", width=300)
+                # st.write("tersorflow")
+            with col6:
+                
+                st.image("nicegui.png", width=300)
+                # st.write("Scikit-learn")
+            with col7:
+                
+                st.image("bottle.jpg", width=300)
+                # st.write("Statsmodels")
+            with col8:
+                import os
+                import requests
+
+                # plotly_image_path = "plotly.png"
+                # plotly_image_url = "https://images.plot.ly/language-logos/python-logo-for-printing.png"  # Replace with a reliable URL
+
+                # if not os.path.exists(plotly_image_path):
+                #     try:
+                #         response = requests.get(plotly_image_url, stream=True)
+                #         response.raise_for_status()  # Raise HTTPError for bad responses (4xx or 5xx)
+                #         with open(plotly_image_path, "wb") as f:
+                #             for chunk in response.iter_content(chunk_size=8192):
+                #                 f.write(chunk)
+                #         st.success("Plotly logo downloaded successfully!")
+                #     except requests.exceptions.RequestException as e:
+                #         st.error(f"Error downloading Plotly logo: {e}")
+                #     except Exception as e:
+                #         st.error(f"Error saving Plotly logo: {e}")
+                st.image("falcon.png", width=300)
+                # st.write("Plotly")
+            with col9:
+                # import os
+                # import requests
+
+                # pytorch_image_path = "pytorch.png"
+                # # pytorch_image_url = "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/PyTorch_logo.svg/320px-PyTorch_logo.svg.png"  # Replace with a reliable URL
+
+                # # if not os.path.exists(pytorch_image_path):
+                # #     try:
+                # #         response = requests.get(pytorch_image_url, stream=True)
+                # #         response.raise_for_status()  # Raise HTTPError for bad responses (4xx or 5xx)
+                # #         with open(pytorch_image_path, "wb") as f:
+                # #             for chunk in response.iter_content(chunk_size=8192):
+                # #                 f.write(chunk)
+                # #         st.success("PyTorch logo downloaded successfully!")
+                # #     except requests.exceptions.RequestException as e:
+                # #         st.error(f"Error downloading PyTorch logo: {e}")
+                # #     except Exception as e:
+                # #         st.error(f"Error saving PyTorch logo: {e}")
+                st.image('dash.png', width=300)
+                # st.write("pytorch")
+
+            with col10:
+                st.image('taipy.png', width=300)
+
+
 
 with tab10:
     st.header("Acedemic Engagements")
