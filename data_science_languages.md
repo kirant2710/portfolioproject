@@ -1,3 +1,8 @@
+ # important links of python api
+ # https://www.bitdoze.com/best-python-web-frameworks/
+ # important links for R
+ # https://www.business-science.io/code-tools/2024/08/25/top-25-r-packages.html
+
 # Data Science Programming Languages
 
 Data science programming can be done in many programming languages, but a handful are most popular and widely used. While it's impossible to give an exact number, here's a breakdown:

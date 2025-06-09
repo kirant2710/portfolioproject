@@ -206,7 +206,7 @@ with tab6:
     with st.container(border=True):
         st.header("Programming Data Science")
         with st.container(border=True, key='DataScience with python'):
-            st.subheader("Data Science with Python")
+            st.markdown("<div style='text-align: center;'><h4>Data Science with Python</h4></div>", unsafe_allow_html=True)
             col1, col2, col3, col4, col5, col6, col7, col8, col9 = st.columns(9)
             with col1:
                 import os
@@ -375,7 +375,7 @@ with tab6:
                 import os
                 import requests
 
-                plotly_image_path = "plotly.png"
+                plotly_image_path = "causalml.png"
                 # plotly_image_url = "https://images.plot.ly/language-logos/python-logo-for-printing.png"  # Replace with a reliable URL
 
                 # if not os.path.exists(plotly_image_path):
@@ -415,7 +415,7 @@ with tab6:
                 # st.write("pytorch")
 
         with st.container(border=True):
-            st.subheader("Deployment of Data Science Models")
+            st.markdown("<div style='text-align: center;'><h4>Deployment of Models with Python</h4></div>", unsafe_allow_html=True)
             col1, col2, col3, col4, col5, col6, col7, col8, col9, col10 = st.columns(10)
             with col1:
                 import os
@@ -549,6 +549,91 @@ with tab6:
             with col10:
                 st.image('taipy.png', width=300)
 
+
+        with st.container(border=True):
+            st.markdown("<div style='text-align: center;'><h4>DataScience with R</h4></div>", unsafe_allow_html=True)
+            col1, col2, col3, col4, col5, col6, col7, col8, col9, col10 = st.columns(10)
+            with col1:
+                import os
+                import requests
+
+                
+                st.image("R_logo.png", width=300)
+                # st.write("Flask")
+            with col2:
+                
+                st.image("mlr3.png", width=300)
+            with col3:
+                st.image('causalimpact.png', width=500)
+                # st.write("Pandas")
+            with col4:
+                st.image("torch.png", width=300)
+                # st.write("keras")
+            with col5:
+                
+                st.image("shiny.jpg", width=300)
+                # st.write("tersorflow")
+            with col6:
+                
+                st.image("rcaret.png", width=300)
+                # st.write("Scikit-learn")
+            with col7:
+                
+                st.image("e1071.png", width=300)
+                # st.write("Statsmodels")
+            with col8:
+                st.image('purrr.jpg', width=300)
+               
+
+            with col9:
+                st.image('tidyquant.png', width=300)
+                # st.write("pytorch")
+
+            with col10:
+                st.image('rlang.png', width=300)
+
+        with st.container(border=True):
+            st.markdown("<div style='text-align: center;'><h4>Deployment of Models in R</h4></div>", unsafe_allow_html=True)
+            col1, col2, col3, col4, col5, col6, col7, col8, col9, col10 = st.columns(10)
+            with col1:
+                import os
+                import requests
+
+                
+                st.image("plumber.png", width=300)
+                # st.write("Flask")
+            with col2:
+                
+                st.image("httr2.png", width=300)
+            with col3:
+                st.image('restfulr.png', width=300)
+                # st.write("Pandas")
+            with col4:
+                st.image("vetiver.png", width=300)
+                # st.write("keras")
+            with col5:
+                
+                st.image("shiny.jpg", width=300)
+                # st.write("tersorflow")
+            with col6:
+                
+                st.image("rhino.png", width=300)
+                # st.write("Scikit-learn")
+            with col7:
+                
+                st.image("rsconnect.png", width=300)
+                # st.write("Statsmodels")
+            with col8:
+                import os
+                import requests
+                st.image('reticulate.png', width=300)
+
+            with col9:
+                st.image('tidyquant.png', width=300)
+                # st.write("pytorch")
+
+            with col10:
+                st.image('rlang.png', width=300)
 
 
 with tab10:
