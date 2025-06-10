@@ -32,7 +32,7 @@ tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9, tab10 = st.tabs(["About Me
 
 project_data = {
     "MICRON": [
-        "Published more than 10 + internal papers (adjudged in top2 globally), Filled 5+ invention disclosers won multiple awards like IDEA of Quarters, Cultural Championships, Best performer awards in the team",
+        "Published more than 10 + internal papers (adjudged in top2 globally), Filled 5+ invention disclosers won multiple awards like IDEA of Quarters, Cultural Championships, Best performer awards in the team.",
         "Quantum Machine Learning suite for variation identification in the semiconductor manufacturing process. <span style=\"color: green;\">**↑ Improved variation identification accuracy by 15% ↑**</span>.",
         "Code Assistant Tool (Intelligence Tool) for building E2End Data Science Applications. <span style=\"color: green;\">**↑ Reduced development time by 20% ↑**</span>.",
         "Reinforcement learning based Engine for Tool Trouble shooting in Semiconductor Fabrication Process. <span style=\"color: green;\">**↑ Decreased troubleshooting time by 25% ↑**</span>.",
@@ -245,7 +245,7 @@ with tab6:
             with col4:
                 st.image("haystack.png", width=100)
             with col5:
-                st.image("RAG.png", width=100)
+                st.image("rag.png", width=100)
             with col6:
                 st.image("huggingface.png", width=100)
             with col7:
@@ -256,27 +256,27 @@ with tab6:
             with col1:
                 st.write("Databases")
             with col2:
-                st.image("Weaviate.png")
+                st.image("weaviate.png")
             with col3:
-                st.image("Pinacone.png", width=150)
+                st.image("pinacone.png", width=150)
             with col4:
                 st.image("chromadb.png", width=150)
             with col5:
-                st.image("Milvus.png", width=150)
+                st.image("milvus.png", width=150)
             with col6:
-                st.image("Zilliz.png", width=150)
+                st.image("zilliz.png", width=150)
             with col7:
-                st.image("Qdrant.png", width=150)
+                st.image("qdrant.png", width=150)
             with col8:
                 st.image("redis.png", width=150)
             with col9:
-                st.image("FAISS.png", width=150)
+                st.image("faiss.png", width=150)
             with col10:
-                st.image("Annoy.png", width=150)
+                st.image("annoy.png", width=150)
             with col11:
-                st.image("HNSW.jpg", width=150)
+                st.image("hnsw.jpg", width=150)
             with col12:
-                st.image("Pgvector.png", width=150)
+                st.image("pgvector.png", width=150)
         
         
         with st.container(border=True):
@@ -288,7 +288,7 @@ with tab6:
             with col3:
                 st.image("gpt3.5.jpeg", width=150)
             with col4:
-                st.image("Claude.png", width=150)
+                st.image("claude.png", width=150)
             with col5:
                 st.image("geminipro.png", width=150)
             with col6:
