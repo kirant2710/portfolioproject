@@ -1437,12 +1437,12 @@ with tab8:
 
     # Engagement 1
     with st.container():
-        st.subheader("Acme Corp - Predictive Maintenance System")
-        st.write("**Description:** Developed a predictive maintenance system for Acme Corp's manufacturing equipment using machine learning. The system predicts equipment failures, allowing for proactive maintenance and reducing downtime.")
+        st.subheader("HotStar - Predictive Maintenance System")
+        st.write("**Description:** Developed a predictive maintenance system for hotstar Corp's manufacturing equipment using machine learning. The system predicts equipment failures, allowing for proactive maintenance and reducing downtime.")
         st.write("**Engagement Dates:** 2024-01-15 to 2024-07-31")
         st.write("**Role:** Lead Data Scientist")
         st.write("**Technologies Used:** Python, Scikit-learn, TensorFlow, AWS")
-        st.write("**Team Members:** John Smith, Jane Doe")
+        st.write("**Team Members:** Satya from US")
         st.write("**Key Deliverables:** Predictive model, maintenance schedule, dashboard")
         st.write("Client Testimonial: 'The predictive maintenance system has significantly reduced our equipment downtime and saved us thousands of dollars.'")
         st.write("**Project Impact:** Reduced equipment downtime by 15%, saving $50,000 in maintenance costs.")
@@ -1450,7 +1450,7 @@ with tab8:
 
     # Engagement 2
     with st.container():
-        st.subheader("Beta Industries - Customer Segmentation and Targeting")
+        st.subheader("Walmart - Customer Segmentation and Targeting")
         st.write("**Description:** Implemented a customer segmentation and targeting strategy for Beta Industries using data analytics and machine learning. The strategy identified key customer segments and developed targeted marketing campaigns to increase sales and customer loyalty.")
         st.write("**Engagement Dates:** 2023-09-01 to 2024-03-31")
         st.write("**Role:** Data Science Consultant")
@@ -1463,139 +1463,11 @@ with tab8:
 
     # Engagement 3
     with st.container():
-        st.subheader("Gamma Healthcare - Medical Image Analysis")
+        st.subheader("pfizer Healthcare - Medical Image Analysis")
         st.write("**Description:** Developed a computer vision system for medical image analysis to assist radiologists in detecting diseases. The system analyzes X-rays and MRIs to identify potential anomalies, improving diagnostic accuracy and reducing the workload of radiologists.")
-        st.write("**Engagement Dates:** 2022-11-01 to 2023-05-31")
+        st.write("**Engagement Dates:** 2024-11-01 to 2025-02-31")
 
     # Request Appointment Button
-    st.subheader("Request Appointment")
-    user_name = st.text_input("Your Name (Optional)", key="consulting_name")
-    preferred_date_time = st.text_input("Preferred Date and Time", key="consulting_datetime")
-    consulting_needs = st.text_area("Brief Description of Your Consulting Needs", key="consulting_needs")
-
-    # CAPTCHA Implementation
-    num1 = st.session_state.get('num1', np.random.randint(1, 10))
-    num2 = st.session_state.get('num2', np.random.randint(1, 10))
-    captcha_answer = num1 + num2
-    captcha_input = st.number_input(f"What is {num1} + {num2}?", step=1)
-
-    if st.button("Request Appointment", key="consulting_appointment_button"):
-        if captcha_input == captcha_answer:
-            message = f"""\
-Subject: Consultation Request
-
-User Name: {user_name}
-Preferred Date and Time: {preferred_date_time}
-Consulting Needs: {consulting_needs}
-"""
-            send_email("Consultation Request", message, "consulting@example.com")
-        else:
-            st.error("CAPTCHA failed. Please try again.")
-            st.session_state['num1'] = np.random.randint(1, 10)
-            st.session_state['num2'] = np.random.randint(1, 10)
-        st.write("**Description:** A comprehensive introduction to data science using Python.")
-        st.write("**Training Hours:** 40")
-        st.write("**Company:** Acme Corp")
-        st.markdown("---")
-
-    # Course 2
-    with st.container():
-        st.subheader("Data Science with R")
-        st.write("**Description:** A comprehensive introduction to data science using R.")
-        st.write("**Training Hours:** 40")
-        st.write("**Company:** Beta Industries")
-        st.markdown("---")
-
-    # Course 3
-    with st.container():
-        st.subheader("Statistics for Data Science")
-        st.write("**Description:** A deep dive into statistical concepts for data science.")
-        st.write("**Training Hours:** 30")
-        st.write("**Company:** Gamma Healthcare")
-        st.markdown("---")
-
-    # Course 4
-    with st.container():
-        st.subheader("Deep Learning Fundamentals")
-        st.write("**Description:** An introduction to deep learning concepts and techniques.")
-        st.write("**Training Hours:** 50")
-        st.write("**Company:** Delta Technologies")
-        st.markdown("---")
-
-    # Course 5
-    with st.container():
-        st.subheader("Generative AI")
-        st.write("**Description:** An introduction to Generative AI models and applications.")
-        st.write("**Training Hours:** 60")
-        st.write("**Company:** Epsilon Solutions")
-        st.markdown("---")
-with tab8:
-    st.header("Consulting Engagements")
-
-    # Engagement 1
-    with st.container():
-        st.subheader("Acme Corp - Predictive Maintenance System")
-        st.write("**Description:** Developed a predictive maintenance system for Acme Corp's manufacturing equipment using machine learning. The system predicts equipment failures, allowing for proactive maintenance and reducing downtime.")
-        st.write("**Engagement Dates:** 2024-01-15 to 2024-07-31")
-        st.write("**Role:** Lead Data Scientist")
-        st.write("**Technologies Used:** Python, Scikit-learn, TensorFlow, AWS")
-        st.write("**Team Members:** John Smith, Jane Doe")
-        st.write("**Key Deliverables:** Predictive model, maintenance schedule, dashboard")
-        st.write("Client Testimonial: 'The predictive maintenance system has significantly reduced our equipment downtime and saved us thousands of dollars.'")
-        st.write("**Project Impact:** Reduced equipment downtime by 15%, saving $50,000 in maintenance costs.")
-        st.markdown("---")
-
-    # Engagement 2
-    with st.container():
-        st.subheader("Beta Industries - Customer Segmentation and Targeting")
-        st.write("**Description:** Implemented a customer segmentation and targeting strategy for Beta Industries using data analytics and machine learning. The strategy identified key customer segments and developed targeted marketing campaigns to increase sales and customer loyalty.")
-        st.write("**Engagement Dates:** 2023-09-01 to 2024-03-31")
-        st.write("**Role:** Data Science Consultant")
-        st.write("**Technologies Used:** R, SQL, Tableau, Google Analytics")
-        st.write("**Team Members:** David Lee, Sarah Chen")
-        st.write("**Key Deliverables:** Customer segmentation model, marketing campaign plan, performance reports")
-        st.write("Client Testimonial: 'The customer segmentation and targeting strategy has significantly improved our marketing ROI.'")
-        st.write("**Project Impact:** Increased sales by 10% and customer loyalty by 5%.")
-        st.markdown("---")
-
-    # Engagement 3
-    with st.container():
-        st.subheader("Gamma Healthcare - Medical Image Analysis")
-        st.write("**Description:** Developed a computer vision system for medical image analysis to assist radiologists in detecting diseases. The system analyzes X-rays and MRIs to identify potential anomalies, improving diagnostic accuracy and reducing the workload of radiologists.")
-        st.write("**Engagement Dates:** 2022-11-01 to 2023-05-31")
-        st.write("**Role:** Computer Vision Engineer")
-        st.write("**Technologies Used:** Python, TensorFlow, Keras, OpenCV")
-        st.write("**Team Members:** Emily Brown, Michael Green")
-        st.write("**Key Deliverables:** Image analysis system, training data, performance evaluation report")
-        st.write("Client Testimonial: 'The medical image analysis system has improved our diagnostic accuracy and efficiency.'")
-        st.write("**Project Impact:** Improved diagnostic accuracy by 12% and reduced radiologist workload by 20%.")
-        st.markdown("---")
-
-    # Engagement 4
-    with st.container():
-        st.subheader("Delta Technologies - Fraud Detection System")
-        st.write("**Description:** Developed a fraud detection system for Delta Technologies' online transactions using machine learning. The system identifies fraudulent transactions in real-time, preventing financial losses and protecting customers.")
-        st.write("**Engagement Dates:** 2023-03-01 to 2023-09-30")
-        st.write("**Role:** Machine Learning Engineer")
-        st.write("**Technologies Used:** Python, Scikit-learn, Spark, Kafka")
-        st.write("**Team Members:** Kevin White, Ashley Black")
-        st.write("**Key Deliverables:** Fraud detection model, real-time monitoring dashboard, fraud alert system")
-        st.write("Client Testimonial: 'The fraud detection system has significantly reduced our fraud losses and improved our customer trust.'")
-        st.write("**Project Impact:** Reduced fraud losses by 25% and improved customer trust by 10%.")
-        st.markdown("---")
-
-     # Engagement 5
-    with st.container():
-        st.subheader("Epsilon Solutions - NLP-Powered Chatbot")
-        st.write("**Description:** Developed an NLP-powered chatbot for Epsilon Solutions' customer service. The chatbot provides instant answers to customer inquiries, reducing the workload of customer service agents and improving customer satisfaction.")
-        st.write("**Engagement Dates:** 2024-02-01 to 2024-08-31")
-        st.write("**Role:** NLP Engineer")
-        st.write("**Technologies Used:** Python, NLTK, SpaCy, Rasa")
-        st.write("**Team Members:** Jennifer Gray, Christopher Blue")
-        st.write("**Key Deliverables:** NLP-powered chatbot, training data, performance reports")
-        st.write("Client Testimonial: 'The NLP-powered chatbot has significantly improved our customer service efficiency and satisfaction.'")
-        st.write("**Project Impact:** Improved customer service efficiency by 30% and customer satisfaction by 15%.")
-        st.markdown("---")
 
 with tab9:
     st.header("Corporate Training")
@@ -1603,9 +1475,9 @@ with tab9:
     st.subheader("Training Metrics")
 
     # Dummy Data (Replace with actual data source)
-    total_companies_trained = 150
-    companies_trained_this_month = 15
-    companies_trained_this_quarter = 40
+    total_companies_trained = 9
+    companies_trained_this_month = 1
+    companies_trained_this_quarter = 2
     month_over_month_trend = 0.10  # 10% increase
     quarter_over_quarter_trend = -0.05  # 5% decrease
     last_updated = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -1627,17 +1499,17 @@ with tab9:
     )
     st.line_chart(chart_data)
 
-    st.write(f"Data Source: Dummy Data")
-    st.write(f"Last Updated: {last_updated}")
+    # st.write(f"Data Source: Dummy Data")
+    # st.write(f"Last Updated: {last_updated}")
 
-    st.subheader("Data Science Course Catalog")
+    st.subheader("Courses trained along with companies details.")
 
     # Course 1
     with st.container():
         st.subheader("Data Science with Python")
         st.write("**Description:** A comprehensive introduction to data science using Python.")
         st.write("**Training Hours:** 40")
-        st.write("**Company:** Acme Corp")
+        st.write("**Company:** SG Analytics")
         st.markdown("---")
 
     # Course 2
@@ -1645,23 +1517,23 @@ with tab9:
         st.subheader("Data Science with R")
         st.write("**Description:** A comprehensive introduction to data science using R.")
         st.write("**Training Hours:** 40")
-        st.write("**Company:** Beta Industries")
+        st.write("**Company:** UNext/Deloitte")
         st.markdown("---")
 
     # Course 3
     with st.container():
-        st.subheader("Statistics for Data Science")
+        st.subheader("Statistics for Data Science ")
         st.write("**Description:** A deep dive into statistical concepts for data science.")
         st.write("**Training Hours:** 30")
-        st.write("**Company:** Gamma Healthcare")
+        st.write("**Company:** Cognizant under Jigsaw Engagement")
         st.markdown("---")
 
     # Course 4
     with st.container():
-        st.subheader("Deep Learning Fundamentals")
+        st.subheader("Deep Learning Fundamentals For SG Analytics")
         st.write("**Description:** An introduction to deep learning concepts and techniques.")
         st.write("**Training Hours:** 50")
-        st.write("**Company:** Delta Technologies")
+        st.write("**Company:** SG Analytics")
         st.markdown("---")
 
     # Course 5
@@ -1669,7 +1541,7 @@ with tab9:
         st.subheader("Generative AI")
         st.write("**Description:** An introduction to Generative AI models and applications.")
         st.write("**Training Hours:** 60")
-        st.write("**Company:** Epsilon Solutions")
+        st.write("**Company:** SG Analytics")
         st.markdown("---")
 
 with tab3:
@@ -1937,7 +1809,7 @@ with tab2:
         "Company Name": ["Micron Technology, Inc.", "GEP SOLUTIONS", "HIGH RADIUS PVT LIMITED", "BITMIN INFO SYSTEMS", "PIXENTIA SOLUTIONS", "GYAN DATA Pvt. LTD"],
         "Responsibilities": [
             """
-            Quantum Machine Learning\n
+            Quantum Machine Learning (QML Project)\n
             Code Assistant Tool Development\n
             Reinforcement Learning Applications
             """,
@@ -1967,7 +1839,7 @@ with tab2:
             Enterprise-Level Application Development
             """
         ],
-        "Clients": ["N/A", "NEXXE (GEP product)", "P&G", "N/A", "N/A", "N/A"]
+        "Clients": ["Micron FABs( Manufacturing)", "NEXXE (GEP product), Adidas, Nike, MC Donalds", "P&G", "Highradius, Hunamakia, CeeChat", "Sumtotalsystems", "Sandman"]
     }
 
     df = pd.DataFrame(data)
