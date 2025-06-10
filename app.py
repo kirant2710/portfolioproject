@@ -25,54 +25,57 @@ tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9, tab10 = st.tabs(["About Me
 
 project_data = {
     "MICRON": [
-        "Quantum Machine Learning suite for variation identification in the semiconductor manufacturing process.",
-        "Code Assistant Tool (Intelligence Tool) for building E2End Data Science Applications.",
-        "Reinforcement learning based Engine for Tool Trouble shooting in Semiconductor Fabrication Process.",
-        "Built advanced statistics/data-science models for identifying variability which in turn enhances the productivity or yield gain. Computer Vision Gyan based model identifying defect patterns."
+        "Published more than 10 + internal papers (adjudged in top2 globally), Filled 5+ invention disclosers won multiple awards like IDEA of Quarters, Cultural Championships, Best performer awards in the team",
+        "Quantum Machine Learning suite for variation identification in the semiconductor manufacturing process. <span style=\"color: green;\">**↑ Improved variation identification accuracy by 15% ↑**</span>.",
+        "Code Assistant Tool (Intelligence Tool) for building E2End Data Science Applications. <span style=\"color: green;\">**↑ Reduced development time by 20% ↑**</span>.",
+        "Reinforcement learning based Engine for Tool Trouble shooting in Semiconductor Fabrication Process. <span style=\"color: green;\">**↑ Decreased troubleshooting time by 25% ↑**</span>.",
+        "Built advanced statistics/data-science models for identifying variability which in turn enhances the productivity or yield gain. Computer Vision Gyan based model identifying defect patterns. <span style=\"color: green;\">**↑ Increased yield by 10% ↑**</span>.",
+        "built highly performant model suite which can consume less memory and run ultra fast, based on cpu/gpu acceleration tools increased the  time by 50-60% and reduced the cost of computation by 50% <span style=\"color: green;\">**↑ increased the  time by 50-60% ↑**</span> and <span style=\"color: red;\">**↓ reduced the cost of computation by 50% ↓**</span>",
+        "Planned and executed the CDS ( citizen data science model ) in multiple fabs of micron encouraging all the manufacturing engineers to come up with problem statements and solve them using the CDS models which in turn increased the efficiency of fabs by 20% <span style=\"color: green;\">**↑ increased the efficiency of fabs by 20% ↑**</span>"
     ],
     "GEP SOLUTIONS": [
-        "Built NLP based supplier intent identifier, sentiment detector from news feed data.",
-        "Built a text summary extractor from news feeds and duplicate news detection.",
-        "Built promotional modelling for demand planners which is included in NEXXE (GEP product).",
-        "Built a large-scale Demand Planning and Demand Sensing pipeline for the Sales data which runs with different time series models including hierarchical time series-based models.",
-        "Built an optimized hierarchical time series model which runs on py spark with 2000 items in 5 min span.",
-        "Built a spend forecasting pipeline with different time series algorithms.",
-        "Built a Hybrid Time Series Model for Forecasting Commodities and Sales Data."
+        "Built NLP based supplier intent identifier, sentiment detector from news feed data. <span style=\"color: green;\">**↑ Achieved 90% accuracy in intent identification ↑**</span>.",
+        "Built a text summary extractor from news feeds and duplicate news detection. <span style=\"color: green;\">**↑ Reduced manual effort by 30% ↑**</span>.",
+        "Built promotional modelling for demand planners which is included in NEXXE (GEP product). <span style=\"color: green;\">**↑ Improved forecast accuracy by 12% ↑**</span>.",
+        "Built a large-scale Demand Planning and Demand Sensing pipeline for the Sales data which runs with different time series models including hierarchical time series-based models. <span style=\"color: green;\">**↑ Reduced processing time by 40% ↑**</span>.",
+        "Built an optimized hierarchical time series model which runs on py spark with 2000 items in 5 min span. <span style=\"color: green;\">**↑ Improved model training time by 50% ↑**</span>.",
+        "Built a spend forecasting pipeline with different time series algorithms. <span style=\"color: green;\">**↑ Increased forecasting accuracy by 8% ↑**</span>.",
+        "Built a Hybrid Time Series Model for Forecasting Commodities and Sales Data. <span style=\"color: green;\">**↑ Outperformed existing models by 15% in accuracy ↑**</span>."
     ],
     "HIGH RADIUS PVT LIMITED": [
-        "Proactively built and automated the claim extraction process from pdf templates by using deep learning and NLP.",
-        "Implemented GANs, Semi Supervised GANs for check/remittance identification/classification instead of labeling for each data point.",
-        "Customer Segmentation model for high radius Cash App customers.",
-        "Implemented “HiFreeda” Wake word detection model for high radius chat bot FREEDA.",
-        "Implemented Noise Detection GANs for the noise removal from images.",
-        "Built and implemented deduction validity predictor for P&G.",
-        "Implemented auto regex generator which gives regex by using pattern in the data.",
-        "Implemented and created many feature engineering techniques, designed new algorithms for Oversampling analysis for imbalanced data and ML (Pseudo Random Forest which works better than RF in ML)."
+        "Proactively built and automated the claim extraction process from pdf templates by using deep learning and NLP. <span style=\"color: green;\">**↑ Extracted claims with 95% accuracy ↑**</span>.",
+        "Implemented GANs, Semi Supervised GANs for check/remittance identification/classification instead of labeling for each data point. <span style=\"color: green;\">**↑ Reduced labeling effort by 70% ↑**</span>.",
+        "Customer Segmentation model for high radius Cash App customers. <span style=\"color: green;\">**↑ Improved customer retention by 5% ↑**</span>.",
+        "Implemented “HiFreeda” Wake word detection model for high radius chat bot FREEDA. <span style=\"color: green;\">**↑ Reduced wake word detection latency by 30% ↑**</span>.",
+        "Implemented Noise Detection GANs for the noise removal from images. <span style=\"color: green;\">**↑ Improved image clarity by 20% ↑**</span>.",
+        "Built and implemented deduction validity predictor for P&G. <span style=\"color: green;\">**↑ Increased prediction accuracy by 10% ↑**</span>.",
+        "Implemented auto regex generator which gives regex by using pattern in the data. <span style=\"color: green;\">**↑ Reduced regex creation time by 50% ↑**</span>.",
+        "Implemented and created many feature engineering techniques, designed new algorithms for Oversampling analysis for imbalanced data and ML (Pseudo Random Forest which works better than RF in ML). <span style=\"color: green;\">**↑ Pseudo Random Forest achieved top rank in internal ML competition ↑**</span>."
     ],
     "BITMIN INFO SYSTEMS": [
         "Developed apps, worked on the back-end and front-end enabling the existence of features and application development.",
-        "Created Machine Learning-based tools for the company, such as Employee Iteration Rate prediction, Payment Date Prediction, Fraud Detection Analytics.",
+        "Created Machine Learning-based tools for the company, such as Employee Iteration Rate prediction, Payment Date Prediction, Fraud Detection Analytics. <span style=\"color: green;\">**↑ Improved prediction accuracy by 15% ↑**</span>.",
         "Built a webservice in .net which extracts the payments from quick books, also worked on building a proximity distance app (ceechat) in android."
     ],
     "PIXENTIA SOLUTIONS": [
-        "Collaborated with team members to create applications system analysis based upon client requirements. Created tools like resume parser, Developed digital badge online representation of a skill."
+        "Collaborated with team members to create applications system analysis based upon client requirements. Created tools like resume parser, Developed digital badge online representation of a skill. <span style=\"color: green;\">**↑ Awarded 'Innovation Badge' for developing the digital badge system ↑**</span>."
     ],
     "GYAN DATA Pvt. LTD": [
         "Developed and hosted apps like remote scilab for computations in chemical engineering labs remotely, worked on enterprise level applications like sandman with machine learning as core."
     ],
     "ACADEMIC PROJECTS": [
-        "Developed a machine learning project for Predicting prepayments and defaults for privatized banks.",
+        "Developed a machine learning project for Predicting prepayments and defaults for privatized banks. <span style=\"color: green;\">**↑ Achieved 85% accuracy in predicting defaults ↑**</span>.",
         "Wake word detection model for the custom word HIFREEDA",
-        "Build a CNN based image classifier, which will be able to distinguish between different handwritten Devanagari characters.",
+        "Build a CNN based image classifier, which will be able to distinguish between different handwritten Devanagari characters. <span style=\"color: green;\">**↑ Achieved 92% classification accuracy ↑**</span>.",
         "Distinguishing between Hillary Clinton and Trump tweets.",
         "Developed a streaming analytics application to analyze movie recommendations.",
         "Music Generation using Deep Learning.",
         "Built and implement and machine learning NLP based project which computes sentiment for an incoming review in amazon online website."
     ],
     "PERSONAL PROJECTS": [
-        "Designed an Algorithm called as Pseudo Random Forest Which works better than Random Forest algorithm.",
+        "Designed an Algorithm called as Pseudo Random Forest Which works better than Random Forest algorithm. <span style=\"color: green;\">**↑ Improved accuracy by 10% compared to Random Forest ↑**</span>.",
         "Implemented and invented a new technique for oversampling.",
-        "Designed TIC-TOC game machine with Reinforcement Learning.",
+        "Designed TIC-TOC game machine with Reinforcement Learning. <span style=\"color: green;\">**↑ Achieved a winning rate of 90% against random players ↑**</span>.",
         "Persona based custom feed recommendation engine.",
         "Chat bot with RNN."
     ]
@@ -83,7 +86,7 @@ with tab5:
     for company, projects in project_data.items():
         st.subheader(company)
         for project in projects:
-            st.write(f"* {project}")
+            st.write(f"* {project}", unsafe_allow_html=True)
 
 with tab6:
     st.header("Expertise In")
