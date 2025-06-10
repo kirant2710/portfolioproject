@@ -207,7 +207,7 @@ with tab6:
         st.header("Programming Data Science")
         with st.container(border=True, key='DataScience with python'):
             st.markdown("<div style='text-align: center;'><h4>Data Science with Python</h4></div>", unsafe_allow_html=True)
-            col1, col2, col3, col4, col5, col6, col7, col8, col9 = st.columns(9)
+            col1, col2, col3, col4, col5, col6, col7, col8, col9, col10 = st.columns(10)
             with col1:
                 import os
                 import requests
@@ -413,6 +413,9 @@ with tab6:
                 #         st.error(f"Error saving PyTorch logo: {e}")
                 st.image(pytorch_image_path, width=150)
                 # st.write("pytorch")
+            with col10:
+                st.image('pymilo.jpg', width=150)
+
 
         with st.container(border=True):
             st.markdown("<div style='text-align: center;'><h4>Deployment of Models with Python</h4></div>", unsafe_allow_html=True)
@@ -552,7 +555,7 @@ with tab6:
 
         with st.container(border=True):
             st.markdown("<div style='text-align: center;'><h4>DataScience with R</h4></div>", unsafe_allow_html=True)
-            col1, col2, col3, col4, col5, col6, col7, col8, col9, col10 = st.columns(10)
+            col1, col2, col3, col4, col5, col6, col7, col8, col9, col10, col11 = st.columns(11)
             with col1:
                 import os
                 import requests
@@ -591,6 +594,10 @@ with tab6:
 
             with col10:
                 st.image('rlang.png', width=300)
+            
+            with col11:
+                st.image('fastai.png', width=300)
+                # st.write("pytorch")
 
         with st.container(border=True):
             st.markdown("<div style='text-align: center;'><h4>Deployment of Models in R</h4></div>", unsafe_allow_html=True)
@@ -629,11 +636,11 @@ with tab6:
                 st.image('reticulate.png', width=300)
 
             with col9:
-                st.image('tidyquant.png', width=300)
+                st.image('keras.png', width=300)
                 # st.write("pytorch")
 
             with col10:
-                st.image('rlang.png', width=300)
+                st.image('book.png', width=300)
 
 
 with tab10:
