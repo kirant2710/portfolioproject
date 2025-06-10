@@ -37,7 +37,8 @@
         {"name": "Data Modeling", "description": "Data modeling and feature engineering.", "icon": "https://img.icons8.com/ios/50/000000/data-model.png"},
         {"name": "Python", "description": "Python for ML development.", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"},
         {"name": "Scikit-learn", "description": "Scikit-learn library expertise.", "icon": "https://upload.wikimedia.org/wikipedia/commons/0/05/Scikit_learn_logo_small.svg"},
-        {"name": "Model Evaluation", "description": "Evaluating ML model performance.", "icon": "https://img.icons8.com/ios/50/000000/evaluate-performance.png"}
+        {"name": "Model Evaluation", "description": "Evaluating ML model performance.", "icon": "https://img.icons8.com/ios/50/000000/evaluate-performance.png"},
+        {"name": "MLOps", "description": "MLOps skills including containerization (Docker, Kubernetes), CI/CD pipelines (Jenkins, GitLab CI), model deployment frameworks (TensorFlow Serving, TorchServe, Seldon Core), monitoring and logging tools (Prometheus, Grafana, ELK stack), and feature stores (Feast, Tecton).", "icon": "https://img.icons8.com/ios/50/000000/devops.png"}
       ]
     },
     {

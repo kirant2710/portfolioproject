@@ -204,7 +204,124 @@ with tab6:
     #             st.success("Skill added successfully!")
 
     with st.container(border=True):
-        st.header("Programming Data Science")
+        st.markdown("<h3 style='text-align: center;'>Hands-On Generative AI Stack</h3>", unsafe_allow_html=True)
+        # st.image("Generative_AI_Stack.png", width=800)
+        
+        with st.container(border=True):
+            col1, col2, col3, col4, col5, col6,col7 = st.columns(7)
+            with col1:
+                st.write("Front-End Frameworks")
+            with col2:
+                st.image("react.png", width=100)
+            with col3:
+                st.image("angularjs.png", width=100)
+            with col4:
+                st.image("vuejslogo.png", width=100)
+            with col5:
+                st.image("svelte.png", width=100)
+            with col6:
+                st.image("nextjs.png", width=100)
+            with col7:
+                st.image("vercel.png",width=100)
+        
+        with st.container(border=True):
+            col1, col2, col3, col4, col5, col6, col7 = st.columns(7)
+            with col1:
+                st.write("Frameworks")
+            with col2:
+                st.image("langchain.png", width=100)
+            with col3:
+                st.image("LlamaIndex.png", width=100)
+            with col4:
+                st.image("haystack.png", width=100)
+            with col5:
+                st.image("RAG.png", width=100)
+            with col6:
+                st.image("huggingface.png", width=100)
+            with col7:
+                st.image('langgraph.png',width=100)
+
+        with st.container(border=True):
+            col1, col2, col3, col4, col5, col6, col7,col8, col9, col10, col11, col12 = st.columns(12)
+            with col1:
+                st.write("Databases")
+            with col2:
+                st.image("Weaviate.png")
+            with col3:
+                st.image("Pinacone.png", width=150)
+            with col4:
+                st.image("chromadb.png", width=150)
+            with col5:
+                st.image("Milvus.png", width=150)
+            with col6:
+                st.image("Zilliz.png", width=150)
+            with col7:
+                st.image("Qdrant.png", width=150)
+            with col8:
+                st.image("redis.png", width=150)
+            with col9:
+                st.image("FAISS.png", width=150)
+            with col10:
+                st.image("Annoy.png", width=150)
+            with col11:
+                st.image("HNSW.jpg", width=150)
+            with col12:
+                st.image("Pgvector.png", width=150)
+        
+        
+        with st.container(border=True):
+            col1,col2, col3, col4, col5, col6, col7, col8, col9, col10, col11 = st.columns(11)
+            with col1:
+                st.write("Foundation Models")
+            with col2:
+                st.image("gpt4.5.png", width=150)
+            with col3:
+                st.image("gpt3.5.jpeg", width=150)
+            with col4:
+                st.image("Claude.png", width=150)
+            with col5:
+                st.image("geminipro.png", width=150)
+            with col6:
+                st.image("llama3.jpg", width=150)
+            with col7:
+                st.image("mistral.png", width=150)
+            
+            with col8:
+                st.image("rplus.jpg", width=150)
+            with col9:
+                st.image("codet5.png", width=150)
+            with col10:
+                st.image("bert.png", width=150)
+            with col11:
+                st.image("magma.jpg", width=150)
+    
+        with st.container(border=True):
+            col1, col2, col3, col4, col5, col6, col7, col8, col9, col10 = st.columns(10)
+            with col1:
+                st.write(" Cloud Providers")
+            with col2:
+                st.image('lambda.png', width=150)
+            with col3:
+                st.image('coreweave.jpg', width=150)
+            with col4:
+                st.image('googlecloud.png', width=150)
+            with col5:
+                st.image('aws_cloud.png', width=150)
+            with col6:
+                st.image('ibmcloud.png', width=150)
+            with col7:
+                st.image('azurecloud.png', width=150)
+            with col8:
+                st.image('runpod.png',width=150)
+            with col9:
+                st.image('paperspace.jpg', width=150)
+            with col10:
+                st.image('vastai.png', width=150)
+
+    
+    
+    with st.container(border=True):
+        st.markdown("<h2 style='text-align: center;'>Programming Data Science</h2>", unsafe_allow_html=True)
         with st.container(border=True, key='DataScience with python'):
             st.markdown("<div style='text-align: center;'><h4>Data Science with Python</h4></div>", unsafe_allow_html=True)
             col1, col2, col3, col4, col5, col6, col7, col8, col9, col10 = st.columns(10)
@@ -574,7 +691,7 @@ with tab6:
                 # st.write("keras")
             with col5:
                 
-                st.image("shiny.jpg", width=300)
+                st.image("golem.png", width=300)
                 # st.write("tersorflow")
             with col6:
                 
@@ -641,6 +758,174 @@ with tab6:
 
             with col10:
                 st.image('book.png', width=300)
+
+    with st.container(border=True):
+        st.markdown("<h4 style='text-align: center;'>Expertised in Machine Learning Operations and Engineering Tools</h4>", unsafe_allow_html=True)
+        col1, col2, col3, col4, col5, col6, col7, col8, col9, col10, col11, col12, col13 = st.columns(13)
+        with col1:
+            st.image("mlflow.png", width=300)
+            # st.write("MLflow")
+        with col2:
+            st.image("kubeflow.png", width=300)
+            # st.write("Kubeflow")
+        with col3:
+            st.image("airflow.png", width=300)
+            # st.write("Airflow")   
+        with col4:
+            st.image("dagster.jpg", width=300)
+            # st.write("Dagster")  
+        with col5:
+            st.image("prefect.png", width=300)
+            # st.write("Prefect"
+        with col6:
+            st.image("dvc.png", width=300)
+            # st.write("DVC")
+        with col7:
+            st.image("seldon.png", width=300)
+            # st.write("Seldon")
+        with col8:
+            st.image("kserve.png", width=300)
+            # st.write("KServe")
+        with col9:
+            st.image("tfx.png", width=500)
+            # st.write("TFX")
+        with col10:
+            st.image("metaflow.png", width=300)
+            # st.write("Metaflow")
+        with col11:
+            st.image("polyaxon.png", width=300)
+            # st.write("Polyaxon")  
+        with col12:
+            st.image('wb.png', width=300)
+            # st.write("Weights & Biases")
+        with col13:
+            st.image('kedro.png', width=300)
+        # st.write("Weights & Biases")
+
+    with st.container(border=True):
+        st.markdown("<h4 style='text-align: center;'>Full Stack Engineering and Development</h4>", unsafe_allow_html=True)
+        col1, col2, col3,col4  = st.columns(4)
+        with col2:
+            st.image("mean_stack.png", width=400)
+            # st.write("React")
+        
+        with col3:
+            st.image("mern_stack.png", width=400)
+            # st.write("Angular")
+
+
+    with st.container(border=True):
+        st.markdown("<h4 style='text-align: center;'>Cloud Services</h4>", unsafe_allow_html=True)
+        col1, col2, col3,col4,col5 = st.columns(5)
+        with col2:
+            st.image("aws.png", width=600)
+            # st.write("AWS")
+        with col3:
+            st.image("azure.jpg", width=600)
+            # st.write("Azure")
+        with col4:
+            st.image("gcp_cloud.png", width=600)
+            # st.write("GCP")
+
+
+    
+    # with st.container(border=True):
+    #     st.markdown("<h4 style='text-align: center;'>Expertised in Cloud ML, AI, DL, GEN AI</h4>", unsafe_allow_html=True)
+    #     col1, col2, col3, col4, col5, col6, col7, col8, col9, col10 = st.columns(10)
+    #     with col1:
+    #         st.image("aws.png", width=300)
+    #         # st.write("AWS")
+    #     with col2:
+    #         st.image("azure.png", width=300)
+    #         # st.write("Azure")
+    #     with col3:
+    #         st.image("gcp.png", width=300)
+    #         # st.write("GCP")  
+    #     with col4:
+    #         st.image("sagemaker.png", width=300)
+    #         # st.write("IBM")
+    #     with col5:
+    #         st.image("azureml.png", width=300)
+    #         # st.write("Oracle")
+    #     with col6:
+    #         st.image("gcp_ai_platform.png", width=300)
+        
+    #     with col7:
+    #         st.image("gcp_genai.png", width=300)
+    #         # st.write("GCP Gen AI")
+    #     with col8:
+    #         st.image("aws_genai_bedrock.png", width=300)
+    #         # st.write("AWS Gen AI"
+    #     with col9:
+    #         st.image("azure_genai_openai.png", width=300)
+    #         # st.write("Azure Gen AI")
+    #     with col10:
+    #         st.image("ibm_watson.png", width=300)
+    #         # st.write("IBM Watson")
+        
+    # with st.container(border=True):
+    #     st.markdown("<h4 style='text-align: center;'>Expertised in Data Engineering Tools</h4>", unsafe_allow_html=True)
+    #     col1, col2, col3, col4, col5, col6, col7, col8, col9, col10, col11, col12, col13, col14, col15 = st.columns(15)
+    #     with col1:
+    #         st.image("spark.png", width=300)
+    #         # st.write("Spark")
+    #     with col2:
+    #         st.image("hadoop.png", width=300)
+    #         # st.write("Hadoop")
+    #     with col3:
+    #         st.image("kafka.png", width=300)
+    #         # st.write("Kafka")  
+    #     with col4:
+    #         st.image("flink.png", width=300)
+    #         # st.write("Flink")  
+    #     with col5:
+    #         st.image("airflow.png", width=300)
+    #         # st.write("Airflow")
+    #     with col6:
+    #         st.image("dbt.png", width=300)
+    #         # st.write("DBT")
+    #     with col7:
+    #         st.image("snowflake.png", width=300)
+    #         # st.write("Snowflake")
+    #     with col8:
+    #         st.image("bigquery.png", width=300)
+    #         # st.write("BigQuery")
+    #     with col9:
+    #         st.image("redshift.png", width=300)
+    #         # st.write("Redshift")
+    #     with col10:
+    #         st.image('databricks.png', width=300)
+
+    #     with col11:
+    #         st.image('hive.png', width=300)
+    #         # st.write("Hive")
+    #     with col12:
+    #         st.image('presto.png', width=300)
+    #         # st.write("Presto")
+    #     with col13:
+    #         st.image('amazon_emr.png', width=300)
+    #     with col14:
+    #         st.image('google_dataproc.png', width=300)
+    #         # st.write("Google Dataproc")
+    #     with col15:
+    #         st.image('apache_beam.png', width=300)
+    #         # st.write("Apache Beam")
+        
+
+    # with st.container(border=True):
+    #     st.markdown("<h4 style='text-align: center;'>Front End Engineering</h4>", unsafe_allow_html=True)
+    #     col1, col2, col3, col4, col5, col6, col7, col8, col9, col10 = st.columns(10)
+    #     with col1:
+    #         st.image("typescript.png", width=300)
+    #         # st.write("HTML") 
+    #     with col2:
+    #         st.image("react.png", width=300)
+    #         # st.write("CSS")
+    #     with col3:
+    #         st.image("javascript.png", width=300)
+    #         # st.write("JavaScript")
+
+    
 
 
 with tab10:
@@ -730,6 +1015,8 @@ with tab10:
             st.image("KIIT-Logo.png", width=200)
             # st.write("Description of University of California, Berkeley data.")
             st.markdown("</div>", unsafe_allow_html=True)
+
+
 
 with tab4:
     st.header("Certificates")
@@ -1064,7 +1351,7 @@ with tab7:
     st.subheader("Metrics")
     col1, col2, col3 = st.columns(3)
     with col1:
-        st.metric(label="Students Taught", value=500)
+        st.metric(label="Students Taught", value=9876)
     with col2:
         st.metric(label="Average Satisfaction Score", value="4.6/5")
     with col3:
@@ -1690,3 +1977,4 @@ with tab2:
         "Clients": st.column_config.Column(width="medium"),
     },
     )
+
