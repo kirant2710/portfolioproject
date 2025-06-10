@@ -1,4 +1,9 @@
 import streamlit as st
+
+if "page_configured" not in st.session_state:
+    st.set_page_config(layout="wide")
+    st.session_state["page_configured"] = True
+
 import plotly.graph_objects as go
 from datetime import datetime
 import json
@@ -12,7 +17,9 @@ import streamlit_shadcn_ui as ui
 from streamlit_extras.metric_cards import style_metric_cards
 
 
-st.set_page_config(layout="wide")
+# if "page_configured" not in st.session_state:
+#     st.set_page_config(layout="wide")
+#     st.session_state["page_configured"] = True
 
 def display_metric(label, value, column):
     """Displays a metric in the specified column."""
@@ -234,7 +241,7 @@ with tab6:
             with col2:
                 st.image("langchain.png", width=100)
             with col3:
-                st.image("LlamaIndex.png", width=100)
+                st.image("llamaindex.png", width=100)
             with col4:
                 st.image("haystack.png", width=100)
             with col5:
@@ -1720,16 +1727,22 @@ with tab1:
         st.markdown("""
             <style>
             .highlighted-yellow {
-                background-color: yellow;
+                background-color: #FFFF00; /* Yellow */
                 animation: pulse 2s infinite alternate;
+                padding: 2px;
+                border-radius: 5px;
             }
             .highlighted-green {
-                background-color: lightgreen;
+                background-color: #90EE90; /* LightGreen */
                 animation: pulse 2s infinite alternate;
+                padding: 2px;
+                border-radius: 5px;
             }
             .highlighted-blue {
-                background-color: lightblue;
+                background-color: #ADD8E6; /* LightBlue */
                 animation: pulse 2s infinite alternate;
+                padding: 2px;
+                border-radius: 5px;
             }
             @keyframes pulse {
                 from { transform: scale(1); }
