@@ -1716,8 +1716,37 @@ with tab1:
     try:
         with open("about_me.txt", "r") as f:
             about_me_content = f.read()
-        with st.container(border=True):
-            st.write(about_me_content)
+
+        st.markdown("""
+            <style>
+            .highlighted-yellow {
+                background-color: yellow;
+                animation: pulse 2s infinite alternate;
+            }
+            .highlighted-green {
+                background-color: lightgreen;
+                animation: pulse 2s infinite alternate;
+            }
+            .highlighted-blue {
+                background-color: lightblue;
+                animation: pulse 2s infinite alternate;
+            }
+            @keyframes pulse {
+                from { transform: scale(1); }
+                to { transform: scale(1.05); }
+            }
+            </style>
+        """, unsafe_allow_html=True)
+
+        about_me_content = about_me_content.replace("full-stack data scientist", "<span class='highlighted-yellow'>full-stack data scientist</span>")
+        about_me_content = about_me_content.replace("machine learning lifecycle", "<span class='highlighted-green'>machine learning lifecycle</span>")
+        about_me_content = about_me_content.replace("data engineering", "<span class='highlighted-blue'>data engineering</span>")
+        about_me_content = about_me_content.replace("cloud platforms", "<span class='highlighted-yellow'>cloud platforms</span>")
+        about_me_content = about_me_content.replace("machine learning skillset", "<span class='highlighted-green'>machine learning skillset</span>")
+        about_me_content = about_me_content.replace("front-end development skills", "<span class='highlighted-blue'>front-end development skills</span>")
+
+        st.markdown(f"<div style='font-size: 16px;'>{about_me_content}</div>", unsafe_allow_html=True)
+
     except FileNotFoundError:
         st.error("Could not load about_me.txt. Please ensure the file exists.")
     except Exception as e:
