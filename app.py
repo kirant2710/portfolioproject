@@ -1,16 +1,11 @@
 import streamlit as st
-import time
-
 if "page_configured" not in st.session_state:
     st.set_page_config(layout="wide")
     st.session_state["page_configured"] = True
 
-# Add a progress bar
-progress_bar = st.progress(0.5)
-progress_bar.text("Loading...")
-time.sleep(2)
-progress_bar.text("Complete!")
-progress_bar.empty()
+# Add a spinner
+with st.spinner("Loading..."):
+    pass
 import streamlit as st
 
 if "page_configured" not in st.session_state:
