@@ -17,31 +17,27 @@ import streamlit_shadcn_ui as ui
 from streamlit_extras.metric_cards import style_metric_cards
 
 
-# if "page_configured" not in st.session_state:
-#     st.set_page_config(layout="wide")
-#     st.session_state["page_configured"] = True
 
 def display_metric(label, value, column):
     """Displays a metric in the specified column."""
-    # st.write(f"display_metric called with label={label}, value={value}")
     with column:
         st.metric(label=label, value=value)
 
-tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9, tab10 = st.tabs(["About Me", "Professional Journey", "Academic Journey","Certifications","Projects", "Expertise In" , "Teaching Experience", "Consulting", "Corporate Training", "Acedemic Engagements"])
+tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9, tab10 = st.tabs(["About Me", "Professional Journey", "Academic Journey","Certifications","Projects", "Expertise", "Teaching Experience", "Consulting", "Corporate Training", "Academic Engagements"])
 
 
 project_data = {
     "MICRON": [
-        "Published more than 10 + internal papers (adjudged in top2 globally), Filled 5+ invention disclosers won multiple awards like IDEA of Quarters, Cultural Championships, Best performer awards in the team.",
+        "Published more than 10+ internal papers (adjudged in top 2 globally), Filed 5+ invention disclosures and won multiple awards like IDEA of the Quarter, Cultural Championships, and Best Performer awards in the team.",
         "Quantum Machine Learning suite for variation identification in the semiconductor manufacturing process. <span style=\"color: green;\">**↑ Improved variation identification accuracy by 15% ↑**</span>.",
         "Code Assistant Tool (Intelligence Tool) for building E2End Data Science Applications. <span style=\"color: green;\">**↑ Reduced development time by 20% ↑**</span>.",
-        "Reinforcement learning based Engine for Tool Trouble shooting in Semiconductor Fabrication Process. <span style=\"color: green;\">**↑ Decreased troubleshooting time by 25% ↑**</span>.",
-        "Built advanced statistics/data-science models for identifying variability which in turn enhances the productivity or yield gain. Computer Vision Gyan based model identifying defect patterns. <span style=\"color: green;\">**↑ Increased yield by 10% ↑**</span>.",
-        "built highly performant model suite which can consume less memory and run ultra fast, based on cpu/gpu acceleration tools increased the  time by 50-60% and reduced the cost of computation by 50% <span style=\"color: green;\">**↑ increased the  time by 50-60% ↑**</span> and <span style=\"color: red;\">**↓ reduced the cost of computation by 50% ↓**</span>",
-        "Planned and executed the CDS ( citizen data science model ) in multiple fabs of micron encouraging all the manufacturing engineers to come up with problem statements and solve them using the CDS models which in turn increased the efficiency of fabs by 20% <span style=\"color: green;\">**↑ increased the efficiency of fabs by 20% ↑**</span>"
+        "Reinforcement learning-based engine for tool troubleshooting in the semiconductor fabrication process. <span style=\"color: green;\">**↑ Decreased troubleshooting time by 25% ↑**</span>.",
+        "Built advanced statistics/data science models for identifying variability, which in turn enhances productivity or yield gain. Developed a computer vision model to identify defect patterns. <span style=\"color: green;\">**↑ Increased yield by 10% ↑**</span>.",
+        "Built a highly performant model suite that consumes less memory and runs ultra-fast. CPU/GPU acceleration tools increased processing speed by 50-60% and reduced the cost of computation by 50%. <span style=\"color: green;\">**↑ Increased processing speed by 50-60% ↑**</span> and <span style=\"color: red;\">**↓ Reduced the cost of computation by 50% ↓**</span>",
+        "Planned and executed the CDS (citizen data science model) in multiple Micron fabs, encouraging all manufacturing engineers to develop problem statements and solve them using the CDS models, which in turn increased the efficiency of the fabs by 20%. <span style=\"color: green;\">**↑ Increased the efficiency of fabs by 20% ↑**</span>"
     ],
     "GEP SOLUTIONS": [
-        "Built NLP based supplier intent identifier, sentiment detector from news feed data. <span style=\"color: green;\">**↑ Achieved 90% accuracy in intent identification ↑**</span>.",
+        "Built an NLP-based supplier intent identifier and sentiment detector from news feed data. <span style=\"color: green;\">**↑ Achieved 90% accuracy in intent identification ↑**</span>.",
         "Built a text summary extractor from news feeds and duplicate news detection. <span style=\"color: green;\">**↑ Reduced manual effort by 30% ↑**</span>.",
         "Built promotional modelling for demand planners which is included in NEXXE (GEP product). <span style=\"color: green;\">**↑ Improved forecast accuracy by 12% ↑**</span>.",
         "Built a large-scale Demand Planning and Demand Sensing pipeline for the Sales data which runs with different time series models including hierarchical time series-based models. <span style=\"color: green;\">**↑ Reduced processing time by 40% ↑**</span>.",
@@ -62,25 +58,25 @@ project_data = {
     "BITMIN INFO SYSTEMS": [
         "Developed apps, worked on the back-end and front-end enabling the existence of features and application development.",
         "Created Machine Learning-based tools for the company, such as Employee Iteration Rate prediction, Payment Date Prediction, Fraud Detection Analytics. <span style=\"color: green;\">**↑ Improved prediction accuracy by 15% ↑**</span>.",
-        "Built a webservice in .net which extracts the payments from quick books, also worked on building a proximity distance app (ceechat) in android."
+        "Built a web service in .NET that extracts payments from QuickBooks. Also worked on building a proximity distance app in Android."
     ],
     "PIXENTIA SOLUTIONS": [
-        "Collaborated with team members to create applications system analysis based upon client requirements. Created tools like resume parser, Developed digital badge online representation of a skill. <span style=\"color: green;\">**↑ Awarded 'Innovation Badge' for developing the digital badge system ↑**</span>."
+        "Collaborated with team members to create application system analysis based on client requirements. Created tools like a resume parser and developed a digital badge for online representation of a skill. <span style=\"color: green;\">**↑ Awarded 'Innovation Badge' for developing the digital badge system ↑**</span>."
     ],
     "GYAN DATA Pvt. LTD": [
         "Developed and hosted apps like remote scilab for computations in chemical engineering labs remotely, worked on enterprise level applications like sandman with machine learning as core."
     ],
     "ACADEMIC PROJECTS": [
         "Developed a machine learning project for Predicting prepayments and defaults for privatized banks. <span style=\"color: green;\">**↑ Achieved 85% accuracy in predicting defaults ↑**</span>.",
-        "Wake word detection model for the custom word HIFREEDA",
-        "Build a CNN based image classifier, which will be able to distinguish between different handwritten Devanagari characters. <span style=\"color: green;\">**↑ Achieved 92% classification accuracy ↑**</span>.",
+        "Developed a wake word detection model for the custom word 'HIFREEDA'.",
+        "Built a CNN-based image classifier that can distinguish between different handwritten Devanagari characters. <span style=\"color: green;\">**↑ Achieved 92% classification accuracy ↑**</span>.",
         "Distinguishing between Hillary Clinton and Trump tweets.",
         "Developed a streaming analytics application to analyze movie recommendations.",
         "Music Generation using Deep Learning.",
-        "Built and implement and machine learning NLP based project which computes sentiment for an incoming review in amazon online website."
+        "Built and implemented a machine learning NLP-based project that computes sentiment for incoming reviews on the Amazon website."
     ],
     "PERSONAL PROJECTS": [
-        "Designed an Algorithm called as Pseudo Random Forest Which works better than Random Forest algorithm. <span style=\"color: green;\">**↑ Improved accuracy by 10% compared to Random Forest ↑**</span>.",
+        "Designed an algorithm called Pseudo Random Forest that works better than the Random Forest algorithm. <span style=\"color: green;\">**↑ Improved accuracy by 10% compared to Random Forest ↑**</span>.",
         "Implemented and invented a new technique for oversampling.",
         "Designed TIC-TOC game machine with Reinforcement Learning. <span style=\"color: green;\">**↑ Achieved a winning rate of 90% against random players ↑**</span>.",
         "Persona based custom feed recommendation engine.",
@@ -97,8 +93,6 @@ with tab5:
 
 with tab6:
     st.header("Expertise In")
-
-    # Load skills data
     def load_skills_data():
         """Loads skills data from skills_data.json and handles potential errors."""
         if "skills_data" not in st.session_state:
@@ -119,103 +113,9 @@ with tab6:
 
     roles = load_skills_data()
 
-    # Custom CSS for styling
-    # st.markdown(
-    #     """
-    #     <style>
-    #     /* Style the dataframe */
-    #     .ag-theme-streamlit {
-    #         --ag-foreground-color: #000000;
-    #         --ag-background-color: #ffffff;
-    #         --ag-header-foreground-color: #ffffff;
-    #         --ag-header-background-color: #262730;
-    #     }
-
-    #     .skills-container {
-    #         display: flex;
-    #         flex-wrap: wrap;
-    #         box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    #         transition: transform 0.3s ease-in-out;
-    #     }
-    #     .skill-card:hover {
-    #         margin: 20px;
-    #         padding: 15px;
-    #         border: 1px solid #ddd;
-    #         border-radius: 10px;
-    #         box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    #         transition: transform 0.3s ease-in-out;
-    #     }
-    #     .skill-card:hover {
-    #         transform: translateY(-5px);
-    #     }
-    #     .skill-card h3 {
-    #         color: #333;
-    #     }
-    #     .skill-card p {
-    #         color: #666;
-    #     }
-    #     .skill-card img {
-    #         width: 50px;
-    #         height: 50px;
-    #         margin-right: 10px;
-    #         vertical-align: middle;
-    #     }
-    #     .skill-icon-small {
-    #         width: 30px;
-    #         height: 30px;
-    #     }
-    #     /* Responsive design */
-    #     @media (max-width: 768px) {
-    #         .skill-card {
-    #             width: 100%; /* Full width on smaller screens */
-    #             margin: 10px 0;
-    #         }
-    #     }
-    #     </style>
-    #     """,
-    #     unsafe_allow_html=True,
-    # )
-
-    # # Display skills
-    # st.write("<div class='skills-container'>", unsafe_allow_html=True)
-    # for role in roles:
-    #     # st.write(f"<div class='skill-card'>", unsafe_allow_html=True)
-    #     st.write(f"<h3>{role['name']}</h3>", unsafe_allow_html=True)
-    #     for skill in role["skills"]:
-    #         icon_html = f"<img class=\"skill-icon-small\" src=\"{skill['icon']}\" alt=\"{skill['name']} icon\">"
-    #         st.write(f"<p>{icon_html} {skill['name']}: {skill['description']}</p>", unsafe_allow_html=True)
-    #     st.write("</div>", unsafe_allow_html=True)
-    # st.write("</div>", unsafe_allow_html=True)
-
-    # # Add Skill Form (optional)
-    # with st.expander("Add New Skill (Optional)"):
-    #     with st.form("add_skill_form"):
-    #         skill_name = st.text_input("Skill Name")
-    #         skill_description = st.text_area("Skill Description")
-    #         skill_icon = st.text_input("Skill Icon URL")
-    #         skill_category = st.selectbox("Skill Category", options=[role["name"] for role in roles])
-    #         submitted = st.form_submit_button("Add Skill")
-
-    #         if submitted:
-    #             new_skill = {
-    #                 "name": skill_name,
-    #                 "description": skill_description,
-    #                 "icon": skill_icon
-    #             }
-    #             for role in roles:
-    #                 if role["name"] == skill_category:
-    #                     role["skills"].append(new_skill)
-    #                     break
-
-    #             # Write the updated data back to the JSON file
-    #             with open("skills_data.json", "w") as f:
-    #                 json.dump({"roles": roles}, f, indent=2)
-
-    #             st.success("Skill added successfully!")
 
     with st.container(border=True):
         st.markdown("<h3 style='text-align: center;'>Hands-On Generative AI Stack</h3>", unsafe_allow_html=True)
-        # st.image("Generative_AI_Stack.png", width=800)
         
         with st.container(border=True):
             col1, col2, col3, col4, col5, col6,col7 = st.columns(7)
@@ -339,207 +239,54 @@ with tab6:
                 import os
                 import requests
 
-                # Troubleshooting guide for "MediaFileStorageError: Error opening 'python.png'"
-                # 1. Check if the file path is correct: Ensure that 'python.png' is in the same directory as the script or specify the correct relative/absolute path.
-                # 2. Verify file existence: Make sure that 'python.png' actually exists at the specified location.
-                # 3. Check file permissions: Ensure that the Streamlit application has the necessary permissions to read the file.
-                # 4. Validate file integrity: The file might be corrupted. Try replacing it with a fresh copy.
-                # 5. Streamlit media file storage: In some cases, Streamlit might have issues with its media file storage. Restarting the application or clearing the cache might help.
-                # 6. Alternative image sources: If the issue persists, consider using an alternative online image source or embedding the image as a base64 string.
-
-                # python_image_path = "python.png"
-                # python_image_url = "https://www.python.org/static/community_logos/python-logo-v3-tm-192x64.png"  # Replace with a reliable URL
-
-                # if not os.path.exists(python_image_path):
-                #     try:
-                #         response = requests.get(python_image_url, stream=True)
-                #         response.raise_for_status()  # Raise HTTPError for bad responses (4xx or 5xx)
-                #         with open(python_image_path, "wb") as f:
-                #             for chunk in response.iter_content(chunk_size=8192):
-                #                 f.write(chunk)
-                #         st.success("Python logo downloaded successfully!")
-                #     except requests.exceptions.RequestException as e:
-                #         st.error(f"Error downloading Python logo: {e}")
-                #     except Exception as e:
-                #         st.error(f"Error saving Python logo: {e}")
                 st.image("Python-Logo.png", width=150)
-                # st.write("Python")
             with col2:
                 import os
                 import requests
 
                 numpy_image_path = "numpy.png"
-                # numpy_image_url = "https://raw.githubusercontent.com/numpy/numpy/master/branding/logo/primary/numpylogo.png"  # Replace with a reliable URL
-
-                # if not os.path.exists(numpy_image_path):
-                #     try:
-                #         response = requests.get(numpy_image_url, stream=True)
-                #         response.raise_for_status()  # Raise HTTPError for bad responses (4xx or 5xx)
-                #         with open(numpy_image_path, "wb") as f:
-                #             for chunk in response.iter_content(chunk_size=8192):
-                #                 f.write(chunk)
-                #         st.success("NumPy logo downloaded successfully!")
-                #     except requests.exceptions.RequestException as e:
-                #         st.error(f"Error downloading NumPy logo: {e}")
-                #     except Exception as e:
-                #         st.error(f"Error saving NumPy logo: {e}")
                 st.image(numpy_image_path, width=150)
-                # st.write("NumPy")
             with col3:
                 import os
                 import requests
 
                 pandas_image_path = "pandas_png2.jpg"
-                # pandas_image_url = "https://pandas.pydata.org/static/img/pandas_white.png"  # Replace with a reliable URL
-
-                # if not os.path.exists(pandas_image_path):
-                #     try:
-                #         response = requests.get(pandas_image_url, stream=True)
-                #         response.raise_for_status()  # Raise HTTPError for bad responses (4xx or 5xx)
-                #         with open(pandas_image_path, "wb") as f:
-                #             for chunk in response.iter_content(chunk_size=8192):
-                #                 f.write(chunk)
-                #         st.success("Pandas logo downloaded successfully!")
-                #     except requests.exceptions.RequestException as e:
-                #         st.error(f"Error downloading Pandas logo: {e}")
-                #     except Exception as e:
-                #         st.error(f"Error saving Pandas logo: {e}")
                 st.image(pandas_image_path, width=150)
-                # st.write("Pandas")
             with col4:
                 import os
                 import requests
-
-                # Troubleshooting guide for "MediaFileStorageError: Error opening 'keras.png'"
-                # 1. Check if the file path is correct: Ensure that 'keras.png' is in the same directory as the script or specify the correct relative/absolute path.
-                # 2. Verify file existence: Make sure that 'keras.png' actually exists at the specified location.
-                # 3. Check file permissions: Ensure that the Streamlit application has the necessary permissions to read the file.
-                # 4. Validate file integrity: The file might be corrupted. Try replacing it with a fresh copy.
-                # 5. Streamlit media file storage: In some cases, Streamlit might have issues with its media file storage. Restarting the application or clearing the cache might help.
-                # 6. Alternative image sources: If the issue persists, consider using an alternative online image source or embedding the image as a base64 string.
-
                 keras_image_path = "keras_logo.png"
-                # keras_image_url = "https://keras.io/img/keras-logo-2018-large-1200.png"  # Replace with a reliable URL
-
-                # if not os.path.exists(keras_image_path):
-                #     try:
-                #         response = requests.get(keras_image_url, stream=True)
-                #         response.raise_for_status()  # Raise HTTPError for bad responses (4xx or 5xx)
-                #         with open(keras_image_path, "wb") as f:
-                #             for chunk in response.iter_content(chunk_size=8192):
-                #                 f.write(chunk)
-                #         st.success("Keras logo downloaded successfully!")
-                #     except requests.exceptions.RequestException as e:
-                #         st.error(f"Error downloading Keras logo: {e}")
-                #     except Exception as e:
-                #         st.error(f"Error saving Keras logo: {e}")
                 st.image(keras_image_path, width=150)
-                # st.write("keras")
             with col5:
                 import os
                 import requests
 
                 tensorflow_image_path = "tf.png"
-                # tensorflow_image_url = "https://www.tensorflow.org/images/tf_logo.png"  # Replace with a reliable URL
-
-                # if not os.path.exists(tensorflow_image_path):
-                #     try:
-                #         response = requests.get(tensorflow_image_url, stream=True)
-                #         response.raise_for_status()  # Raise HTTPError for bad responses (4xx or 5xx)
-                #         with open(tensorflow_image_path, "wb") as f:
-                #             for chunk in response.iter_content(chunk_size=8192):
-                #                 f.write(chunk)
-                #         st.success("TensorFlow logo downloaded successfully!")
-                #     except requests.exceptions.RequestException as e:
-                #         st.error(f"Error downloading TensorFlow logo: {e}")
-                #     except Exception as e:
-                #         st.error(f"Error saving TensorFlow logo: {e}")
                 st.image(tensorflow_image_path, width=150)
-                # st.write("tersorflow")
             with col6:
                 import os
                 import requests
 
                 scikit_learn_image_path = "scikit-learn.png"
-                # scikit_learn_image_url = "https://scikit-learn.org/stable/_static/scikit-learn-logo-small.png"  # Replace with a reliable URL
-
-                # if not os.path.exists(scikit_learn_image_path):
-                #     try:
-                #         response = requests.get(scikit_learn_image_url, stream=True)
-                #         response.raise_for_status()  # Raise HTTPError for bad responses (4xx or 5xx)
-                #         with open(scikit_learn_image_path, "wb") as f:
-                #             for chunk in response.iter_content(chunk_size=8192):
-                #                 f.write(chunk)
-                #         st.success("Scikit-learn logo downloaded successfully!")
-                #     except requests.exceptions.RequestException as e:
-                #         st.error(f"Error downloading Scikit-learn logo: {e}")
-                #     except Exception as e:
-                #         st.error(f"Error saving Scikit-learn logo: {e}")
                 st.image(scikit_learn_image_path, width=150)
-                # st.write("Scikit-learn")
             with col7:
                 import os
                 import requests
 
                 statsmodels_image_path = "statsmodels.png"
-                # statsmodels_image_url = "https://www.statsmodels.org/stable/_static/statsmodels_logo_v2_horizontal.svg"  # Replace with a reliable URL
-
-                # if not os.path.exists(statsmodels_image_path):
-                #     try:
-                #         response = requests.get(statsmodels_image_url, stream=True)
-                #         response.raise_for_status()  # Raise HTTPError for bad responses (4xx or 5xx)
-                #         with open(statsmodels_image_path, "wb") as f:
-                #             for chunk in response.iter_content(chunk_size=8192):
-                #                 f.write(chunk)
-                #         st.success("Statsmodels logo downloaded successfully!")
-                #     except requests.exceptions.RequestException as e:
-                #         st.error(f"Error downloading Statsmodels logo: {e}")
-                #     except Exception as e:
-                #         st.error(f"Error saving Statsmodels logo: {e}")
                 st.image(statsmodels_image_path, width=150)
-                # st.write("Statsmodels")
             with col8:
                 import os
                 import requests
 
                 plotly_image_path = "causalml.png"
-                # plotly_image_url = "https://images.plot.ly/language-logos/python-logo-for-printing.png"  # Replace with a reliable URL
-
-                # if not os.path.exists(plotly_image_path):
-                #     try:
-                #         response = requests.get(plotly_image_url, stream=True)
-                #         response.raise_for_status()  # Raise HTTPError for bad responses (4xx or 5xx)
-                #         with open(plotly_image_path, "wb") as f:
-                #             for chunk in response.iter_content(chunk_size=8192):
-                #                 f.write(chunk)
-                #         st.success("Plotly logo downloaded successfully!")
-                #     except requests.exceptions.RequestException as e:
-                #         st.error(f"Error downloading Plotly logo: {e}")
-                #     except Exception as e:
-                #         st.error(f"Error saving Plotly logo: {e}")
                 st.image(plotly_image_path, width=150)
-                # st.write("Plotly")
             with col9:
                 import os
                 import requests
 
                 pytorch_image_path = "pytorch.png"
-                # pytorch_image_url = "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/PyTorch_logo.svg/320px-PyTorch_logo.svg.png"  # Replace with a reliable URL
-
-                # if not os.path.exists(pytorch_image_path):
-                #     try:
-                #         response = requests.get(pytorch_image_url, stream=True)
-                #         response.raise_for_status()  # Raise HTTPError for bad responses (4xx or 5xx)
-                #         with open(pytorch_image_path, "wb") as f:
-                #             for chunk in response.iter_content(chunk_size=8192):
-                #                 f.write(chunk)
-                #         st.success("PyTorch logo downloaded successfully!")
-                #     except requests.exceptions.RequestException as e:
-                #         st.error(f"Error downloading PyTorch logo: {e}")
-                #     except Exception as e:
-                #         st.error(f"Error saving PyTorch logo: {e}")
                 st.image(pytorch_image_path, width=150)
-                # st.write("pytorch")
             with col10:
                 st.image('pymilo.jpg', width=150)
 
@@ -551,56 +298,13 @@ with tab6:
                 import os
                 import requests
 
-                # Troubleshooting guide for "MediaFileStorageError: Error opening 'python.png'"
-                # 1. Check if the file path is correct: Ensure that 'python.png' is in the same directory as the script or specify the correct relative/absolute path.
-                # 2. Verify file existence: Make sure that 'python.png' actually exists at the specified location.
-                # 3. Check file permissions: Ensure that the Streamlit application has the necessary permissions to read the file.
-                # 4. Validate file integrity: The file might be corrupted. Try replacing it with a fresh copy.
-                # 5. Streamlit media file storage: In some cases, Streamlit might have issues with its media file storage. Restarting the application or clearing the cache might help.
-                # 6. Alternative image sources: If the issue persists, consider using an alternative online image source or embedding the image as a base64 string.
-
-                # python_image_path = "python.png"
-                # python_image_url = "https://www.python.org/static/community_logos/python-logo-v3-tm-192x64.png"  # Replace with a reliable URL
-
-                # if not os.path.exists(python_image_path):
-                #     try:
-                #         response = requests.get(python_image_url, stream=True)
-                #         response.raise_for_status()  # Raise HTTPError for bad responses (4xx or 5xx)
-                #         with open(python_image_path, "wb") as f:
-                #             for chunk in response.iter_content(chunk_size=8192):
-                #                 f.write(chunk)
-                #         st.success("Python logo downloaded successfully!")
-                #     except requests.exceptions.RequestException as e:
-                #         st.error(f"Error downloading Python logo: {e}")
-                #     except Exception as e:
-                #         st.error(f"Error saving Python logo: {e}")
                 st.image("flask_python.png", width=300)
                 # st.write("Flask")
             with col2:
                 
                 st.image("fastapi.png", width=300)
-                # st.write("NumPy")
             with col3:
-                # import os
-                # import requests
-
-                # pandas_image_path = "pandas_png2.jpg"
-                # # pandas_image_url = "https://pandas.pydata.org/static/img/pandas_white.png"  # Replace with a reliable URL
-
-                # # if not os.path.exists(pandas_image_path):
-                # #     try:
-                # #         response = requests.get(pandas_image_url, stream=True)
-                # #         response.raise_for_status()  # Raise HTTPError for bad responses (4xx or 5xx)
-                # #         with open(pandas_image_path, "wb") as f:
-                # #             for chunk in response.iter_content(chunk_size=8192):
-                # #                 f.write(chunk)
-                # #         st.success("Pandas logo downloaded successfully!")
-                # #     except requests.exceptions.RequestException as e:
-                # #         st.error(f"Error downloading Pandas logo: {e}")
-                # #     except Exception as e:
-                # #         st.error(f"Error saving Pandas logo: {e}")
                 st.image('asyncio.png', width=300)
-                # st.write("Pandas")
             with col4:
                 st.image("rio.jpg", width=300)
                 # st.write("keras")
@@ -608,73 +312,19 @@ with tab6:
                 import os
                 import requests
 
-                # tensorflow_image_path = "tf.png"
-                # tensorflow_image_url = "https://www.tensorflow.org/images/tf_logo.png"  # Replace with a reliable URL
-
-                # if not os.path.exists(tensorflow_image_path):
-                #     try:
-                #         response = requests.get(tensorflow_image_url, stream=True)
-                #         response.raise_for_status()  # Raise HTTPError for bad responses (4xx or 5xx)
-                #         with open(tensorflow_image_path, "wb") as f:
-                #             for chunk in response.iter_content(chunk_size=8192):
-                #                 f.write(chunk)
-                #         st.success("TensorFlow logo downloaded successfully!")
-                #     except requests.exceptions.RequestException as e:
-                #         st.error(f"Error downloading TensorFlow logo: {e}")
-                #     except Exception as e:
-                #         st.error(f"Error saving TensorFlow logo: {e}")
                 st.image("streamlit.png", width=300)
-                # st.write("tersorflow")
             with col6:
                 
                 st.image("nicegui.png", width=300)
-                # st.write("Scikit-learn")
             with col7:
                 
                 st.image("bottle.jpg", width=300)
-                # st.write("Statsmodels")
             with col8:
                 import os
                 import requests
-
-                # plotly_image_path = "plotly.png"
-                # plotly_image_url = "https://images.plot.ly/language-logos/python-logo-for-printing.png"  # Replace with a reliable URL
-
-                # if not os.path.exists(plotly_image_path):
-                #     try:
-                #         response = requests.get(plotly_image_url, stream=True)
-                #         response.raise_for_status()  # Raise HTTPError for bad responses (4xx or 5xx)
-                #         with open(plotly_image_path, "wb") as f:
-                #             for chunk in response.iter_content(chunk_size=8192):
-                #                 f.write(chunk)
-                #         st.success("Plotly logo downloaded successfully!")
-                #     except requests.exceptions.RequestException as e:
-                #         st.error(f"Error downloading Plotly logo: {e}")
-                #     except Exception as e:
-                #         st.error(f"Error saving Plotly logo: {e}")
                 st.image("falcon.png", width=300)
-                # st.write("Plotly")
             with col9:
-                # import os
-                # import requests
-
-                # pytorch_image_path = "pytorch.png"
-                # # pytorch_image_url = "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/PyTorch_logo.svg/320px-PyTorch_logo.svg.png"  # Replace with a reliable URL
-
-                # # if not os.path.exists(pytorch_image_path):
-                # #     try:
-                # #         response = requests.get(pytorch_image_url, stream=True)
-                # #         response.raise_for_status()  # Raise HTTPError for bad responses (4xx or 5xx)
-                # #         with open(pytorch_image_path, "wb") as f:
-                # #             for chunk in response.iter_content(chunk_size=8192):
-                # #                 f.write(chunk)
-                # #         st.success("PyTorch logo downloaded successfully!")
-                # #     except requests.exceptions.RequestException as e:
-                # #         st.error(f"Error downloading PyTorch logo: {e}")
-                # #     except Exception as e:
-                # #         st.error(f"Error saving PyTorch logo: {e}")
                 st.image('dash.png', width=300)
-                # st.write("pytorch")
 
             with col10:
                 st.image('taipy.png', width=300)
@@ -689,42 +339,34 @@ with tab6:
 
                 
                 st.image("R_logo.png", width=300)
-                # st.write("Flask")
             with col2:
                 
                 st.image("mlr3.png", width=300)
             with col3:
                 st.image('causalimpact.png', width=500)
-                # st.write("Pandas")
             with col4:
                 st.image("torch.png", width=300)
-                # st.write("keras")
             with col5:
                 
                 st.image("golem.png", width=300)
-                # st.write("tersorflow")
             with col6:
                 
                 st.image("rcaret.png", width=300)
-                # st.write("Scikit-learn")
             with col7:
                 
                 st.image("e1071.png", width=300)
-                # st.write("Statsmodels")
             with col8:
                 st.image('purrr.jpg', width=300)
                
 
             with col9:
                 st.image('tidyquant.png', width=300)
-                # st.write("pytorch")
 
             with col10:
                 st.image('rlang.png', width=300)
             
             with col11:
                 st.image('fastai.png', width=300)
-                # st.write("pytorch")
 
         with st.container(border=True):
             st.markdown("<div style='text-align: center;'><h4>Deployment of Models in R</h4></div>", unsafe_allow_html=True)
@@ -735,28 +377,22 @@ with tab6:
 
                 
                 st.image("plumber.png", width=300)
-                # st.write("Flask")
             with col2:
                 
                 st.image("httr2.png", width=300)
             with col3:
                 st.image('restfulr.png', width=300)
-                # st.write("Pandas")
             with col4:
                 st.image("vetiver.png", width=300)
-                # st.write("keras")
             with col5:
                 
                 st.image("shiny.jpg", width=300)
-                # st.write("tersorflow")
             with col6:
                 
                 st.image("rhino.png", width=300)
-                # st.write("Scikit-learn")
             with col7:
                 
                 st.image("rsconnect.png", width=300)
-                # st.write("Statsmodels")
             with col8:
                 import os
                 import requests
@@ -764,7 +400,6 @@ with tab6:
 
             with col9:
                 st.image('keras.png', width=300)
-                # st.write("pytorch")
 
             with col10:
                 st.image('book.png', width=300)
@@ -774,54 +409,39 @@ with tab6:
         col1, col2, col3, col4, col5, col6, col7, col8, col9, col10, col11, col12, col13 = st.columns(13)
         with col1:
             st.image("mlflow.png", width=300)
-            # st.write("MLflow")
         with col2:
             st.image("kubeflow.png", width=300)
-            # st.write("Kubeflow")
         with col3:
             st.image("airflow.png", width=300)
-            # st.write("Airflow")   
         with col4:
             st.image("dagster.jpg", width=300)
-            # st.write("Dagster")  
         with col5:
             st.image("prefect.png", width=300)
-            # st.write("Prefect"
         with col6:
             st.image("dvc.png", width=300)
-            # st.write("DVC")
         with col7:
             st.image("seldon.png", width=300)
-            # st.write("Seldon")
         with col8:
             st.image("kserve.png", width=300)
-            # st.write("KServe")
         with col9:
             st.image("tfx.png", width=500)
-            # st.write("TFX")
         with col10:
             st.image("metaflow.png", width=300)
-            # st.write("Metaflow")
         with col11:
             st.image("polyaxon.png", width=300)
-            # st.write("Polyaxon")  
         with col12:
             st.image('wb.png', width=300)
-            # st.write("Weights & Biases")
         with col13:
             st.image('kedro.png', width=300)
-        # st.write("Weights & Biases")
 
     with st.container(border=True):
         st.markdown("<h4 style='text-align: center;'>Full Stack Engineering and Development</h4>", unsafe_allow_html=True)
         col1, col2, col3,col4  = st.columns(4)
         with col2:
             st.image("mean_stack.png", width=400)
-            # st.write("React")
         
         with col3:
             st.image("mern_stack.png", width=400)
-            # st.write("Angular")
 
 
     with st.container(border=True):
@@ -837,131 +457,18 @@ with tab6:
             st.image("gcp_cloud.png", width=600)
             # st.write("GCP")
 
-
-    
-    # with st.container(border=True):
-    #     st.markdown("<h4 style='text-align: center;'>Expertised in Cloud ML, AI, DL, GEN AI</h4>", unsafe_allow_html=True)
-    #     col1, col2, col3, col4, col5, col6, col7, col8, col9, col10 = st.columns(10)
-    #     with col1:
-    #         st.image("aws.png", width=300)
-    #         # st.write("AWS")
-    #     with col2:
-    #         st.image("azure.png", width=300)
-    #         # st.write("Azure")
-    #     with col3:
-    #         st.image("gcp.png", width=300)
-    #         # st.write("GCP")  
-    #     with col4:
-    #         st.image("sagemaker.png", width=300)
-    #         # st.write("IBM")
-    #     with col5:
-    #         st.image("azureml.png", width=300)
-    #         # st.write("Oracle")
-    #     with col6:
-    #         st.image("gcp_ai_platform.png", width=300)
-        
-    #     with col7:
-    #         st.image("gcp_genai.png", width=300)
-    #         # st.write("GCP Gen AI")
-    #     with col8:
-    #         st.image("aws_genai_bedrock.png", width=300)
-    #         # st.write("AWS Gen AI"
-    #     with col9:
-    #         st.image("azure_genai_openai.png", width=300)
-    #         # st.write("Azure Gen AI")
-    #     with col10:
-    #         st.image("ibm_watson.png", width=300)
-    #         # st.write("IBM Watson")
-        
-    # with st.container(border=True):
-    #     st.markdown("<h4 style='text-align: center;'>Expertised in Data Engineering Tools</h4>", unsafe_allow_html=True)
-    #     col1, col2, col3, col4, col5, col6, col7, col8, col9, col10, col11, col12, col13, col14, col15 = st.columns(15)
-    #     with col1:
-    #         st.image("spark.png", width=300)
-    #         # st.write("Spark")
-    #     with col2:
-    #         st.image("hadoop.png", width=300)
-    #         # st.write("Hadoop")
-    #     with col3:
-    #         st.image("kafka.png", width=300)
-    #         # st.write("Kafka")  
-    #     with col4:
-    #         st.image("flink.png", width=300)
-    #         # st.write("Flink")  
-    #     with col5:
-    #         st.image("airflow.png", width=300)
-    #         # st.write("Airflow")
-    #     with col6:
-    #         st.image("dbt.png", width=300)
-    #         # st.write("DBT")
-    #     with col7:
-    #         st.image("snowflake.png", width=300)
-    #         # st.write("Snowflake")
-    #     with col8:
-    #         st.image("bigquery.png", width=300)
-    #         # st.write("BigQuery")
-    #     with col9:
-    #         st.image("redshift.png", width=300)
-    #         # st.write("Redshift")
-    #     with col10:
-    #         st.image('databricks.png', width=300)
-
-    #     with col11:
-    #         st.image('hive.png', width=300)
-    #         # st.write("Hive")
-    #     with col12:
-    #         st.image('presto.png', width=300)
-    #         # st.write("Presto")
-    #     with col13:
-    #         st.image('amazon_emr.png', width=300)
-    #     with col14:
-    #         st.image('google_dataproc.png', width=300)
-    #         # st.write("Google Dataproc")
-    #     with col15:
-    #         st.image('apache_beam.png', width=300)
-    #         # st.write("Apache Beam")
-        
-
-    # with st.container(border=True):
-    #     st.markdown("<h4 style='text-align: center;'>Front End Engineering</h4>", unsafe_allow_html=True)
-    #     col1, col2, col3, col4, col5, col6, col7, col8, col9, col10 = st.columns(10)
-    #     with col1:
-    #         st.image("typescript.png", width=300)
-    #         # st.write("HTML") 
-    #     with col2:
-    #         st.image("react.png", width=300)
-    #         # st.write("CSS")
-    #     with col3:
-    #         st.image("javascript.png", width=300)
-    #         # st.write("JavaScript")
-
-    
-
-
 with tab10:
-    st.header("Acedemic Engagements")
+    st.header("Academic Engagements")
 
     col1, col2 = st.columns(2)
 
     with col1:
-        st.metric(label="Total Hours of Thought", value=2500, delta=50)
-        # st.progress(value=75)
-        # st.write("Hours of thought are calculated based on time spent in research modules.")
+        st.metric(label="Total Hours Spent Teaching", value=2500, delta=50)
     with col2:
         st.metric(label="Number of Colleges Engaged", value=15, delta=5)
-        
+
     style_metric_cards(background_color="#fff", border_size_px=1, border_color="#ccc", border_radius_px=5)
 
-    # st.markdown("""
-    # <style>
-    # .container {
-    #     border: 2px solid #ccc;
-    #     border-radius: 10px;
-    #     padding: 10px;
-    #     margin-top: 20px;
-    # }
-    # </style>
-    # """, unsafe_allow_html=True)
 
     with st.container(border=True):
         col1, col2, col3, col4, col5 = st.columns(5)
@@ -993,37 +500,38 @@ with tab10:
             st.markdown("<div class='container'>", unsafe_allow_html=True)
             st.write("#### IIT Hyderabad")
             st.image("iit_hyderabad.png", width=150)
-            # st.write("Description of Harvard University data.")
+            # st.write("Description of IIT Hyderabad data.")
             st.write("#### IIIT Delhi")
             st.image("indraprastha-institute-of-information-technology-iiit-delhi-logo.png", width=150)
+            # st.write("Description of IIIT Delhi data.")
             st.write("#### Guru Nanak Educational Society")
             st.image("gurunanak.jpg", width=200)
-            # st.write("Description of Yale University data.")
+            # st.write("Description of Guru Nanak Educational Society data.")
             st.markdown("</div>", unsafe_allow_html=True)
         
         with col4:
             st.markdown("<div class='container'>", unsafe_allow_html=True)
-            st.write("#### Austin Texas University")
+            st.write("#### University of Texas at Austin")
             st.image("University_of_Texas_at_Austin_seal.svg.png", width=150)
             # st.write("Description of Princeton University data.")
             st.write("#### Vignan Institute of Technology")
             st.image("vignan.jpg", width=150)
-            # st.write("Description of University of Oxford data.")
+            # st.write("Description of Vignan Institute of Technology data.")
             st.write("#### Manipal University Bangalore")
             st.image("manipal.jpg", width=170)
-            
+
             st.markdown("</div>", unsafe_allow_html=True)
 
         with col5:
             st.markdown("<div class='container'>", unsafe_allow_html=True)
             st.write("#### CMR College of Engineering")
             st.image("cmr.jpg", width=150)
-            # st.write("Description of University of Cambridge data.")
+            # st.write("Description of CMR College of Engineering data.")
             st.write("#### Geetanjali University")
             st.image("geetanjali.jpg", width=150)
             st.write("#### KIIT University")
             st.image("KIIT-Logo.png", width=200)
-            # st.write("Description of University of California, Berkeley data.")
+            # st.write("Description of KIIT University data.")
             st.markdown("</div>", unsafe_allow_html=True)
 
 
@@ -1134,7 +642,7 @@ with tab4:
         st.write("Key Topics: Descriptive Statistics, Inferential Statistics, Regression Analysis")
         st.subheader("2. edX: Data Science: Probability - Harvard University")
         st.write("Key Topics: Probability Theory, Random Variables, Distributions")
-        st.subheader("3. Basian Statistics")
+        st.subheader("3. Bayesian Statistics")
         st.write("Key Topics: Bayesian Inference, Prior and Posterior Distributions, Markov Chain Monte Carlo")
         st.subheader("4. IBM Advanced Data Science with Time Series")
         st.write("Key Topics: Time Series Analysis, Forecasting, ARIMA Models")
@@ -1168,18 +676,6 @@ with tab4:
         st.write("Key Topics: Azure ML, Model Deployment, Data Preparation")
         st.subheader("5. MLOps with AWS - Amazon Web Services")
         st.write("Key Topics: AWS ML Services, Model Deployment, Data Engineering")
-
-    
-
-            
-    
-    # with st.expander("List of Deep Learning Certifications", expanded=True):
-    #     st.header("This content will be visible by default")
-    #     st.button("Example button")
-    
-    # with st.expander("List of Deep Learning Certifications", expanded=True):
-    #     st.header("This content will be visible by default")
-    #     st.button("Example button")
 
 
 with tab7:
@@ -1328,7 +824,7 @@ with tab7:
 
             **Duration:** 2 Days
 
-            **Role:** Workshop Facilitator
+            **Role:** Workshop facilitator
             """
         )
 
@@ -1341,7 +837,7 @@ with tab7:
 
             **Duration:** 1 Week
 
-            **Role:** Visiting Faculty
+            **Role:** Visiting faculty
             """
         )
 
@@ -1354,7 +850,7 @@ with tab7:
 
             **Duration:** 3 Days
 
-            **Role:** Guest Speaker
+            **Role:** Guest speaker
             """
         )
 
@@ -1509,8 +1005,7 @@ with tab9:
     )
     st.line_chart(chart_data)
 
-    # st.write(f"Data Source: Dummy Data")
-    # st.write(f"Last Updated: {last_updated}")
+ 
 
     st.subheader("Courses trained along with companies details.")
 
@@ -1670,7 +1165,7 @@ with tab3:
     timeline_data = [
         {"Name": "Demand Sensing and Forecasting US 17/110,992",
             "link": "https://drive.google.com/file/d/1nvOsIO00G8Dwt5cNJjWemTGwtgbVVF9J/view?usp=sharing"},
-        {"Name": "Psuedo Random Forest",
+        {"Name": "Pseudo Random Forest",
             "link": "https://drive.google.com/file/d/1w7kwxIumpsqam3IcCTGeLmVAEUJI1m9Z/view?usp=sharing"},
         {"Name": "Noise Detection and Removal",
             "link": "https://drive.google.com/file/d/1h2EtSHWM1qaScPZ9eBScVoW39nEFi3j8/view?usp=sharing"},
@@ -1785,7 +1280,7 @@ with tab2:
             "Position": "Principal Data Scientist",
             "start": datetime(2021, 10, 1),
             "end": datetime(2025, 5, 30),
-            "description": "Quantum Machine Learning suite for variation identification. Code Assistant Tool. Reinforcement learning based Engine for Tool Trouble shooting. Built advanced statistics/data-science models.",
+            "description": "Quantum Machine Learning suite for variation identification. Code Assistant Tool. Reinforcement learning based Engine for Tool Troubleshooting. Built advanced statistics/data-science models.",
             "logo": "BITS_Pilani-Logo.png"},
         {"Name": "GEP SOLUTIONS",
             "Position": "Data Scientist",
@@ -1803,7 +1298,7 @@ with tab2:
             "Position": "Data Scientist and Full Stack Developer",
             "start": datetime(2016, 4, 1),
             "end": datetime(2025, 5, 30),
-            "description": "Developed apps, worked on the back-end and front-end. Created Machine Learning-based tools. Built a webservice in .net which extracts the payments from quick books.",
+            "description": "Developed apps, worked on the back-end and front-end. Created Machine Learning-based tools. Built a web service in .NET that extracts payments from QuickBooks.",
             "logo": "iit_madras_logo.png"},
         {"Name": "PIXENTIA SOLUTIONS",
             "Position": "Software Engineer-I",
