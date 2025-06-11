@@ -1211,9 +1211,9 @@ with tab1:
  
 
         st.write("""
-        Data Scientist and Full Stack Developer with 10+ years of experience. Expert in Data Science, Machine Learning, Big Data, Computer Vision, Deep Learning, Python, R, Java, .Net, SQL, Cloud Solutions, LLM, and more.
+        Data Scientist and Full Stack Developer with 10+ years of experience.
 
-        **Skills:** Data Analysis, Feature Engineering, Big Data, Machine Learning, Deep Learning, Python, R, Java, .Net, SQL, Cloud Solutions, LLM, and more.
+        **Skills:** Data Analysis, Feature Engineering, Big Data, Machine Learning, Deep Learning, Python, R, Java, .Net, SQL, Cloud Solutions, LLM, Front-End Frameworks (React, Angular, Vue), Frameworks (Langchain, LlamaIndex, Haystack), Databases (Weaviate, Pinecone, Chroma), Foundation Models (GPT, Claude, Gemini), Cloud Providers (AWS, Azure, GCP), and more.
 
         **Experience:** Principal Data Scientist at Micron Technology, Microsoft Technology Consultant at PwC India, Data Scientist at GEP Solutions, and more.
 
