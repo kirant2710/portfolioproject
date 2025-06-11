@@ -236,54 +236,36 @@ with tab6:
             st.markdown("<div style='text-align: center;'><h4>Data Science with Python</h4></div>", unsafe_allow_html=True)
             col1, col2, col3, col4, col5, col6, col7, col8, col9, col10 = st.columns(10)
             with col1:
-                import os
-                import requests
 
                 st.image("Python-Logo.png", width=150)
             with col2:
-                import os
-                import requests
 
                 numpy_image_path = "numpy.png"
                 st.image(numpy_image_path, width=150)
             with col3:
-                import os
-                import requests
 
                 pandas_image_path = "pandas_png2.jpg"
                 st.image(pandas_image_path, width=150)
             with col4:
-                import os
-                import requests
                 keras_image_path = "keras_logo.png"
                 st.image(keras_image_path, width=150)
             with col5:
-                import os
-                import requests
 
                 tensorflow_image_path = "tf.png"
                 st.image(tensorflow_image_path, width=150)
             with col6:
-                import os
-                import requests
 
                 scikit_learn_image_path = "scikit-learn.png"
                 st.image(scikit_learn_image_path, width=150)
             with col7:
-                import os
-                import requests
 
                 statsmodels_image_path = "statsmodels.png"
                 st.image(statsmodels_image_path, width=150)
             with col8:
-                import os
-                import requests
 
                 plotly_image_path = "causalml.png"
                 st.image(plotly_image_path, width=150)
             with col9:
-                import os
-                import requests
 
                 pytorch_image_path = "pytorch.png"
                 st.image(pytorch_image_path, width=150)
@@ -295,33 +277,23 @@ with tab6:
             st.markdown("<div style='text-align: center;'><h4>Deployment of Models with Python</h4></div>", unsafe_allow_html=True)
             col1, col2, col3, col4, col5, col6, col7, col8, col9, col10 = st.columns(10)
             with col1:
-                import os
-                import requests
 
                 st.image("flask_python.png", width=300)
                 # st.write("Flask")
             with col2:
-                
                 st.image("fastapi.png", width=300)
             with col3:
                 st.image('asyncio.png', width=300)
             with col4:
                 st.image("rio.jpg", width=300)
-                # st.write("keras")
             with col5:
-                import os
-                import requests
 
                 st.image("streamlit.png", width=300)
             with col6:
-                
                 st.image("nicegui.png", width=300)
             with col7:
-                
                 st.image("bottle.jpg", width=300)
             with col8:
-                import os
-                import requests
                 st.image("falcon.png", width=300)
             with col9:
                 st.image('dash.png', width=300)
@@ -334,26 +306,20 @@ with tab6:
             st.markdown("<div style='text-align: center;'><h4>DataScience with R</h4></div>", unsafe_allow_html=True)
             col1, col2, col3, col4, col5, col6, col7, col8, col9, col10, col11 = st.columns(11)
             with col1:
-                import os
-                import requests
 
                 
                 st.image("R_logo.png", width=300)
             with col2:
-                
                 st.image("mlr3.png", width=300)
             with col3:
                 st.image('causalimpact.png', width=500)
             with col4:
                 st.image("torch.png", width=300)
             with col5:
-                
                 st.image("golem.png", width=300)
             with col6:
-                
                 st.image("rcaret.png", width=300)
             with col7:
-                
                 st.image("e1071.png", width=300)
             with col8:
                 st.image('purrr.jpg', width=300)
@@ -372,30 +338,22 @@ with tab6:
             st.markdown("<div style='text-align: center;'><h4>Deployment of Models in R</h4></div>", unsafe_allow_html=True)
             col1, col2, col3, col4, col5, col6, col7, col8, col9, col10 = st.columns(10)
             with col1:
-                import os
-                import requests
 
                 
                 st.image("plumber.png", width=300)
             with col2:
-                
                 st.image("httr2.png", width=300)
             with col3:
                 st.image('restfulr.png', width=300)
             with col4:
                 st.image("vetiver.png", width=300)
             with col5:
-                
                 st.image("shiny.jpg", width=300)
             with col6:
-                
                 st.image("rhino.png", width=300)
             with col7:
-                
                 st.image("rsconnect.png", width=300)
             with col8:
-                import os
-                import requests
                 st.image('reticulate.png', width=300)
 
             with col9:
