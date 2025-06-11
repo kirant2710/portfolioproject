@@ -85,11 +85,16 @@ project_data = {
 }
 
 with tab5:
+# Display projects
     st.header("Projects")
+# Iterate through companies
+    # Iterate through each company and their projects
     for company, projects in project_data.items():
+# Format project list as HTML
         st.subheader(company)
-        for project in projects:
-            st.write(f"* {project}", unsafe_allow_html=True)
+        # Combine all projects into a single HTML string for efficient rendering
+        project_html = "".join(f"<li>{project}</li>" for project in projects)
+        st.write(f"<ul>{project_html}</ul>", unsafe_allow_html=True)
 
 with tab6:
     st.header("Expertise In")
@@ -494,16 +499,22 @@ with tab10:
 
 
 
+# Display certificates
 with tab4:
+# Display certificates
     st.header("Certificates")
+# Load skills data
 
     roles = load_skills_data()
+# Initialize certificate counters
+# Calculate certificate counts
 
     # Calculate certificate counts based on skills
     deep_learning_certs = 0
     machine_learning_certs = 0
     statistics_certs = 0
     generative_ai_certs = 0
+# Iterate through roles and count certificates
     ai_engineering_certs = 0
     mlops_certs = 0
 
@@ -516,16 +527,20 @@ with tab4:
             machine_learning_certs = 9
         elif role["name"] == "Data Science":
             statistics_certs = 7
+# Display metrics in columns
         elif role["name"] == "MLOps Engineer":
+# Display certificate counts in metrics
             mlops_certs = len(role["skills"])
 
     col1, col2, col3 = st.columns(3)
     with col1:
         display_metric("Deep Learning", deep_learning_certs, col1)
+# Display lists of certifications
         display_metric("Machine Learning", machine_learning_certs, col1)
     with col2:
         display_metric("Statistics", statistics_certs, col2)
         display_metric("AI and ML Engineer", ai_engineering_certs, col2)
+# Display certificate lists in expanders
     with col3:
         display_metric("Generative AI", generative_ai_certs, col3)
         display_metric("MLOps", mlops_certs, col3)
@@ -585,12 +600,14 @@ with tab4:
         st.write("Key Topics: Cloud ML, BigQuery ML, AutoML, Model Deployment")
         st.subheader("4. AWS Certified Machine Learning - Specialty")
         st.write("Key Topics: AWS ML Services, Model Deployment, Data Engineering")
+# Helper function to display certification list with expander
         st.subheader("5. Azure Data Scientist Associate")
         st.write("Key Topics: Azure ML, Model Deployment, Data Preparation")
         st.subheader("7. IBM Machine Learning Professional Certificate")
         st.write("Key Topics: Supervised Learning, Unsupervised Learning, Model Evaluation")
         st.subheader("8. Google Machine Learning Crash Course")
         st.write("Key Topics: Supervised Learning, Unsupervised Learning, TensorFlow Basics")
+# Helper function to display certification list
         st.subheader("9. Microsoft Azure AI Fundamentals (AI-900)")
         st.write("Key Topics: Azure AI Services, Machine Learning Basics, AI Concepts")
 
@@ -633,6 +650,7 @@ with tab4:
 
 
 with tab7:
+# Display teaching experience information
     st.header("Teaching Experience")
 
     st.subheader("Teaching Philosophy")
@@ -643,6 +661,7 @@ with tab7:
     )
 
     st.subheader("Subject Areas")
+# Python courses
 
     # Python
     with st.expander("Python"):
@@ -654,6 +673,7 @@ with tab7:
 
             **Student Outcomes:** Students successfully completed projects involving data analysis, machine learning model development, and web application creation. Average student satisfaction score: 4.5/5.
             """
+# Deep Learning courses
         )
 
     # Deep Learning
@@ -665,6 +685,7 @@ with tab7:
             **Technologies Used:** TensorFlow, Keras, PyTorch, CUDA
 
             **Student Outcomes:** Students built deep learning models for image classification, natural language processing, and time series forecasting. Project success rate: 90%.
+# NLP courses
             """
         )
 
@@ -674,6 +695,9 @@ with tab7:
             """
             **Courses Taught:** Natural Language Processing with Python, Text Mining, Sentiment Analysis
 
+# Request Course Enrollment Button
+    if st.button("Request Course Enrollment"):
+        st.write("Thank you for your interest! Please contact me for enrollment details.")
             **Technologies Used:** NLTK, SpaCy, Gensim, Transformers
 
             **Student Outcomes:** Students developed NLP applications for text classification, sentiment analysis, and machine translation.
@@ -894,6 +918,7 @@ def send_email(subject, message, receiver_email):
 
 with tab8:
     st.header("Consulting Engagements")
+# Display past consulting engagements
 
     # Engagement 1
     with st.container():
@@ -927,6 +952,7 @@ with tab8:
         st.write("**Description:** Developed a computer vision system for medical image analysis to assist radiologists in detecting diseases. The system analyzes X-rays and MRIs to identify potential anomalies, improving diagnostic accuracy and reducing the workload of radiologists.")
         st.write("**Engagement Dates:** 2024-11-01 to 2025-02-31")
 
+# Display email input fields and send button
     # Request Appointment Button
 # Email input fields
     with st.container(border=True):
@@ -981,6 +1007,7 @@ with tab9:
 
     st.subheader("Courses trained along with companies details.")
 
+# Course 1: Data Science with Python
     # Course 1
     with st.container():
         st.subheader("Data Science with Python")
@@ -988,6 +1015,7 @@ with tab9:
         st.write("**Training Hours:** 40")
         st.write("**Company:** SG Analytics")
         st.markdown("---")
+# Course 2: Data Science with R
 
     # Course 2
     with st.container():
@@ -995,6 +1023,7 @@ with tab9:
         st.write("**Description:** A comprehensive introduction to data science using R.")
         st.write("**Training Hours:** 40")
         st.write("**Company:** UNext/Deloitte")
+# Course 3: Statistics for Data Science
         st.markdown("---")
 
     # Course 3
@@ -1003,6 +1032,7 @@ with tab9:
         st.write("**Description:** A deep dive into statistical concepts for data science.")
         st.write("**Training Hours:** 30")
         st.write("**Company:** Cognizant under Jigsaw Engagement")
+# Course 4: Deep Learning Fundamentals
         st.markdown("---")
 
     # Course 4
@@ -1010,12 +1040,14 @@ with tab9:
         st.subheader("Deep Learning Fundamentals For SG Analytics")
         st.write("**Description:** An introduction to deep learning concepts and techniques.")
         st.write("**Training Hours:** 50")
+# Course 5: Generative AI
         st.write("**Company:** SG Analytics")
         st.markdown("---")
 
     # Course 5
     with st.container():
         st.subheader("Generative AI")
+# Display academic journey information
         st.write("**Description:** An introduction to Generative AI models and applications.")
         st.write("**Training Hours:** 60")
         st.write("**Company:** SG Analytics")
@@ -1232,7 +1264,9 @@ with tab1:
     except Exception as e:
         st.error(f"An error occurred: {e}")
 
+# Display professional journey information
 with tab2:
+# Display metrics
     st.header("Professional Journey")
     cols = st.columns(4)
 
@@ -1244,6 +1278,7 @@ with tab2:
         ui.metric_card(title="Total Working Experience", content="10+", description="", key="card6")
 
     with cols[3]:
+# Timeline Data
         ui.metric_card(title="Client Engagements", content="30+", description="", key="card7")
 
     # Timeline Data
@@ -1283,6 +1318,7 @@ with tab2:
             "start": datetime(2012, 11, 1),
             "end": datetime(2025, 5, 30),
             "description": "Developed and hosted apps like remote scilab for computations in chemical engineering labs remotely, worked on enterprise level applications like sandman with machine learning as core.",
+# Create timeline chart
             "logo": "BITS_Pilani-Logo.png"},
     ]
 
