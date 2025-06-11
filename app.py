@@ -595,45 +595,41 @@ with tab4:
         st.write("Key Topics: Azure AI Services, Machine Learning Basics, AI Concepts")
 
 
-    with st.expander("List of Statistics Certifications"):
-        st.subheader("1. Coursera: Statistics with Python Specialization - University of Michigan")
-        st.write("Key Topics: Descriptive Statistics, Inferential Statistics, Regression Analysis")
-        st.subheader("2. edX: Data Science: Probability - Harvard University")
-        st.write("Key Topics: Probability Theory, Random Variables, Distributions")
-        st.subheader("3. Bayesian Statistics")
-        st.write("Key Topics: Bayesian Inference, Prior and Posterior Distributions, Markov Chain Monte Carlo")
-        st.subheader("4. IBM Advanced Data Science with Time Series")
-        st.write("Key Topics: Time Series Analysis, Forecasting, ARIMA Models")
-        st.subheader("5. Stanford's Introduction to Statistical Learning")
-        st.write("Key Topics: Linear Regression, Classification, Resampling Methods")
-        st.subheader("6. Statistics with R Specialization - Duke University")
-        st.write("Key Topics: Descriptive Statistics, Inferential Statistics, Regression Analysis")
-        st.subheader("7. MITx: Probability - The Science of Uncertainty and Data")
-        st.write("Key Topics: Probability Theory, Random Variables, Distributions")
+    def display_certification_list(title, certifications):
+        with st.expander(title):
+            for i, cert in enumerate(certifications):
+                st.subheader(f"{i+1}. {cert['name']}")
+                st.write(f"Key Topics: {cert['topics']}")
 
-    with st.expander("List of AI and ML Engineer Certifications"):
-        st.subheader("1. AI Engineer Professional Certificate - IBM")
-        st.write("Key Topics: AI Concepts, Machine Learning, Deep Learning, Model Deployment")
-        st.subheader("2. AI and Machine Learning for Coders - Google")
-        st.write("Key Topics: AI Concepts, Machine Learning, Deep Learning, Model Deployment")
-        st.subheader("3. AI Engineering with TensorFlow - Google Cloud")
-        st.write("Key Topics: TensorFlow, Keras, Model Deployment, Transfer Learning")
-        st.subheader("4. AI and Machine Learning for Business - Coursera")
-        st.write("Key Topics: AI Concepts, Machine Learning, Business Applications")
-        st.subheader("5. AI and Machine Learning for Coders - Fast.ai")
-        st.write("Key Topics: Practical AI, Transfer Learning, Fine-Tuning Models") 
-    
-    with st.expander("List of MLOps Certifications"):
-        st.subheader("1. MLOps Specialization - Coursera")
-        st.write("Key Topics: MLOps Principles, Model Deployment, CI/CD for ML")
-        st.subheader("2. MLOps with TensorFlow - Google Cloud")
-        st.write("Key Topics: TensorFlow, Keras, Model Deployment, Transfer Learning")
-        st.subheader("3. MLOps Engineer Professional Certificate - IBM")
-        st.write("Key Topics: MLOps Principles, Model Deployment, CI/CD for ML")
-        st.subheader("4. MLOps Fundamentals - Microsoft Azure")
-        st.write("Key Topics: Azure ML, Model Deployment, Data Preparation")
-        st.subheader("5. MLOps with AWS - Amazon Web Services")
-        st.write("Key Topics: AWS ML Services, Model Deployment, Data Engineering")
+    statistics_certifications = [
+        {"name": "Coursera: Statistics with Python Specialization - University of Michigan", "topics": "Descriptive Statistics, Inferential Statistics, Regression Analysis"},
+        {"name": "edX: Data Science: Probability - Harvard University", "topics": "Probability Theory, Random Variables, Distributions"},
+        {"name": "Bayesian Statistics", "topics": "Bayesian Inference, Prior and Posterior Distributions, Markov Chain Monte Carlo"},
+        {"name": "IBM Advanced Data Science with Time Series", "topics": "Time Series Analysis, Forecasting, ARIMA Models"},
+        {"name": "Stanford's Introduction to Statistical Learning", "topics": "Linear Regression, Classification, Resampling Methods"},
+        {"name": "Statistics with R Specialization - Duke University", "topics": "Descriptive Statistics, Inferential Statistics, Regression Analysis"},
+        {"name": "MITx: Probability - The Science of Uncertainty and Data", "topics": "Probability Theory, Random Variables, Distributions"},
+    ]
+
+    ai_ml_certifications = [
+        {"name": "AI Engineer Professional Certificate - IBM", "topics": "AI Concepts, Machine Learning, Deep Learning, Model Deployment"},
+        {"name": "AI and Machine Learning for Coders - Google", "topics": "AI Concepts, Machine Learning, Deep Learning, Model Deployment"},
+        {"name": "AI Engineering with TensorFlow - Google Cloud", "topics": "TensorFlow, Keras, Model Deployment, Transfer Learning"},
+        {"name": "AI and Machine Learning for Business - Coursera", "topics": "AI Concepts, Machine Learning, Business Applications"},
+        {"name": "AI and Machine Learning for Coders - Fast.ai", "topics": "Practical AI, Transfer Learning, Fine-Tuning Models"},
+    ]
+
+    mlops_certifications = [
+        {"name": "MLOps Specialization - Coursera", "topics": "MLOps Principles, Model Deployment, CI/CD for ML"},
+        {"name": "MLOps with TensorFlow - Google Cloud", "topics": "TensorFlow, Keras, Model Deployment, Transfer Learning"},
+        {"name": "MLOps Engineer Professional Certificate - IBM", "topics": "MLOps Principles, Model Deployment, CI/CD for ML"},
+        {"name": "MLOps Fundamentals - Microsoft Azure", "topics": "Azure ML, Model Deployment, Data Preparation"},
+        {"name": "MLOps with AWS - Amazon Web Services", "topics": "AWS ML Services, Model Deployment, Data Engineering"},
+    ]
+
+    display_certification_list("List of Statistics Certifications", statistics_certifications)
+    display_certification_list("List of AI and ML Engineer Certifications", ai_ml_certifications)
+    display_certification_list("List of MLOps Certifications", mlops_certifications)
 
 
 with tab7:
@@ -932,6 +928,24 @@ with tab8:
         st.write("**Engagement Dates:** 2024-11-01 to 2025-02-31")
 
     # Request Appointment Button
+# Email input fields
+    with st.container(border=True):
+        st.subheader("Need my consultation! please feel free to reach out to me!")
+        col1, col2 = st.columns(2)
+        with col1:
+            subject = st.text_input("Subject", placeholder="Enter the subject here")
+        with col2:
+            receiver_email = st.text_input("Receiver Email", placeholder="Enter receiver email here")
+
+    # with st.container():
+        message = st.text_area("Message", placeholder="Enter your message here")
+
+    # Button to send email
+    # with st.container():
+       
+        if st.button("Send Email"):
+            send_email(subject, message, receiver_email)
+            st.success("Email sent successfully!")
 
 with tab9:
     st.header("Corporate Training")
