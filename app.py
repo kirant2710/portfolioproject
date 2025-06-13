@@ -863,10 +863,6 @@ with tab7:
     course_interest = st.selectbox("Interested in Courses related to:", ["Data Science", "AI", "Machine Learning", "Deep Learning", "MLOps", "DevOps"], key="course_enrollment_interest")
     user_message = st.text_area("Optional Message", key="course_enrollment_message")
 
-def display_metric(label, value, column):
-    """Displays a metric in the specified column."""
-    with column:
-        st.metric(label=label, value=value)
 
 def send_email(subject, message, receiver_email):
     """Sends an email using the provided subject and message."""
