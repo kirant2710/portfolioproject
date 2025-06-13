@@ -1,17 +1,36 @@
 import streamlit as st
+import time  # Import the time module
+
 if "page_configured" not in st.session_state:
     st.set_page_config(layout="wide")
     st.session_state["page_configured"] = True
+
+# if "app_loaded" not in st.session_state:
+#     st.session_state["app_loaded"] = False
+if "app_loaded" not in st.session_state:
+    st.session_state["app_loaded"] = False
+
+if not st.session_state["app_loaded"]:
+    with st.spinner("Loading..."):
+        st.markdown("""
+            <div style="border: 4px solid rgba(0, 0, 0, 0.1); border-left-color: #007bff; border-radius: 50%; width: 30px; height: 30px; animation: spin 1s linear infinite;"></div>
+            <style>
+            @keyframes spin {
+              0% {
+                transform: rotate(0deg);
+              }
+              100% {
+                transform: rotate(360deg);
+              }
+            }
+            </style>
+        """, unsafe_allow_html=True)
+        # Simulate loading time (replace with actual loading logic)
+        time.sleep(2)
+        st.session_state["app_loaded"] = True
+        st.rerun()
 
 # Add a spinner
-with st.spinner("Loading..."):
-    pass
-import streamlit as st
-
-if "page_configured" not in st.session_state:
-    st.set_page_config(layout="wide")
-    st.session_state["page_configured"] = True
-
 import plotly.graph_objects as go
 from datetime import datetime
 import json
@@ -31,7 +50,7 @@ def display_metric(label, value, column):
     with column:
         st.metric(label=label, value=value)
 
-tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9, tab10 = st.tabs(["About Me", "Professional Journey", "Academic Journey","Certifications","Projects", "Expertise", "Teaching Experience", "Consulting", "Corporate Training", "Academic Engagements"])
+tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9, tab10 = st.tabs(["About Me", "Professional Journey", "Academic Journey", "Certifications", "Projects", "Expertise", "Teaching Experience", "Consulting", "Corporate Training", "Academic Engagements"])
 
 
 project_data = {
